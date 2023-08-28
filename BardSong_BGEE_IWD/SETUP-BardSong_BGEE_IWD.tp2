@@ -4,6 +4,8 @@ AUTHOR ~shohy@126.com~
 VERSION ~v4.0~
 AUTO_EVAL_STRINGS
 
+README ~BardSong_BGEE_IWD/README.%LANGUAGE%.txt~
+AUTO_TRA ~BardSong_BGEE_IWD/tra/%s~
 
 LANGUAGE	~American English~		~english~	~BardSong_BGEE_IWD/tra/english/setup.tra~	~BardSong_BGEE_IWD/tra/english/game.tra~
 LANGUAGE	~Chinese Simplified~	~chinese~	~BardSong_BGEE_IWD/tra/chinese/setup.tra~	~BardSong_BGEE_IWD/tra/chinese/game.tra~
@@ -13,7 +15,6 @@ LANGUAGE	~Chinese Simplified~	~chinese~	~BardSong_BGEE_IWD/tra/chinese/setup.tra
 
 BEGIN @1
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet~ OR FILE_EXISTS_IN_GAME ~BD1000.are~ @11
-AT_INTERACTIVE_EXIT ~VIEW BardSong_BGEE_IWD/README.%LANGUAGE%.txt~
 
 //读取kitlist中ability列，确定技能列表的名称
 COPY_EXISTING ~kitlist.2da~ ~override~
