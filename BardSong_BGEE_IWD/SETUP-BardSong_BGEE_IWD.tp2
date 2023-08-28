@@ -1,0 +1,610 @@
+BACKUP ~BardSong_BGEE_IWD/backup~
+AUTHOR ~shohy@126.com~
+
+VERSION ~v4.0~
+AUTO_EVAL_STRINGS
+
+
+LANGUAGE	~American English~		~english~	~BardSong_BGEE_IWD/tra/english/setup.tra~	~BardSong_BGEE_IWD/tra/english/game.tra~
+LANGUAGE	~Chinese Simplified~	~chinese~	~BardSong_BGEE_IWD/tra/chinese/setup.tra~	~BardSong_BGEE_IWD/tra/chinese/game.tra~
+//LANGUAGE	~French~							~french~	  ~BardSong_BGEE_IWD/tra/french/setup.tra~	~BardSong_BGEE_IWD/tra/french/game.tra~
+
+////////////////////////////////////////////////////////////////////////////
+
+BEGIN @1
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet~ OR FILE_EXISTS_IN_GAME ~BD1000.are~ @11
+AT_INTERACTIVE_EXIT ~VIEW BardSong_BGEE_IWD/README.%LANGUAGE%.txt~
+
+//读取kitlist中ability列，确定技能列表的名称
+COPY_EXISTING ~kitlist.2da~ ~override~
+	COUNT_2DA_ROWS 10 kitsmax
+	FOR (kitrow = 0 ; kitrow < kitsmax ; ++kitrow) BEGIN
+		READ_2DA_ENTRY kitrow 1 9 kitname
+		PATCH_IF ~%kitname%~ STRING_EQUAL_CASE ~BLADE~ BEGIN
+			READ_2DA_ENTRY kitrow 5 9 bladeability
+			//PATCH_PRINT  ~%bladeability%~
+		END
+		PATCH_IF ~%kitname%~ STRING_EQUAL_CASE ~JESTER~ BEGIN
+			READ_2DA_ENTRY kitrow 5 9 jesterability
+			//PATCH_PRINT  ~%jesterability%~
+		END
+		PATCH_IF ~%kitname%~ STRING_EQUAL_CASE ~SKALD~ BEGIN
+			READ_2DA_ENTRY kitrow 5 9 skaldability
+			//PATCH_PRINT  ~%skaldability%~
+		END
+	END
+BUT_ONLY
+
+//处理技能列表
+OUTER_SET "bardabdone" = 0
+OUTER_SET "bladeabdone" = 0
+OUTER_SET "jesterabdone" = 0
+OUTER_SET "skaldabdone" = 0
+
+COPY_EXISTING ~CLABBA01.2da~ ~override~
+COUNT_2DA_ROWS ~20~ "rows"
+FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
+  READ_2DA_ENTRY "%index%" 1 20 "abil"
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B10A" = 0) BEGIN	//已经有相关能力了
+		SET "bardabdone" = 1
+  END
+END
+BUT_ONLY
+
+COPY_EXISTING ~%bladeability%.2da~ ~override~
+COUNT_2DA_ROWS ~20~ "rows"
+FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
+  READ_2DA_ENTRY "%index%" 1 20 "abil"
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B20A" = 0) BEGIN	//已经有相关能力了
+		SET "bladeabdone" = 1
+  END
+END
+BUT_ONLY
+
+COPY_EXISTING ~%jesterability%.2da~ ~override~
+COUNT_2DA_ROWS ~20~ "rows"
+FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
+  READ_2DA_ENTRY "%index%" 1 20 "abil"
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B30A" = 0) BEGIN	//已经有相关能力了
+		SET "jesterabdone" = 1
+  END
+END
+BUT_ONLY
+
+COPY_EXISTING ~%skaldability%.2da~ ~override~
+COUNT_2DA_ROWS ~20~ "rows"
+FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
+  READ_2DA_ENTRY "%index%" 1 20 "abil"
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B40A" = 0) BEGIN	//已经有相关能力了
+		SET "skaldabdone" = 1
+  END
+END
+BUT_ONLY
+
+//PRINT "bardabdone=%bardabdone%"
+//PRINT "bladeabdone=%bladeabdone%"
+//PRINT "jesterabdone=%jesterabdone%"
+//PRINT "skaldabdone=%skaldabdone%"
+
+ACTION_IF (bardabdone = 0) THEN BEGIN
+	APPEND ~CLABBA01.2da~ ~ABILITYA AP_BI#B10A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE
+	ABILITYB GA_BI#B11A **** **** GA_BI#B12A **** **** **** GA_BI#B13A **** **** **** GA_BI#B14A **** **** **** GA_BI#B15A **** **** **** GA_BI#B16A CDREPLACE~
+	COPY_EXISTING ~CLABBA01.2da~ ~override~
+	  COUNT_2DA_COLS cols
+	  FOR (index = 22 ; index < cols ; ++index) BEGIN
+	    REPLACE_TEXTUALLY ~CDREPLACE~ ~**** CDREPLACE~
+	  END
+	  REPLACE_TEXTUALLY ~CDREPLACE~ ~****~
+	  PRETTY_PRINT_2DA
+END
+
+ACTION_IF (bladeabdone = 0) THEN BEGIN
+	APPEND ~%bladeability%.2da~ ~ABILITYA AP_BI#B20A **** **** **** **** **** **** **** **** AP_SPCL541 **** **** **** **** **** **** **** **** **** AP_SPCL541 CDREPLACE
+	ABILITYB GA_BI#B11A **** **** **** **** GA_BI#B12A **** **** **** **** **** GA_BI#B13A **** **** **** **** **** GA_BI#B14A **** **** CDREPLACE~
+	COPY_EXISTING ~%bladeability%.2da~ ~override~
+	  COUNT_2DA_COLS cols
+	  FOR (index = 22 ; index < cols ; ++index) BEGIN
+	    REPLACE_TEXTUALLY ~CDREPLACE~ ~**** CDREPLACE~
+	  END
+	  REPLACE_TEXTUALLY ~CDREPLACE~ ~****~
+	  COUNT_2DA_ROWS 15 rows	//行数
+	  FOR (index = 0 ; index < rows ; ++index) BEGIN
+		  READ_2DA_ENTRY index 1 15 bladeab1
+		  PATCH_IF ("%bladeab1%" STRING_COMPARE_CASE "AP_BI#B20A" = 0) BEGIN
+		  	SET "index1" = "index"
+		  	SET "index" = "%rows%" + 1
+		  END
+		END
+  	PATCH_IF cols > 50 BEGIN SET_2DA_ENTRY index1 50 51 ~AP_SPCL541~ END
+  	PATCH_IF cols > 40 BEGIN SET_2DA_ENTRY index1 40 41 ~AP_SPCL541~ END
+  	PATCH_IF cols > 30 BEGIN SET_2DA_ENTRY index1 30 31 ~AP_SPCL541~ END
+	  PRETTY_PRINT_2DA
+END
+
+ACTION_IF (jesterabdone = 0) THEN BEGIN
+	APPEND ~%jesterability%.2da~ ~ABILITYA AP_BI#B30A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE~
+	COPY_EXISTING ~%jesterability%.2da~ ~override~
+	  COUNT_2DA_COLS cols
+	  FOR (index = 22 ; index < cols ; ++index) BEGIN
+	    REPLACE_TEXTUALLY ~CDREPLACE~ ~**** CDREPLACE~
+	  END
+	  REPLACE_TEXTUALLY ~CDREPLACE~ ~****~
+	  PRETTY_PRINT_2DA
+END
+
+ACTION_IF (skaldabdone =0) THEN BEGIN
+	APPEND ~%skaldability%.2da~ ~ABILITYA AP_BI#B40A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE~
+	COPY_EXISTING ~%skaldability%.2da~ ~override~
+	  COUNT_2DA_COLS cols
+	  FOR (index = 22 ; index < cols ; ++index) BEGIN
+	    REPLACE_TEXTUALLY ~CDREPLACE~ ~**** CDREPLACE~
+	  END
+	  REPLACE_TEXTUALLY ~CDREPLACE~ ~****~
+	  PRETTY_PRINT_2DA
+END
+
+//读取luabbr.2da中abbrev列，确定高阶技能列表的名称（Ba0等）
+COPY_EXISTING ~luabbr.2da~ ~override~
+	COUNT_2DA_ROWS 2 kitsmax
+	FOR (kitrow = 0 ; kitrow < kitsmax ; ++kitrow) BEGIN
+		READ_2DA_ENTRY kitrow 0 2 kitname
+		PATCH_IF ~%kitname%~ STRING_EQUAL_CASE ~BARD~ BEGIN
+			SET "bardrow" = %kitrow% + 2
+			READ_2DA_ENTRY kitrow 1 2 bardabbrev
+		END
+		PATCH_IF ~%kitname%~ STRING_EQUAL_CASE ~BLADE~ BEGIN
+			SET "bladerow" = %kitrow% + 2
+			READ_2DA_ENTRY kitrow 1 2 bladeabbrev
+		END
+		PATCH_IF ~%kitname%~ STRING_EQUAL_CASE ~JESTER~ BEGIN
+			SET "jesterrow" = %kitrow% + 2
+			READ_2DA_ENTRY kitrow 1 2 jesterabbrev
+		END
+		PATCH_IF ~%kitname%~ STRING_EQUAL_CASE ~SKALD~ BEGIN
+			SET "skaldrow" = %kitrow% + 2
+			READ_2DA_ENTRY kitrow 1 2 skaldabbrev
+		END
+	END
+BUT_ONLY
+
+//如果是原版那种高阶技能用同一个表（如Ba0）的情况
+ACTION_IF ~%skaldabbrev%~ STRING_EQUAL ~%jesterabbrev%~ THEN BEGIN
+	COPY_EXISTING_REGEXP ~LU%skaldabbrev%.2da~ ~override/LUBA3.2da~	//拷贝一份基础高阶技能表作为LUBA3
+	OUTER_SPRINT ~skaldabbrev~ ~Ba3~
+	COPY_EXISTING ~luabbr.2da~ ~override~
+	SET_2DA_ENTRY "%skaldrow%" 1 1 ~%skaldabbrev%~  // 在luabbr.2da里指定Ba3为Skald的高阶技能
+END
+
+ACTION_IF ~%jesterabbrev%~ STRING_EQUAL ~%bladeabbrev%~ THEN BEGIN
+	COPY_EXISTING_REGEXP ~LU%jesterabbrev%.2da~ ~override/LUBA2.2da~	//拷贝一份基础高阶技能表作为LUBA2
+	OUTER_SPRINT ~jesterabbrev~ ~Ba2~
+	COPY_EXISTING ~luabbr.2da~ ~override~
+	SET_2DA_ENTRY "%jesterrow%" 1 1 ~%jesterabbrev%~  // 在luabbr.2da里指定Ba2为Jester的高阶技能
+END
+
+ACTION_IF ~%bladeabbrev%~ STRING_EQUAL ~%bardabbrev%~ THEN BEGIN
+	COPY_EXISTING_REGEXP ~LU%bladeabbrev%.2da~ ~override/LUBA1.2da~	//拷贝一份基础高阶技能表作为LUBA1
+	OUTER_SPRINT ~bladeabbrev~ ~Ba1~
+	COPY_EXISTING ~luabbr.2da~ ~override~
+	SET_2DA_ENTRY "%bladerow%" 1 1 ~%bladeabbrev%~  // 在luabbr.2da里指定Ba1为Blade的高阶技能
+END
+
+//处理高阶技能列表
+OUTER_SET "bardabdone" = 0
+OUTER_SET "bladeabdone" = 0
+OUTER_SET "jesterabdone" = 0
+OUTER_SET "skaldabdone" = 0
+OUTER_SET "whirlwind" = 0
+
+COPY_EXISTING ~LU%bardabbrev%.2da~ ~override~
+COUNT_2DA_ROWS ~9~ "rows"
+SET "patch" = 0
+FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
+  READ_2DA_ENTRY "%index%" 1 9 "abil"
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_SPCL920" = 0) BEGIN	//遇到原版高级战歌，改成新的高级战歌
+  	SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1SS~
+		SET_2DA_ENTRY "%index%" 4 9 ~1~
+		SET_2DA_ENTRY "%index%" 5 9 ~99~
+		SET_2DA_ENTRY "%index%" 6 9 ~1~
+		SET "bardabdone" = 1
+  END
+	PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B1ST" = 0) BEGIN	//已经有余音缭绕了，不再继续
+		SET "bardabdone" = 2
+    SET "index" = "%rows%" + 1 // kills loop
+  END
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (bardabdone = 1) BEGIN	//遇到空行，加上余音缭绕
+    SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
+    SET_2DA_ENTRY "%index%" 4 9 ~1~
+    SET_2DA_ENTRY "%index%" 5 9 ~99~
+    SET_2DA_ENTRY "%index%" 6 9 ~1~
+  	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B1SS~
+  	SPRINT abil "%bardabbrev%"	//随便设个值不让后面那个patch继续
+    SET "index" = "%rows%" + 1 // kills loop
+  END
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (bardabdone = 0) BEGIN	//前面没换高级战歌，遇到空行，加上高级战歌和余音缭绕
+    PATCH_IF ("%patch%" = 0) BEGIN
+      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1SS~
+      SET_2DA_ENTRY "%index%" 4 9 ~1~
+      SET_2DA_ENTRY "%index%" 5 9 ~99~
+      SET_2DA_ENTRY "%index%" 6 9 ~1~
+      SET "patch" = 1
+    END ELSE BEGIN
+      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
+      SET_2DA_ENTRY "%index%" 4 9 ~1~
+      SET_2DA_ENTRY "%index%" 5 9 ~99~
+      SET_2DA_ENTRY "%index%" 6 9 ~1~
+    	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B1SS~
+      SET "index" = "%rows%" + 1 // kills loop
+    END
+  END
+END
+BUT_ONLY
+
+OUTER_SET "whirlwind" = 0
+COPY_EXISTING_REGEXP ~LU%bladeabbrev%.2da~ ~override~
+COUNT_2DA_ROWS ~9~ "rows"
+SET "patch" = 0
+FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
+  READ_2DA_ENTRY "%index%" 1 9 "abil"
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_SPCL920" = 0) BEGIN	//遇到原版高级战歌，改成新的高级战歌
+  	SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B2SS~
+		SET_2DA_ENTRY "%index%" 4 9 ~1~
+		SET_2DA_ENTRY "%index%" 5 9 ~99~
+		SET_2DA_ENTRY "%index%" 6 9 ~1~
+		SET "bladeabdone" = 1
+  END
+	PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B1ST" = 0) BEGIN	//已经有余音缭绕了
+		SET "bladeabdone" = 2
+  END
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "GA_SPCL900" = 0) BEGIN	//有小旋风
+		SET "whirlwind" = 1
+		PATCH_IF (bladeabdone =2) BEGIN	//啥都有了
+  		SET "index" = "%rows%" + 1 // kills loop
+  	END
+  END
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (whirlwind =0) BEGIN	//遇到空行，加上小旋风
+		SET_2DA_ENTRY "%index%" 1 9 ~GA_SPCL900~
+		SET_2DA_ENTRY "%index%" 4 9 ~1~
+		SET_2DA_ENTRY "%index%" 5 9 ~99~
+		SET_2DA_ENTRY "%index%" 6 9 ~20~
+    SET "whirlwind" = 1
+    SPRINT abil "%bladeabbrev%"	//随便设个值不让后面那个patch继续
+  END
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (bladeabdone = 1) BEGIN	//遇到空行，加上余音缭绕
+    SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
+    SET_2DA_ENTRY "%index%" 4 9 ~1~
+    SET_2DA_ENTRY "%index%" 5 9 ~99~
+    SET_2DA_ENTRY "%index%" 6 9 ~1~
+  	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B2SS~
+  	SPRINT abil "%bladeabbrev%"	//随便设个值不让后面那个patch继续
+    SET "index" = "%rows%" + 1 // kills loop
+  END
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (bladeabdone = 0) BEGIN	//遇到空行，加上高级战歌和余音缭绕
+    PATCH_IF ("%patch%" = 0) BEGIN
+      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B2SS~
+      SET_2DA_ENTRY "%index%" 4 9 ~1~
+      SET_2DA_ENTRY "%index%" 5 9 ~99~
+      SET_2DA_ENTRY "%index%" 6 9 ~1~
+      SET "patch" = 1
+    END ELSE BEGIN
+      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
+      SET_2DA_ENTRY "%index%" 4 9 ~1~
+      SET_2DA_ENTRY "%index%" 5 9 ~99~
+      SET_2DA_ENTRY "%index%" 6 9 ~1~
+    	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B2SS~
+      SET "index" = "%rows%" + 1 // kills loop
+    END
+  END
+END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP ~LU%jesterabbrev%.2da~ ~override~
+COUNT_2DA_ROWS ~9~ "rows"
+SET "patch" = 0
+FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
+  READ_2DA_ENTRY "%index%" 1 9 "abil"
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_SPCL920" = 0) BEGIN	//遇到原版高级战歌，改成新的高级战歌
+  	SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B3SS~
+		SET_2DA_ENTRY "%index%" 4 9 ~1~
+		SET_2DA_ENTRY "%index%" 5 9 ~99~
+		SET_2DA_ENTRY "%index%" 6 9 ~1~
+		SET "jesterabdone" = 1
+  END
+	PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B1ST" = 0) BEGIN	//已经有余音缭绕了，不再继续
+		SET "jesterabdone" = 2
+    SET "index" = "%rows%" + 1 // kills loop
+  END
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (jesterabdone = 1) BEGIN	//遇到空行，加上余音缭绕
+    SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
+    SET_2DA_ENTRY "%index%" 4 9 ~1~
+    SET_2DA_ENTRY "%index%" 5 9 ~99~
+    SET_2DA_ENTRY "%index%" 6 9 ~1~
+  	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B3SS~
+  	SPRINT abil "%jesterabbrev%"	//随便设个值不让后面那个patch继续
+    SET "index" = "%rows%" + 1 // kills loop
+  END
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (jesterabdone = 0) BEGIN	//遇到空行，加上高级战歌和余音缭绕
+    PATCH_IF ("%patch%" = 0) BEGIN
+      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B3SS~
+      SET_2DA_ENTRY "%index%" 4 9 ~1~
+      SET_2DA_ENTRY "%index%" 5 9 ~99~
+      SET_2DA_ENTRY "%index%" 6 9 ~1~
+      SET "patch" = 1
+    END ELSE BEGIN
+      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
+      SET_2DA_ENTRY "%index%" 4 9 ~1~
+      SET_2DA_ENTRY "%index%" 5 9 ~99~
+      SET_2DA_ENTRY "%index%" 6 9 ~1~
+    	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B3SS~
+      SET "index" = "%rows%" + 1 // kills loop
+    END
+  END
+END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP ~LU%skaldabbrev%.2da~ ~override~
+COUNT_2DA_ROWS ~9~ "rows"
+SET "patch" = 0
+FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
+  READ_2DA_ENTRY "%index%" 1 9 "abil"
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_SPCL920" = 0) BEGIN	//遇到原版高级战歌，改成新的高级战歌
+  	SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B4SS~
+		SET_2DA_ENTRY "%index%" 4 9 ~1~
+		SET_2DA_ENTRY "%index%" 5 9 ~99~
+		SET_2DA_ENTRY "%index%" 6 9 ~1~
+		SET "skaldabdone" = 1
+  END
+	PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B1ST" = 0) BEGIN	//已经有余音缭绕了，不再继续
+		SET "skaldabdone" = 2
+    SET "index" = "%rows%" + 1 // kills loop
+  END
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (skaldabdone = 1) BEGIN	//遇到空行，加上余音缭绕
+    SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
+    SET_2DA_ENTRY "%index%" 4 9 ~1~
+    SET_2DA_ENTRY "%index%" 5 9 ~99~
+    SET_2DA_ENTRY "%index%" 6 9 ~1~
+  	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B4SS~
+  	SPRINT abil "%skaldabbrev%"	//随便设个值不让后面那个patch继续
+    SET "index" = "%rows%" + 1 // kills loop
+  END
+  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (skaldabdone = 0) BEGIN	//遇到空行，加上高级战歌和余音缭绕
+    PATCH_IF ("%patch%" = 0) BEGIN
+      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B4SS~
+      SET_2DA_ENTRY "%index%" 4 9 ~1~
+      SET_2DA_ENTRY "%index%" 5 9 ~99~
+      SET_2DA_ENTRY "%index%" 6 9 ~1~
+      SET "patch" = 1
+    END ELSE BEGIN
+      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
+      SET_2DA_ENTRY "%index%" 4 9 ~1~
+      SET_2DA_ENTRY "%index%" 5 9 ~99~
+      SET_2DA_ENTRY "%index%" 6 9 ~1~
+    	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B4SS~
+      SET "index" = "%rows%" + 1 // kills loop
+    END
+  END
+END
+BUT_ONLY
+
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINPA.pro~	//对50呎内友军
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINPL.pro~	//对100呎内友军
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINNP.pro~	//对50呎内敌军
+
+
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B11A.SPL~   ~override~
+	SAY NAME1 @21    SAY UNIDENTIFIED_DESC @41
+
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B12A.SPL~   ~override~
+	SAY NAME1 @22    SAY UNIDENTIFIED_DESC @42
+
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B13A.SPL~   ~override~
+	SAY NAME1 @23    SAY UNIDENTIFIED_DESC @43
+
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B14A.SPL~   ~override~
+	SAY NAME1 @24    SAY UNIDENTIFIED_DESC @44
+
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B15A.SPL~   ~override~
+	SAY NAME1 @25    SAY UNIDENTIFIED_DESC @45
+
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B16A.SPL~   ~override~
+	SAY NAME1 @26    SAY UNIDENTIFIED_DESC @46
+	
+COPY    ~BardSong_BGEE_IWD/SPL/innp~   ~override~	//对敌战歌
+	WRITE_SHORT   0x98 ~%BI#BINNP%~
+
+COPY    ~BardSong_BGEE_IWD/SPL/inpa~   ~override~	//对友战歌
+	WRITE_SHORT   0x98 ~%BI#BINPA%~
+
+COPY    ~BardSong_BGEE_IWD/SPL/inpl~   ~override~	//对友强力战歌
+	WRITE_SHORT   0x98 ~%BI#BINPL%~
+
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B30B.SPL~   ~override~	//小丑普通战歌效果，不需要余音缭绕
+	WRITE_SHORT   0x98 ~%BI#BINNP%~
+	WRITE_SHORT   0xc0 ~%BI#BINNP%~
+	WRITE_SHORT   0xe8 ~%BI#BINNP%~
+	WRITE_SHORT   0x110 ~%BI#BINNP%~
+	WRITE_SHORT   0x138 ~%BI#BINNP%~
+	SAY 0x2ee @7	//迷惑
+	SAY 0x43e @7
+	SAY 0x58e @7
+	SAY 0x5ee @8	//迟缓
+	SAY 0x73e @7
+	SAY 0x79e @8
+	SAY 0x8ee @7
+	SAY 0x94e @8
+	SAY 0x9ae @9	//昏迷不醒
+
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B40B.SPL~   ~override~	//北地诗人普通战歌效果，不需要余音缭绕
+	WRITE_SHORT   0x98 ~%BI#BINPA%~
+	WRITE_SHORT   0xc0 ~%BI#BINPA%~
+	WRITE_SHORT   0xe8 ~%BI#BINPA%~
+	WRITE_SHORT   0x110 ~%BI#BINPA%~
+	WRITE_SHORT   0x138 ~%BI#BINPA%~
+	
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B1SS.SPL~   ~override~
+	SAY NAME1 @29    SAY UNIDENTIFIED_DESC @31
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B1SA.SPL~   ~override~
+	SAY NAME1 @30    SAY UNIDENTIFIED_DESC @31
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B1ST.SPL~   ~override~
+	SAY NAME1 @39    SAY UNIDENTIFIED_DESC @40
+
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B2SS.SPL~   ~override~
+	SAY NAME1 @29    SAY UNIDENTIFIED_DESC @32
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B2SA.SPL~   ~override~
+	SAY NAME1 @30    SAY UNIDENTIFIED_DESC @32
+
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B3SS.SPL~   ~override~
+	SAY NAME1 @29    SAY UNIDENTIFIED_DESC @33
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B3SB.SPL~   ~override~
+	WRITE_SHORT   0x98 ~%BI#BINNP%~
+	SAY 0x27e @7	//迷惑
+	SAY 0x2de @8	//迟缓
+	SAY 0x33e @9	//昏迷不醒
+
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B4SS.SPL~   ~override~
+	SAY NAME1 @29    SAY UNIDENTIFIED_DESC @34
+
+COPY    ~BardSong_BGEE_IWD/SPL/noname~   ~override~
+COPY    ~BardSong_BGEE_IWD/bam~         ~override~
+
+
+////////////////////////////////////////////////////////////////////////////
+
+BEGIN @12	//合唱功能组件
+REQUIRE_COMPONENT "SETUP-BardSong_BGEE_IWD.tp2" "0" @13
+
+OUTER_SET "splprot_row" = 0
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_ROWS 4 rows
+	FOR ( index = 0 ; index < rows ; index = index + 1 ) BEGIN
+	  READ_2DA_ENTRY "%index%" 1 4 "splprot_stat"
+	  READ_2DA_ENTRY "%index%" 2 4 "splprot_value"
+	  READ_2DA_ENTRY "%index%" 3 4 "splprot_relation"
+	  //PATCH_PRINT ~%index% %splprot_stat% %splprot_value% %splprot_relation%~
+		PATCH_IF ("%splprot_stat%" STRING_COMPARE_CASE "56" = 0) & ("%splprot_value%" STRING_COMPARE_CASE "-1" = 0) & ("%splprot_relation%" STRING_COMPARE_CASE "1" = 0) BEGIN	//有现成的BACKSTABDAMAGEMULTIPLIER判断行
+			SET "splprot_row" = "%index%"
+      SET "index" = "%rows%" + 1 // kills loop
+		END
+	END
+	PATCH_IF (splprot_row = 0) BEGIN
+		SET "splprot_row" = "%rows%"
+		INSERT_2DA_ROW rows 4 ~%rows%_BACKSTABDAMAGEMULTIPLIER=n                56                                            -1                                            1~
+	END
+BUT_ONLY
+//splprot_row为splprot.2da新增BACKSTABDAMAGEMULTIPLIER判断行的编号
+
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/chorus/pro/BI#BBIRD.pro~	//对50呎内非自身的友军
+
+COPY_EXISTING ~BI#B10A.spl~ ~override~	~BI#B20A.spl~ ~override~	 ~BI#B30A.spl~ ~override~	 ~BI#B40A.spl~ ~override~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 timing = 4 parameter2 = 1 duration = 1 STR_VAR resource = BI#B00D END
+
+COPY    ~BardSong_BGEE_IWD/chorus/bam~         ~override~
+
+COPY    ~BardSong_BGEE_IWD/chorus/cre~         ~override~
+
+COPY    ~BardSong_BGEE_IWD/chorus/eff~         ~override~
+
+COPY    ~BardSong_BGEE_IWD/chorus/itm~         ~override~
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00A.spl~   ~override~
+	SAY NAME1 @91    SAY UNIDENTIFIED_DESC @94
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00B.spl~   ~override~
+	SAY NAME1 @92    SAY UNIDENTIFIED_DESC @95
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00C.spl~   ~override~
+	SAY NAME1 @93    SAY UNIDENTIFIED_DESC @96
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00F.spl~   ~override~
+	SAY 0xfe  @16	//我可是自带背景音乐的人物！
+	SAY 0x12e @17	//没有人能在我的背景音乐里打败我！
+	SAY 0x15e @18	//为了保护费伦，我们需要成为偶像！
+	SAY 0x18e @19	//你能跟上我的节奏吗？
+	SAY 0x1be @20	//来听我唱歌吧！
+	SAY 0x1ee @5	//现在由我来领唱。
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00B.eff~   ~override~
+	SAY 0x1c @6	//只有队伍成员可以进行领唱。
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00X.spl~   ~override~
+	WRITE_SHORT   0x98 ~%BI#BBIRD%~
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/inpa~   ~override~
+	WRITE_SHORT   0x98 ~%BI#BINPA%~
+	
+COPY    ~BardSong_BGEE_IWD/chorus/spl/inpl~   ~override~
+	WRITE_SHORT   0x98 ~%BI#BINPL%~
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/innp~   ~override~
+	WRITE_SHORT   0x98 ~%BI#BINNP%~
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/inpa5~   ~override~
+	WRITE_SHORT   0x98 ~%BI#BINPA%~
+	WRITE_SHORT   0xc0 ~%BI#BINPA%~
+	WRITE_SHORT   0xe8 ~%BI#BINPA%~
+	WRITE_SHORT   0x110 ~%BI#BINPA%~
+	WRITE_SHORT   0x138 ~%BI#BINPA%~
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/innp5~   ~override~
+	WRITE_SHORT   0x98 ~%BI#BINNP%~
+	WRITE_SHORT   0xc0 ~%BI#BINNP%~
+	WRITE_SHORT   0xe8 ~%BI#BINNP%~
+	WRITE_SHORT   0x110 ~%BI#BINNP%~
+	WRITE_SHORT   0x138 ~%BI#BINNP%~
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/prot~   ~override~
+	LPF ALTER_SPELL_EFFECT INT_VAR match_opcode = 326 parameter2 = %splprot_row% END
+	
+COPY    ~BardSong_BGEE_IWD/chorus/spl/protinpl~   ~override~
+	WRITE_SHORT   0x98 ~%BI#BINPL%~
+	LPF ALTER_SPELL_EFFECT INT_VAR match_opcode = 318 parameter2 = %splprot_row% END
+	
+COPY_EXISTING    ~BI#B11A.SPL~   ~override~
+	SAY UNIDENTIFIED_DESC @51
+
+COPY_EXISTING    ~BI#B12A.SPL~   ~override~
+	SAY UNIDENTIFIED_DESC @52
+
+COPY_EXISTING    ~BI#B13A.SPL~   ~override~
+	SAY UNIDENTIFIED_DESC @53
+
+COPY_EXISTING    ~BI#B14A.SPL~   ~override~
+	SAY UNIDENTIFIED_DESC @54
+
+COPY_EXISTING    ~BI#B15A.SPL~   ~override~
+	SAY UNIDENTIFIED_DESC @55
+
+COPY_EXISTING    ~BI#B16A.SPL~   ~override~
+	SAY UNIDENTIFIED_DESC @56
+	
+COPY_EXISTING    ~BI#B1SA.SPL~   ~override~    ~BI#B1SS.SPL~   ~override~
+	SAY UNIDENTIFIED_DESC @57
+
+COPY_EXISTING    ~BI#B2SA.SPL~   ~override~    ~BI#B2SS.SPL~   ~override~
+	SAY UNIDENTIFIED_DESC @58
+
+COPY_EXISTING    ~BI#B3SS.SPL~   ~override~
+	SAY UNIDENTIFIED_DESC @59
+
+COPY_EXISTING    ~BI#B4SS.SPL~   ~override~
+	SAY UNIDENTIFIED_DESC @60
+
+COPY    ~BardSong_BGEE_IWD/chorus/spl/noname~   ~override~
+
+COMPILE    ~BardSong_BGEE_IWD/chorus/baf~
+
+////////////////////////////////////////////////////////////////////////////
+
+BEGIN @14	//允许投影术制造的诗人幻像进行演奏（以及合唱）
+
+COPY_EXISTING ~MISLEAD.spl~ ~override~
+	LPF DELETE_EFFECT INT_VAR match_opcode = 144 match_parameter2 = 10 END
+	BUT_ONLY
+
+////////////////////////////////////////////////////////////////////////////
+
+BEGIN @15	//专用AI
+REQUIRE_COMPONENT "SETUP-BardSong_BGEE_IWD.tp2" "0" @13
+
+COMPILE    ~BardSong_BGEE_IWD/AI/BI#BARD.baf~
+MOVE    ~override/BI#BARD.bcs~ ~scripts/BI#BARD.bs~

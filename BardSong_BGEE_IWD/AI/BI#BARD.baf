@@ -1,0 +1,1384 @@
+/////////////////////////攻击模式切换///////////////////////////
+IF
+	Global("BI#B_MOD","LOCALS",2)
+	HotKey(V)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_MOD","LOCALS",0)
+		SetGlobal("BI#B_ATK","LOCALS",0)
+		DisplayStringHead(Myself,@81)	//只唱歌不攻击
+END
+
+IF
+	Global("BI#B_MOD","LOCALS",0)
+	HotKey(V)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_MOD","LOCALS",1)
+		DisplayStringHead(Myself,@82)	//在保证歌曲持续的前提下偶尔攻击（遇敌等到歌曲触发再攻击，攻击间隔只有3秒，歌曲掉线立刻补上）
+END
+
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	HotKey(V)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_MOD","LOCALS",2)
+		DisplayStringHead(Myself,@83)	//更多攻击，但不保证歌曲一直持续（遇敌立刻攻击并计时2秒再唱歌，攻击间隔4秒，歌曲掉线不立刻补上而是攻击4秒再唱歌）
+END
+
+/////////////////////////隐形行为切换///////////////////////////
+
+IF
+	HotKey(F)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_INV","LOCALS",1)
+		DisplayStringHead(Myself,@88)	//强制隐形状态下的诗人进行演奏和攻击
+END
+
+IF
+	Global("BI#B_INV","LOCALS",1)
+	!CheckStat(Myself,1,WIZARD_MISLEAD)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_INV","LOCALS",0)
+		Continue()
+END
+
+/////////////////////////余音缭绕切换///////////////////////////
+
+//如果有高阶技能则不需切换，直接linger=1
+IF
+	Global("BI#BLING","LOCALS",1)
+	Global("BI#B_LIN","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_LIN","LOCALS",1)
+		DisplayStringHead(Myself,@86)		//检测到人物习得余音缭绕高阶技能，切换到余音缭绕模式
+END
+
+IF
+	HotKey(S)
+	Global("BI#BLING","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@87)		//人物已经习得余音缭绕高阶技能，无需切换
+END
+
+//按S切换
+IF
+	HotKey(S)
+	Global("BI#B_LIN","LOCALS",0)
+	!Global("BI#BLING","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@84)		//切换到余音缭绕模式
+		SetGlobal("BI#B_LIN","LOCALS",1)
+		SetGlobal("BI#B_ATK","LOCALS",0)
+END
+
+IF
+	HotKey(S)
+	Global("BI#B_LIN","LOCALS",1)
+	!Global("BI#BLING","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@85)		//切换到非余音缭绕模式
+		SetGlobal("BI#B_LIN","LOCALS",0)
+		SetGlobal("BI#B_ATK","LOCALS",0)
+END
+
+//////////////////////////自动上BUFF//////////////////////////
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_STONE_SKIN)
+	CheckStatLT(Myself,1,STONESKINS)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_STONE_SKIN)
+		RemoveSpell(WIZARD_STONE_SKIN)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_SPIRIT_ARMOR)
+	CheckStatGT(Myself,1,ARMORCLASS)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_SPIRIT_ARMOR)	//600s
+		RemoveSpell(WIZARD_SPIRIT_ARMOR)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_GHOST_ARMOR)
+	CheckStatGT(Myself,2,ARMORCLASS)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_GHOST_ARMOR)	//300s
+		RemoveSpell(WIZARD_GHOST_ARMOR)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_ARMOR)
+	CheckStatGT(Myself,6,ARMORCLASS)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_ARMOR)	//2700s
+		RemoveSpell(WIZARD_ARMOR)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_SHIELD)
+	OR(2)
+		CheckStatGT(Myself,4,ARMORCLASS)
+		!CheckSpellState(Myself,WIZARD_SHIELD)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_SHIELD)	//300s
+		RemoveSpell(WIZARD_SHIELD)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_BLUR)
+	!StateCheck(Myself,STATE_BLUR)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_BLUR)	//60-264s
+		RemoveSpell(WIZARD_BLUR)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_PROTECTION_FROM_EVIL)
+	!CheckStatGT(Myself,0,PROTECTION_FROM_EVIL)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_PROTECTION_FROM_EVIL)	//12-240s
+		RemoveSpell(WIZARD_PROTECTION_FROM_EVIL)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)	//60-138s
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_IMPROVED_INVISIBILITY)
+		RemoveSpell(WIZARD_IMPROVED_INVISIBILITY)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_MIRROR_IMAGE)
+	!StateCheck(Myself,STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_MIRROR_IMAGE)	//36-138s
+		RemoveSpell(WIZARD_MIRROR_IMAGE)
+END
+
+////////////////////////不同攻击状态的战歌处理///////////////////////
+
+/////////////不攻击状态（保证一直在唱歌）
+IF
+	Global("BI#B_MOD","LOCALS",0)
+	ActionListEmpty()
+	!ModalState(BATTLESONG)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		BattleSong()
+END
+
+//或者攻击状态没看到敌人
+IF
+	GlobalGT("BI#B_MOD","LOCALS",0)
+	ActionListEmpty()
+	!ModalState(BATTLESONG)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!See(NearestEnemyOf())
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",0)
+		BattleSong()
+END
+
+//////////////在保证歌曲持续的前提下偶尔攻击（遇敌等到歌曲触发再攻击，攻击间隔较短，歌曲掉线立刻补上）
+
+//a战歌失效或无事
+//优先唱歌
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	!ModalState(BATTLESONG)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	OR(3)
+		CheckStatLT(Myself,11,BACKSTABDAMAGEMULTIPLIER)
+		CheckStatGT(Myself,22,BACKSTABDAMAGEMULTIPLIER)
+		ActionListEmpty()
+THEN
+	RESPONSE #100
+		BattleSong()
+END
+
+//c打架计时结束，不打了改唱歌，唱到歌曲效果出现转向b
+//不能用ActionListEmpty()，不然打人停不下来
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	See(NearestEnemyOf())
+	GlobalTimerExpired("BI#B_SIN","Locals")
+	Class(Myself,BARD_ALL)
+	!ModalState(BATTLESONG)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		BattleSong()
+END
+
+//b有敌人且触发战歌生效，有余音缭绕，未计时，计时15秒
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",1)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	!GlobalTimerNotExpired("BI#B_SIN","Locals")
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("BI#B_SIN","Locals",15)
+END
+
+//b有敌人且触发战歌生效，没余音缭绕，未计时，计时3秒
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",1)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	!GlobalTimerNotExpired("BI#B_SIN","Locals")
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("BI#B_SIN","Locals",3)
+END
+
+//b1计时结束前，只管打人。计时结束后不执行
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	ActionListEmpty()
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	IsWeaponRanged(Myself)
+	!Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	ActionListEmpty()
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!IsWeaponRanged(Myself)
+	Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	ActionListEmpty()
+	See(NearestEnemyOf())
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	ActionListEmpty()
+	See(NearestEnemyOf())
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	ActionListEmpty()
+	See(NearestEnemyOf())
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	ActionListEmpty()
+	See(NearestEnemyOf())
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+//////////////更多攻击，但不保证歌曲一直持续（遇敌立刻攻击并计时再唱歌，攻击间隔后短暂唱歌，歌曲掉线不立刻补上而是短暂攻击再唱歌）
+
+//无事优先唱歌
+IF
+	Global("BI#B_MOD","LOCALS",2)
+	!ModalState(BATTLESONG)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		BattleSong()
+END
+
+///////有余音缭绕
+//c只要战歌触发都给我计时15秒用来打人，标记BI#B_ATK为2，时间没到cc打人，时间到b唱歌
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",2)
+		SetGlobalTimer("BI#B_SIN","Locals",15)
+END
+
+//a1初遇敌人，如果正在唱歌且有效果在则计时10秒用于攻击，标记BI#B_ATK为1，计时到期转向b
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	ActionListEmpty()
+	ModalState(BATTLESONG)
+	CheckStatLT(Myself,23,BACKSTABDAMAGEMULTIPLIER)
+	CheckStatGT(Myself,10,BACKSTABDAMAGEMULTIPLIER)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	IsWeaponRanged(Myself)
+	!Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",10)
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	ActionListEmpty()
+	ModalState(BATTLESONG)
+	CheckStatLT(Myself,23,BACKSTABDAMAGEMULTIPLIER)
+	CheckStatGT(Myself,10,BACKSTABDAMAGEMULTIPLIER)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!IsWeaponRanged(Myself)
+	Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",10)
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	ModalState(BATTLESONG)
+	CheckStatLT(Myself,23,BACKSTABDAMAGEMULTIPLIER)
+	CheckStatGT(Myself,10,BACKSTABDAMAGEMULTIPLIER)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",10)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	ModalState(BATTLESONG)
+	CheckStatLT(Myself,23,BACKSTABDAMAGEMULTIPLIER)
+	CheckStatGT(Myself,10,BACKSTABDAMAGEMULTIPLIER)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",10)
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	ModalState(BATTLESONG)
+	CheckStatLT(Myself,23,BACKSTABDAMAGEMULTIPLIER)
+	CheckStatGT(Myself,10,BACKSTABDAMAGEMULTIPLIER)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",10)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	ModalState(BATTLESONG)
+	CheckStatLT(Myself,23,BACKSTABDAMAGEMULTIPLIER)
+	CheckStatGT(Myself,10,BACKSTABDAMAGEMULTIPLIER)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",10)
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+//a2初遇敌人，如果是其它情况则计时用于攻击3秒，标记BI#B_ATK为1
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	IsWeaponRanged(Myself)
+	!Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",3)
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!IsWeaponRanged(Myself)
+	Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",3)
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",3)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",3)
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",3)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",3)
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+//b当BI#B_ATK为1时，如果计时结束，唱歌到a11效果出现为止
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",1)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	!ModalState(BATTLESONG)
+	GlobalTimerExpired("BI#B_SIN","Locals")	//计时结束
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		BattleSong()
+END
+
+//aa1当BI#B_ATK为1时，计时结束前，只管打人。
+//cc当BI#B_ATK为2时，计时结束前，只管打人。
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	IsWeaponRanged(Myself)
+	!Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	!IsWeaponRanged(Myself)
+	Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	See(NearestEnemyOf())
+	Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	See(NearestEnemyOf())
+	Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	See(NearestEnemyOf())
+	!Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	See(NearestEnemyOf())
+	!Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+///////没有余音缭绕
+//除了初始遇敌，主要循环为a11>b>a11，或者a11>b>c>d>a11
+//a11只要战歌触发都给我计时4秒用来打人，标记BI#B_ATK为2时间没到aa11打人，时间到b唱歌
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",2)
+		SetGlobalTimer("BI#B_SIN","Locals",4)
+END
+
+//初始遇敌，a>(a1)*0-2>a11或a>(a1)*0-2>a2>d>a11
+//a初遇敌人，计时用于攻击2秒，标记BI#B_ATK为1，不管战歌失效与否。到时间可能a1效果还在a2没效果了
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	IsWeaponRanged(Myself)
+	!Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",2)
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!IsWeaponRanged(Myself)
+	Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",2)
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",2)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",2)
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",2)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",0)
+	See(NearestEnemyOf())
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	!Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",1)
+		SetGlobalTimer("BI#B_SIN","Locals",2)
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+//a1当BI#B_ATK为1时，计时到期，如果战歌效果还在，再唱歌并计时，可重复，唱到a11效果出现或a2计时到期失去效果
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",1)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	!ModalState(BATTLESONG)
+	GlobalTimerExpired("BI#B_SIN","Locals")	//计时结束
+	CheckStatLT(Myself,23,BACKSTABDAMAGEMULTIPLIER)
+	CheckStatGT(Myself,10,BACKSTABDAMAGEMULTIPLIER)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("BI#B_SIN","Locals",2)
+		BattleSong()
+END
+
+//b当BI#B_ATK为2时，如果计时结束，唱歌并计时2秒，标记BI#B_ATK为3。之后可能a11效果出现或c没出效果错过了
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",2)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	!ModalState(BATTLESONG)
+	GlobalTimerExpired("BI#B_SIN","Locals")	//计时结束
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",3)
+		SetGlobalTimer("BI#B_SIN","Locals",2)
+		BattleSong()
+END
+
+//c当BI#B_ATK为3时，如果计时结束效果没出（出了就自己跳a11去了），再计时3秒用于打人，标记BI#B_ATK为4。结束后唱歌
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",3)
+	GlobalTimerExpired("BI#B_SIN","Locals")	//计时结束
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",4)
+		SetGlobalTimer("BI#B_SIN","Locals",3)
+END
+
+//d当BI#B_ATK为4时，如果计时结束，唱歌到a11效果出现为止
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",5)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	!ModalState(BATTLESONG)
+	GlobalTimerExpired("BI#B_SIN","Locals")	//计时结束
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		BattleSong()
+END
+
+//a2当BI#B_ATK为1时，计时到期，如果战歌效果没了，再计时3秒用来打人，标记BI#B_ATK为4。结束后唱歌
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	Global("BI#B_ATK","LOCALS",1)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	!ModalState(BATTLESONG)
+	GlobalTimerExpired("BI#B_SIN","Locals")	//计时结束
+	OR(2)
+		CheckStatGT(Myself,22,BACKSTABDAMAGEMULTIPLIER)
+		CheckStatLT(Myself,11,BACKSTABDAMAGEMULTIPLIER)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",4)
+		SetGlobalTimer("BI#B_SIN","Locals",3)
+		BattleSong()
+END
+
+//aa当BI#B_ATK为1时，计时结束前，只管打人。之后可能a1效果还在或a2没效果了
+//aa11当BI#B_ATK为2时，计时结束前，只管打人。之后b唱歌2秒
+//cc当BI#B_ATK为4时，计时结束前，只管打人。之后d唱歌到效果出现
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	IsWeaponRanged(Myself)
+	!Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	!IsWeaponRanged(Myself)
+	Range(LastSeenBy(),10)
+	WeaponEffectiveVs(LastSeenBy(),MAINHAND)
+	WeaponCanDamage(LastSeenBy(),MAINHAND)
+THEN
+	RESPONSE #100
+		AttackReevaluate(LastSeenBy(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	See(NearestEnemyOf())
+	Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	See(NearestEnemyOf())
+	Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),10)
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	See(NearestEnemyOf())
+	!Race(NearestEnemyOf(),DRAGON)
+	Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
+
+IF
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	OR(3)
+		Global("BI#B_ATK","LOCALS",1)
+		Global("BI#B_ATK","LOCALS",2)
+		Global("BI#B_ATK","LOCALS",4)
+	ActionListEmpty()
+	GlobalTimerNotExpired("BI#B_SIN","Locals")
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	See(NearestEnemyOf())
+	!Race(NearestEnemyOf(),DRAGON)
+	!Range(NearestEnemyOf(),5)
+THEN
+	RESPONSE #100
+		EquipRanged()
+		AttackReevaluate(NearestEnemyOf(),15)
+END
