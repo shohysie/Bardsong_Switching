@@ -5,7 +5,7 @@
 </div><br>
 
 **Original Author:** Shohy  
-**Discussion in Forum:** <a href="">Bard Song Switching</a><br>
+**Discussion in Forum:** <a href="https://www.gibberlings3.net/forums/topic/37103-bard-song-switching-icewind-mode-for-bgee-series-v40/">Bard Song Switching</a><br>
 ## 
 
 <div align="center">
