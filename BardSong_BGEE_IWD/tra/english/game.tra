@@ -126,3 +126,263 @@ While singing the Enhanced Skald Song, the Skald himself gains an extra bonus of
 @94 = "Sing the same song with the designated leader to enchance the song. If a different song is being performed, it will be temporarily changed to the same of the leader in the next round."
 @95 = "All bards that join the chorus you starts will temporarily sing the same song with you. The song is enchance according to the amount of chorists."
 @96 = "The battle songs of you and other bards can work at the same time, and your song won't be change with the lead singer, but you'll not contribute to a chorus bonus too."
+
+@100 = "BARD: The Bard is a rogue, but <PRO_HESHE> is very different from the Thief. The Bard's strength is <PRO_HISHER> pleasant and charming personality. With it and <PRO_HISHER> wits, <PRO_HESHE> makes <PRO_HISHER> way through the world. A Bard is a talented musician and a walking storehouse of gossip, tall tales, and lore; <PRO_HESHE> learns a little bit about everything that crosses <PRO_HISHER> path and is a jack-of-all-trades but master of none. While many Bards are scoundrels, their stories and songs are welcome almost everywhere.
+
+CLASS FEATURES:
+
+– May not wear armor heavier than chain mail. (Spells cannot be cast while wearing armor.)
+– May not equip shields larger than bucklers.
+– May only become Proficient (one slot) in any weapon class.
+– May only become Proficient (one slot) in any fighting style.
+– Thieving abilities: Pick Pockets.
+– Increased Lore score.
+– May cast arcane spells starting at 2nd level.
+– Alignment restricted to any neutral.
+– Hit Die: d6
+– Bard learns different songs on different level. You can switch to the song you need by clicking new buttons in Special Abilities.
+ LV1: The Ballad of Three Heroes, which has the effect of +1 to hit, +1 to damage and +1 to all saving throws.
+ LV4: The Tale of Curran Strongheart, which gives the immunity to Fear and Morale Break.
+ LV8: Tymora's Melody, which has the effect of +1 luck, +3 to all saving throws, +10 to lore and thief's skills.
+ LV12: The Song of Kaudies, which gives the immunity to all sound effects like silence, deafness and spells that use sound as a medium, e.g. Power Words.
+ LV16: The Siren's Yearning, which enthrals enemies in the visual range unless they make save vs. spell. Does NOT affect mindless enemies e.g. golems.
+ LV20: The WarChant of Sith, which has the effect of AC-2, +10% physical damage resistance, and regenerate 3 HP per round.
+ Enhanced Bard Song: Gives all allies +4 to hit, +4 to damage, -4 to AC, +5% magic resistance, and grants them immunity to Fear, Morale Break, Confusion and normal weapons. While singing the Enhanced Bard Song, the Bard <PRO_HIMHER>self gains an extra bonus of -6 to AC and +5% magic resistance.
+ 
+[Custom AI for bards]
+ This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
+ Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+ Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
+ Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
+ Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+@101 = "BLADE: The Blade is an expert fighter and adventurer whose bardic acting abilities make <PRO_HIMHER> appear more intimidating and fearsome. This Bard's fighting style is flashy and entertaining, but is also lethally dangerous.
+
+Advantages:
+– May use the Offensive Spin and Defensive Spin abilities once per day. Gains one use each at level 1 and an additional use each every 4 levels thereafter.
+ OFFENSIVE SPIN: During the next 4 rounds, the Blade's movement rate doubles and <PRO_HESHE> gains a +2 bonus to hit and damage rolls as well as an extra attack per round. All attacks deal maximum damage for the duration. Offensive Spin may not be used in conjunction with the Haste or Improved Haste spells.
+ DEFENSIVE SPIN: During the next 4 rounds, the Blade is rooted to the spot and gains a +1 bonus to Armor Class per level, up to a maximum of +10.
+– Blade starts with +1 to hit and damage, get maximum proficiency (3 points) in two weapon fighting style, and then +1 to hit and damage per 10 levels. <PRO_HESHE> can learn different songs on different level, but less than normal Bard.
+ LV1: The Ballad of Three Heroes, which has the effect of +1 to hit, +1 to damage and +1 to all saving throws.
+ LV6: The Tale of Curran Strongheart, which gives the immunity to Fear and Morale Break.
+ LV12: Tymora's Melody, which has the effect of +1 luck, +3 to all saving throws, +10 to lore and thief's skills.
+ LV18: The Song of Kaudies, which gives the immunity to all sound effects like silence, deafness and spells that use sound as a medium, e.g. Power Words.
+ Enhanced Blade Song: Gives all allies +4 to hit, +4 to damage, -4 to AC, +5% magic resistance, and grants them immunity to Fear, Morale Break and normal weapons. While singing the Enhanced Blade Song, the Blade <PRO_HIMHER>self gains an extra bonus of +2 to hit, +2 to damage, -2 to AC and +5% magic resistance.
+
+Disadvantages:
+– Only has one half the normal Lore value.
+– Only has one half the normal Pick Pockets skill.
+ 
+[Custom AI for bards]
+ This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
+ Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+ Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
+ Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
+ Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+@102 = "JESTER: This Bard is well versed in the arts of ridicule and hilarity, and uses <PRO_HISHER> abilities to distract and confuse <PRO_HISHER> enemies, cavorting madly during combat. Do not mistake <PRO_HIMHER> for a true fool, however, as <PRO_HESHE> can also be quite deadly.
+
+Advantages:
+– Jester starts with +1 luck, +5% stealing, immunity to charm and confusion. 
+– Effect of a Jester's battle song improves with level, but <PRO_HESHE> can't perform other songs.
+ LV1: Opponents in 30 feet must save vs. spells once per round or be confused (+4 save penalty).
+ LV5: Opponents in 30 feet must save vs. spells once per round or be charmed (+2 save penalty).
+ LV10: Opponents in 30 feet must save vs. spells once per round or be slowed (no penalty) or confused (+2 save penalty).
+ LV15: Opponents in 30 feet must save vs. spells once per round or be slowed (-2 save penalty) or confused (no penalty).
+ LV20: Opponents in 30 feet must save vs. spells once per round or be slowed (-2 save penalty) confused (-2 save penalty), and must save vs. poly or be unconscious (+2 save penalty).
+ Enhanced Jester Song: Affects every opponent within 30 feet, they must save vs. spells once per round or be slowed (-4 save penalty) confused (-2 save penalty), and must save vs. poly or be unconscious (no penalty). They may also fail in casting spells and innates by 10% chance.  While singing the Enhanced Bard Song, the Jester <PRO_HIMHER>self gains an extra bonus of -6 to AC and +5% magic resistance. The Enhanced Jester Song will merely replace the original song.
+ Note: mindless creatures e.g. golems are immune to Jester' songs.
+
+Disadvantages:
+– None.
+
+[Custom AI for bards]
+ This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
+ Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+ Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
+ Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
+ Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+@103 = "SKALD: This nordic Bard is also a warrior of great strength, skill, and virtue; <PRO_HISHER> songs are inspiring sagas of battle and valor, and the Skald devotes <PRO_HISHER> life to those pursuits.
+
+Advantages:
+– +1 bonus to hit and damage rolls.
+– Effect of a Skald's battle song improves with level, but <PRO_HESHE> can't perform other songs.
+ LV1: +2 to hit, +2 to damage, -2 to AC.
+ LV5: +2 to hit, +2 to damage, -2 to AC, offers the immunity to Fear and Morale Break.
+ LV10: +3 to hit, +3 to damage, -3 to AC, offers the immunity to Fear and Morale Break.
+ LV15: +4 to hit, +4 to damage, -4 to AC, offers the immunity to Fear and Morale Break.
+ LV20: +4 to hit, +4 to damage, -4 to AC, offers the immunity to Fear, Morale Break, Stun and Confusion.
+ Enhanced Skald Song: Gives all allies +4 to hit, +4 to damage, -4 to AC, +2 to all saving throws, +5% magic resistance, and grants them immunity to Fear, Stun, Confusion and normal weapons. While singing the Enhanced Skald Song, the Skald <PRO_HIMHER>self gains an extra bonus of -6 to AC and +5% magic resistance. The Enhanced Skald Song will merely replace the original song.
+
+Disadvantages:
+– Only has one quarter the normal Pick Pockets score.
+
+[Custom AI for bards]
+ This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
+ Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+ Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
+ Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
+ Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+ 
+ 
+ 
+ @110 = "BARD: The Bard is a rogue, but <PRO_HESHE> is very different from the Thief. The Bard's strength is <PRO_HISHER> pleasant and charming personality. With it and <PRO_HISHER> wits, <PRO_HESHE> makes <PRO_HISHER> way through the world. A Bard is a talented musician and a walking storehouse of gossip, tall tales, and lore; <PRO_HESHE> learns a little bit about everything that crosses <PRO_HISHER> path and is a jack-of-all-trades but master of none. While many Bards are scoundrels, their stories and songs are welcome almost everywhere.
+
+CLASS FEATURES:
+
+– May not wear armor heavier than chain mail. (Spells cannot be cast while wearing armor.)
+– May not equip shields larger than bucklers.
+– May only become Proficient (one slot) in any weapon class.
+– May only become Proficient (one slot) in any fighting style.
+– Thieving abilities: Pick Pockets.
+– Increased Lore score.
+– May cast arcane spells starting at 2nd level.
+– Alignment restricted to any neutral.
+– Hit Die: d6
+– Bard learns different songs on different level. You can switch to the song you need by clicking new buttons in Special Abilities.
+ LV1: The Ballad of Three Heroes, which has the effect of +1 to hit, +1 to damage and +1 to all saving throws.
+ LV4: The Tale of Curran Strongheart, which gives the immunity to Fear and Morale Break.
+ LV8: Tymora's Melody, which has the effect of +1 luck, +3 to all saving throws, +10 to lore and thief's skills.
+ LV12: The Song of Kaudies, which gives the immunity to all sound effects like silence, deafness and spells that use sound as a medium, e.g. Power Words.
+ LV16: The Siren's Yearning, which enthrals enemies in the visual range unless they make save vs. spell. Does NOT affect mindless enemies e.g. golems.
+ LV20: The WarChant of Sith, which has the effect of AC-2, +10% physical damage resistance, and regenerate 3 HP per round.
+ Enhanced Bard Song: Gives all allies +4 to hit, +4 to damage, -4 to AC, +5% magic resistance, and grants them immunity to Fear, Morale Break, Confusion and normal weapons. While singing the Enhanced Bard Song, the Bard <PRO_HIMHER>self gains an extra bonus of -6 to AC and +5% magic resistance.
+ 
+[The Chorus]
+ You need to click the 'Lead a chorus' skill button of one of the bards to specify the leader of chorus. 
+ When the other bards join the chorus and play the same song with the designated leader, they will get extra bonus. 
+ If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader is singing.
+ If there is no designated leader of chorus, there will be no chorus effect. Each time you assign a new leader of chorus, the other bards stop leading chorus. 
+ In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' skill button of other creatures (such as magic illusions) takes not work. In this case, effects of his song can coexist with others but without a chorus bonus. 
+ All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
+ The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
+ Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
+ The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+ The details are as follows：
+  The Tale of Curran Strongheart, which gains immunities to Charm/ Confusion/ Hold and Slow/ Feeblemindedness and Unconscious/ Berserk, Fatigue and Stun/ Maze and Imprisonment at the 6 levels. 
+  The Song of Kaudies, which forces enemies around to make save vs. breath with a penalty of -1/ -2/ -3/ -4/ -5/ -6, to avoid deafness and bleeding (1 damage per second) for 1 round.
+  The Siren's Yearning and the Jester songs, gain an entra chance each round to take effect, which forces enemies to save with a penalty of -1/ -2/ -3/ -4/ -5/ -6.
+  For all other battle songs that provide bonus values, the bonus values are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original songs. (To avoid touching the lower limit of AC, Chorus of Enhanced Songs afford bonus AC vs. crushing, missile, piercing and slashing instead of normal AC)
+  Extra bounses of Enhanced Songs for bards themselves, e.g. -6 to AC and +5% magic resistance, are not improved in the chorus.
+ 
+[Custom AI for bards]
+ This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
+ Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+ Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
+ Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
+ Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+@111 = "BLADE: The Blade is an expert fighter and adventurer whose bardic acting abilities make <PRO_HIMHER> appear more intimidating and fearsome. This Bard's fighting style is flashy and entertaining, but is also lethally dangerous.
+
+Advantages:
+– May use the Offensive Spin and Defensive Spin abilities once per day. Gains one use each at level 1 and an additional use each every 4 levels thereafter.
+ OFFENSIVE SPIN: During the next 4 rounds, the Blade's movement rate doubles and <PRO_HESHE> gains a +2 bonus to hit and damage rolls as well as an extra attack per round. All attacks deal maximum damage for the duration. Offensive Spin may not be used in conjunction with the Haste or Improved Haste spells.
+ DEFENSIVE SPIN: During the next 4 rounds, the Blade is rooted to the spot and gains a +1 bonus to Armor Class per level, up to a maximum of +10.
+– Blade starts with +1 to hit and damage, get maximum proficiency (3 points) in two weapon fighting style, and then +1 to hit and damage per 10 levels. <PRO_HESHE> can learn different songs on different level, but less than normal Bard.
+ LV1: The Ballad of Three Heroes, which has the effect of +1 to hit, +1 to damage and +1 to all saving throws.
+ LV6: The Tale of Curran Strongheart, which gives the immunity to Fear and Morale Break.
+ LV12: Tymora's Melody, which has the effect of +1 luck, +3 to all saving throws, +10 to lore and thief's skills.
+ LV18: The Song of Kaudies, which gives the immunity to all sound effects like silence, deafness and spells that use sound as a medium, e.g. Power Words.
+ Enhanced Blade Song: Gives all allies +4 to hit, +4 to damage, -4 to AC, +5% magic resistance, and grants them immunity to Fear, Morale Break and normal weapons. While singing the Enhanced Blade Song, the Blade <PRO_HIMHER>self gains an extra bonus of +2 to hit, +2 to damage, -2 to AC and +5% magic resistance.
+
+Disadvantages:
+– Only has one half the normal Lore value.
+– Only has one half the normal Pick Pockets skill.
+ 
+[The Chorus]
+ You need to click the 'Lead a chorus' skill button of one of the bards to specify the leader of chorus. 
+ When the other bards join the chorus and play the same song with the designated leader, they will get extra bonus. 
+ If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader is singing.
+ If there is no designated leader of chorus, there will be no chorus effect. Each time you assign a new leader of chorus, the other bards stop leading chorus. 
+ In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' skill button of other creatures (such as magic illusions) takes not work. In this case, effects of his song can coexist with others but without a chorus bonus. 
+ All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
+ The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
+ Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
+ The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+ The details are as follows：
+  The Tale of Curran Strongheart, which gains immunities to Charm/ Confusion/ Hold and Slow/ Feeblemindedness and Unconscious/ Berserk, Fatigue and Stun/ Maze and Imprisonment at the 6 levels. 
+  The Song of Kaudies, which forces enemies around to make save vs. breath with a penalty of -1/ -2/ -3/ -4/ -5/ -6, to avoid deafness and bleeding (1 damage per second) for 1 round.
+  The Siren's Yearning and the Jester songs, gain an entra chance each round to take effect, which forces enemies to save with a penalty of -1/ -2/ -3/ -4/ -5/ -6.
+  For all other battle songs that provide bonus values, the bonus values are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original songs. (To avoid touching the lower limit of AC, Chorus of Enhanced Songs afford bonus AC vs. crushing, missile, piercing and slashing instead of normal AC)
+  Extra bounses of Enhanced Songs for bards themselves, e.g. -6 to AC and +5% magic resistance, are not improved in the chorus.
+ 
+[Custom AI for bards]
+ This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
+ Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+ Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
+ Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
+ Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+@112 = "JESTER: This Bard is well versed in the arts of ridicule and hilarity, and uses <PRO_HISHER> abilities to distract and confuse <PRO_HISHER> enemies, cavorting madly during combat. Do not mistake <PRO_HIMHER> for a true fool, however, as <PRO_HESHE> can also be quite deadly.
+
+Advantages:
+– Jester starts with +1 luck, +5% stealing, immunity to charm and confusion. 
+– Effect of a Jester's battle song improves with level, but <PRO_HESHE> can't perform other songs.
+ LV1: Opponents in 30 feet must save vs. spells once per round or be confused (+4 save penalty).
+ LV5: Opponents in 30 feet must save vs. spells once per round or be charmed (+2 save penalty).
+ LV10: Opponents in 30 feet must save vs. spells once per round or be slowed (no penalty) or confused (+2 save penalty).
+ LV15: Opponents in 30 feet must save vs. spells once per round or be slowed (-2 save penalty) or confused (no penalty).
+ LV20: Opponents in 30 feet must save vs. spells once per round or be slowed (-2 save penalty) confused (-2 save penalty), and must save vs. poly or be unconscious (+2 save penalty).
+ Enhanced Jester Song: Affects every opponent within 30 feet, they must save vs. spells once per round or be slowed (-4 save penalty) confused (-2 save penalty), and must save vs. poly or be unconscious (no penalty). They may also fail in casting spells and innates by 10% chance.  While singing the Enhanced Bard Song, the Jester <PRO_HIMHER>self gains an extra bonus of -6 to AC and +5% magic resistance. The Enhanced Jester Song will merely replace the original song.
+ Note: mindless creatures e.g. golems are immune to Jester' songs.
+
+Disadvantages:
+– None.
+ 
+[The Chorus]
+ You need to click the 'Lead a chorus' skill button of one of the bards to specify the leader of chorus. 
+ When the other bards join the chorus and play the same song with the designated leader, they will get extra bonus. 
+ If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader is singing.
+ If there is no designated leader of chorus, there will be no chorus effect. Each time you assign a new leader of chorus, the other bards stop leading chorus. 
+ In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' skill button of other creatures (such as magic illusions) takes not work. In this case, effects of his song can coexist with others but without a chorus bonus. 
+ All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
+ The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
+ Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
+ The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+ The details are as follows：
+  The Tale of Curran Strongheart, which gains immunities to Charm/ Confusion/ Hold and Slow/ Feeblemindedness and Unconscious/ Berserk, Fatigue and Stun/ Maze and Imprisonment at the 6 levels. 
+  The Song of Kaudies, which forces enemies around to make save vs. breath with a penalty of -1/ -2/ -3/ -4/ -5/ -6, to avoid deafness and bleeding (1 damage per second) for 1 round.
+  The Siren's Yearning and the Jester songs, gain an entra chance each round to take effect, which forces enemies to save with a penalty of -1/ -2/ -3/ -4/ -5/ -6.
+  For all other battle songs that provide bonus values, the bonus values are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original songs. (To avoid touching the lower limit of AC, Chorus of Enhanced Songs afford bonus AC vs. crushing, missile, piercing and slashing instead of normal AC)
+  Extra bounses of Enhanced Songs for bards themselves, e.g. -6 to AC and +5% magic resistance, are not improved in the chorus.
+
+[Custom AI for bards]
+ This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
+ Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+ Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
+ Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
+ Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+@113 = "SKALD: This nordic Bard is also a warrior of great strength, skill, and virtue; <PRO_HISHER> songs are inspiring sagas of battle and valor, and the Skald devotes <PRO_HISHER> life to those pursuits.
+
+Advantages:
+– +1 bonus to hit and damage rolls.
+– Effect of a Skald's battle song improves with level, but <PRO_HESHE> can't perform other songs.
+ LV1: +2 to hit, +2 to damage, -2 to AC.
+ LV5: +2 to hit, +2 to damage, -2 to AC, offers the immunity to Fear and Morale Break.
+ LV10: +3 to hit, +3 to damage, -3 to AC, offers the immunity to Fear and Morale Break.
+ LV15: +4 to hit, +4 to damage, -4 to AC, offers the immunity to Fear and Morale Break.
+ LV20: +4 to hit, +4 to damage, -4 to AC, offers the immunity to Fear, Morale Break, Stun and Confusion.
+ Enhanced Skald Song: Gives all allies +4 to hit, +4 to damage, -4 to AC, +2 to all saving throws, +5% magic resistance, and grants them immunity to Fear, Stun, Confusion and normal weapons. While singing the Enhanced Skald Song, the Skald <PRO_HIMHER>self gains an extra bonus of -6 to AC and +5% magic resistance. The Enhanced Skald Song will merely replace the original song.
+
+Disadvantages:
+– Only has one quarter the normal Pick Pockets score.
+ 
+[The Chorus]
+ You need to click the 'Lead a chorus' skill button of one of the bards to specify the leader of chorus. 
+ When the other bards join the chorus and play the same song with the designated leader, they will get extra bonus. 
+ If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader is singing.
+ If there is no designated leader of chorus, there will be no chorus effect. Each time you assign a new leader of chorus, the other bards stop leading chorus. 
+ In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' skill button of other creatures (such as magic illusions) takes not work. In this case, effects of his song can coexist with others but without a chorus bonus. 
+ All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
+ The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
+ Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
+ The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+ The details are as follows：
+  The Tale of Curran Strongheart, which gains immunities to Charm/ Confusion/ Hold and Slow/ Feeblemindedness and Unconscious/ Berserk, Fatigue and Stun/ Maze and Imprisonment at the 6 levels. 
+  The Song of Kaudies, which forces enemies around to make save vs. breath with a penalty of -1/ -2/ -3/ -4/ -5/ -6, to avoid deafness and bleeding (1 damage per second) for 1 round.
+  The Siren's Yearning and the Jester songs, gain an entra chance each round to take effect, which forces enemies to save with a penalty of -1/ -2/ -3/ -4/ -5/ -6.
+  For all other battle songs that provide bonus values, the bonus values are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original songs. (To avoid touching the lower limit of AC, Chorus of Enhanced Songs afford bonus AC vs. crushing, missile, piercing and slashing instead of normal AC)
+  Extra bounses of Enhanced Songs for bards themselves, e.g. -6 to AC and +5% magic resistance, are not improved in the chorus.
+
+[Custom AI for bards]
+ This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
+ Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+ Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
+ Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
+ Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."

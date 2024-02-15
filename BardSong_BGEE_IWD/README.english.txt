@@ -1,6 +1,6 @@
 ﻿@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @                                                           @
-@   Bard Song Switching (Icewind Mode) for BG series V4.0   @
+@   Bard Song Switching (Icewind Mode) for BGEE Series V4.1   @
 @   By Shohy                                                @
 @                                                           @
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -19,7 +19,9 @@ Different battle songs can work at the same time. The same bard song has no accu
 
 ***** Main Effects *****
 
-[Kit Adjustment]
+[Kit Adjustment & Custom AI for Bards enhanced by this MOD]
+
+	[Kit Adjustment]
 
 	Bard will learn different songs on different level. You can switch to the song you need by clicking new buttons in Special Abilities.
 	LV1: The Ballad of Three Heroes, which has the effect of +1 to hit, +1 to damage and +1 to all saving throws.
@@ -37,7 +39,7 @@ Different battle songs can work at the same time. The same bard song has no accu
 	LV18: The Song of Kaudies, which gives the immunity to all sound effects like silence, deafness and spells that use sound as a medium, e.g. Power Words.
 	Enhanced Blade Song: Gives all allies +4 to hit, +4 to damage, -4 to AC, +5% magic resistance, and grants them immunity to Fear, Morale Break and normal weapons. While singing the Enhanced Blade Song, the Blade himself gains an extra bonus of +2 to hit, +2 to damage, -2 to AC and +5% magic resistance.
 
-	Jester starts with +1 luck, +5% stealing, immunity to charm and confusion. Effect of his battle song improves with level, but he can't perform other songs, and the Enhanced Jester Song will merely replace the original song. Mindless enemies e.g. golems and skeletons are immune to Jester song.
+	Jester starts with +1 luck, +5% stealing, immunity to charm and confusion. Effect of his battle song improves with level, but he can't perform other songs, and the Enhanced Jester Song will merely replace the original song.
 	LV1: Opponents in 30 feet must save vs. spells once per round or be confused (+4 save penalty).
 	LV5: Opponents in 30 feet must save vs. spells once per round or be charmed (+2 save penalty).
 	LV10: Opponents in 30 feet must save vs. spells once per round or be slowed (no penalty) or confused (+2 save penalty).
@@ -60,6 +62,24 @@ Different battle songs can work at the same time. The same bard song has no accu
 	This component also modifies the problem that Enhanced songs (except the Jester) only works for the 6 teammates. Enhanced songs (except the Jester) now work for all friendly creatures within twice of the visual range, while the effective range of normal songs is also increased to the visual range (50').
 	Most of the different battle songs can be effective at the same time, but when a Bard, Blade and Skald play Enhanced songs at the same time, only one of them will play a role, with the priority of Skald > Bard > Blade. 
 	According to the original settings of bards in EE games, Battle Songs do not work on deaf creatures (except The Song of Kaudies, which relieves teammates' deafness); and the bards are forced to be visible while singing, but extra bonuses of Improved Invisibility can be retained.
+
+	[Custom AI]
+
+	The Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs, but only for bards fixed by this MOD. 
+	Select Customize > Script > BI#BARD in the character's Record interface. 
+
+	Press "V" to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+
+	Press "F" to force a bard to sing and attack when invisible. As a bards will be visible when he starts singing, this AI tells him to do nothing when invisible, unless "F" is pressed to give a command.
+	This command ends with your invisibility, and "F" should be pressed again next time.
+
+	Press "B" to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press "F" to active an invisible bard) and Mirror Image.
+	You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
+
+	Press "S" to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. 
+	If your bard has acquired an High-Level Ability of Lingering Song, he will automatically enter the Lingering Mode and will not switch back. 
+	If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means.
+	Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat).
 
 
 [The Chorus]
@@ -84,29 +104,16 @@ Different battle songs can work at the same time. The same bard song has no accu
 		For all other battle songs that provide bonus values, the bonus values are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original songs. (To avoid touching the lower limit of AC, Chorus of Enhanced Songs afford bonus AC vs. crushing, missile, piercing and slashing instead of normal AC)
 		Extra bounses of Enhanced Songs for bards themselves, e.g. -6 to AC and +5% magic resistance, are not improved in the chorus.
 
+
 [Allow Image Projections to Perform Bard Songs]
 
 	In the enhanced edition games, image projections made by Mislead can no longer perform bard songs. This component changes it back to the old settings so that the image projections can sing and join the chorus.
 
-[Custom AI (for bards in this MOD only)]
-
-	The Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs, but only for bards fixed by this MOD. 
-	Select Customize > Script > BI#BARD in the character's Record interface. 
-
-	Press "V" to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
-
-	Press "F" to force a bard to sing and attack when invisible. As a bards will be visible when he starts singing, this AI tells him to do nothing when invisible, unless "F" is pressed to give a command.
-	This command ends with your invisibility, and "F" should be pressed again next time.
-
-	Press "B" to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press "F" to active an invisible bard) and Mirror Image.
-	You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
-
-	Press "S" to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. 
-	If your bard has acquired an High-Level Ability of Lingering Song, he will automatically enter the Lingering Mode and will not switch back. 
-	If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means.
-	Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat).
 
 ***** History *****
+
+	V4.1	Kit descriptions of all bards will also be modified to show all of the adjustments (including instructions for the Chorus and Custom AI).
+	The Custom AI and the Kit Adjustment are combined into one component.
 
 	V4.0	No longer supports no-EE games.
 	New component of The Chorus, with which a battle song can be enhanced by multiple bards performing at the same time. A leader of chorus should be designated first.

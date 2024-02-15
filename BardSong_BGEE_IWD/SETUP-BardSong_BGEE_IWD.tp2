@@ -1,7 +1,7 @@
 BACKUP ~BardSong_BGEE_IWD/backup~
 AUTHOR ~shohy@126.com~
 
-VERSION ~v4.0~
+VERSION ~v4.1~
 AUTO_EVAL_STRINGS
 
 README ~BardSong_BGEE_IWD/README.%LANGUAGE%.txt~
@@ -468,6 +468,30 @@ COPY    ~BardSong_BGEE_IWD/SPL/BI#B4SS.SPL~   ~override~
 COPY    ~BardSong_BGEE_IWD/SPL/noname~   ~override~
 COPY    ~BardSong_BGEE_IWD/bam~         ~override~
 
+//专用AI
+COMPILE    ~BardSong_BGEE_IWD/AI/BI#BARD.baf~
+MOVE    ~override/BI#BARD.bcs~ ~scripts/BI#BARD.bs~
+
+//修改描述
+OUTER_SET "bard_desc" = 0
+OUTER_SET "blade_desc" = 0
+OUTER_SET "jester_desc" = 0
+OUTER_SET "skald_desc" = 0
+COPY_EXISTING ~clastext.2da~ ~override~
+	COUNT_2DA_ROWS 9 rows
+	FOR ( index = 0 ; index < rows ; index = index + 1 ) BEGIN
+		READ_2DA_ENTRY "%index%" 0 9 "kit_name"
+		READ_2DA_ENTRY "%index%" 4 9 "kit_desc"
+		PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "BARD" = 0) BEGIN SET "bard_desc" = "kit_desc" END
+		PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "BLADE" = 0) BEGIN SET "blade_desc" = "kit_desc" END
+		PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "JESTER" = 0) BEGIN SET "jester_desc" = "kit_desc" END
+		PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "SKALD" = 0) BEGIN SET "skald_desc" = "kit_desc" END
+	END
+BUT_ONLY
+STRING_SET_EVALUATE bard_desc @100
+STRING_SET_EVALUATE blade_desc @101
+STRING_SET_EVALUATE jester_desc @102
+STRING_SET_EVALUATE skald_desc @103
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -478,13 +502,13 @@ OUTER_SET "splprot_row" = 0
 COPY_EXISTING ~splprot.2da~ ~override~
 	COUNT_2DA_ROWS 4 rows
 	FOR ( index = 0 ; index < rows ; index = index + 1 ) BEGIN
-	  READ_2DA_ENTRY "%index%" 1 4 "splprot_stat"
-	  READ_2DA_ENTRY "%index%" 2 4 "splprot_value"
-	  READ_2DA_ENTRY "%index%" 3 4 "splprot_relation"
+		READ_2DA_ENTRY "%index%" 1 4 "splprot_stat"
+		READ_2DA_ENTRY "%index%" 2 4 "splprot_value"
+		READ_2DA_ENTRY "%index%" 3 4 "splprot_relation"
 	  //PATCH_PRINT ~%index% %splprot_stat% %splprot_value% %splprot_relation%~
 		PATCH_IF ("%splprot_stat%" STRING_COMPARE_CASE "56" = 0) & ("%splprot_value%" STRING_COMPARE_CASE "-1" = 0) & ("%splprot_relation%" STRING_COMPARE_CASE "1" = 0) BEGIN	//有现成的BACKSTABDAMAGEMULTIPLIER判断行
 			SET "splprot_row" = "%index%"
-      SET "index" = "%rows%" + 1 // kills loop
+			SET "index" = "%rows%" + 1 // kills loop
 		END
 	END
 	PATCH_IF (splprot_row = 0) BEGIN
@@ -594,6 +618,27 @@ COPY    ~BardSong_BGEE_IWD/chorus/spl/noname~   ~override~
 
 COMPILE    ~BardSong_BGEE_IWD/chorus/baf~
 
+//修改描述
+OUTER_SET "bard_desc" = 0
+OUTER_SET "blade_desc" = 0
+OUTER_SET "jester_desc" = 0
+OUTER_SET "skald_desc" = 0
+COPY_EXISTING ~clastext.2da~ ~override~
+	COUNT_2DA_ROWS 9 rows
+	FOR ( index = 0 ; index < rows ; index = index + 1 ) BEGIN
+		READ_2DA_ENTRY "%index%" 0 9 "kit_name"
+		READ_2DA_ENTRY "%index%" 4 9 "kit_desc"
+		PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "BARD" = 0) BEGIN SET "bard_desc" = "kit_desc" END
+		PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "BLADE" = 0) BEGIN SET "blade_desc" = "kit_desc" END
+		PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "JESTER" = 0) BEGIN SET "jester_desc" = "kit_desc" END
+		PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "SKALD" = 0) BEGIN SET "skald_desc" = "kit_desc" END
+	END
+BUT_ONLY
+STRING_SET_EVALUATE bard_desc @110
+STRING_SET_EVALUATE blade_desc @111
+STRING_SET_EVALUATE jester_desc @112
+STRING_SET_EVALUATE skald_desc @113
+
 ////////////////////////////////////////////////////////////////////////////
 
 BEGIN @14	//允许投影术制造的诗人幻像进行演奏（以及合唱）
@@ -603,9 +648,3 @@ COPY_EXISTING ~MISLEAD.spl~ ~override~
 	BUT_ONLY
 
 ////////////////////////////////////////////////////////////////////////////
-
-BEGIN @15	//专用AI
-REQUIRE_COMPONENT "SETUP-BardSong_BGEE_IWD.tp2" "0" @13
-
-COMPILE    ~BardSong_BGEE_IWD/AI/BI#BARD.baf~
-MOVE    ~override/BI#BARD.bcs~ ~scripts/BI#BARD.bs~
