@@ -1,4 +1,4 @@
-<div align="center"><h1></a> Bard Song Switching (Icewind Mode) for BGEE series V4.0</h1>
+<div align="center"><h1></a> Bard Song Switching (Icewind Mode) for BGEE series V4.1</h1>
 
 <h3>A mod for Baldur's Gate I & II EE, and EET<h3>
 
@@ -91,6 +91,24 @@ Only BG EE series are supported.
   Most of the different battle songs can be effective at the same time, but when a Bard, Blade and Skald play Enhanced songs at the same time, only one of them will play a role, with the priority of Skald Bard Blade. 
   According to the original settings of bards in EE games, Battle Songs do not work on deaf creatures (except The Song of Kaudies, which relieves teammates' deafness); and the bards are forced to be visible while singing, but extra bonuses of Improved Invisibility can be retained.
 
+>----------Custom AI (for bards in this MOD only)----------
+
+  The Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs, but only for bards fixed by this MOD. 
+  Select Customize Script BI#BARD in the character's Record interface. 
+
+  Press "V" to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+
+  Press "F" to force a bard to sing and attack when invisible. As a bards will be visible when he starts singing, this AI tells him to do nothing when invisible, unless "F" is pressed to give a command.
+  This command ends with your invisibility, and "F" should be pressed again next time.
+
+  Press "B" to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press "F" to active an invisible bard) and Mirror Image.
+  You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
+
+  Press "S" to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. 
+  If your bard has acquired an High-Level Ability of Lingering Song, he will automatically enter the Lingering Mode and will not switch back. 
+  If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means.
+  Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat).
+
 >----------The Chorus----------
 
   With this component installed, all songs can be played by multiple bards (or their magical illusions) at the same time to gain extra bonus. 
@@ -115,25 +133,7 @@ Only BG EE series are supported.
 
 >----------Allow Image Projections to Perform Bard Songs----------
 
-In the enhanced edition games, image projections made by Mislead can no longer perform bard songs. This component changes it back to the old settings so that the image projections can sing and join the chorus.
-
->----------Custom AI (for bards in this MOD only)----------
-
-  The Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs, but only for bards fixed by this MOD. 
-  Select Customize Script BI#BARD in the character's Record interface. 
-
-  Press "V" to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
-
-  Press "F" to force a bard to sing and attack when invisible. As a bards will be visible when he starts singing, this AI tells him to do nothing when invisible, unless "F" is pressed to give a command.
-  This command ends with your invisibility, and "F" should be pressed again next time.
-
-  Press "B" to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press "F" to active an invisible bard) and Mirror Image.
-  You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
-
-  Press "S" to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. 
-  If your bard has acquired an High-Level Ability of Lingering Song, he will automatically enter the Lingering Mode and will not switch back. 
-  If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means.
-  Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat).<br>
+In the enhanced edition games, image projections made by Mislead can no longer perform bard songs. This component changes it back to the old settings so that the image projections can sing and join the chorus.<br>
 <div align="right"><a href="#top">Back to top</a></div>
 
 <hr>
@@ -143,6 +143,8 @@ In the enhanced edition games, image projections made by Mislead can no longer p
 
 </a><br>
 
+  V4.1	Kit descriptions of all bards will also be modified to show all of the adjustments (including instructions for the Chorus and Custom AI).
+  The Custom AI and the Kit Adjustment are combined into one component.
 
   V4.0	No longer supports no-EE games.
   New component of The Chorus, with which a battle song can be enhanced by multiple bards performing at the same time. A leader of chorus should be designated first.
