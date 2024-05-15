@@ -1,3 +1,31 @@
+/////////////////////////开启或关闭战歌生效瞬间自动暂停/////////////////////////
+IF
+	Global("BI#PAUSE","LOCALS",0)
+	HotKey(Z)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#PAUSE","LOCALS",1)
+		DisplayStringHead(Myself,@75)	//战歌生效播放动画提示
+END
+
+IF
+	Global("BI#PAUSE","LOCALS",1)
+	HotKey(Z)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#PAUSE","LOCALS",2)
+		DisplayStringHead(Myself,@76)	//战歌生效立刻自动暂停
+END
+
+IF
+	Global("BI#PAUSE","LOCALS",2)
+	HotKey(Z)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#PAUSE","LOCALS",0)
+		DisplayStringHead(Myself,@77)	//关闭战歌生效的暂停和提示
+END
+
 /////////////////////////攻击模式切换///////////////////////////
 IF
 	Global("BI#B_MOD","LOCALS",2)
@@ -15,6 +43,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("BI#B_MOD","LOCALS",1)
+		SetGlobal("BI#B_ATK","LOCALS",0)
 		DisplayStringHead(Myself,@82)	//在保证歌曲持续的前提下偶尔攻击（遇敌等到歌曲触发再攻击，攻击间隔只有3秒，歌曲掉线立刻补上）
 END
 
@@ -24,6 +53,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("BI#B_MOD","LOCALS",2)
+		SetGlobal("BI#B_ATK","LOCALS",0)
 		DisplayStringHead(Myself,@83)	//更多攻击，但不保证歌曲一直持续（遇敌立刻攻击并计时2秒再唱歌，攻击间隔4秒，歌曲掉线不立刻补上而是攻击4秒再唱歌）
 END
 
@@ -210,6 +240,29 @@ THEN
 	RESPONSE #100
 		BattleSong()
 END
+//战歌生效提示，有无余音缭绕都提示
+//战歌生效播放动画提示
+IF
+	Global("BI#B_MOD","LOCALS",0)
+	Global("BI#PAUSE","LOCALS",1)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		CreateVisualEffectObject("BI#B00Z",Myself)
+END
+//战歌生效触发自动暂停
+IF
+	Global("BI#B_MOD","LOCALS",0)
+	Global("BI#PAUSE","LOCALS",2)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		PauseGame()
+END
 
 //或者攻击状态没看到敌人
 IF
@@ -287,6 +340,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("BI#B_SIN","Locals",15)
+		Continue()
 END
 
 //b有敌人且触发战歌生效，没余音缭绕，未计时，计时3秒
@@ -306,6 +360,57 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("BI#B_SIN","Locals",3)
+		Continue()
+END
+
+//战歌生效提示，有无余音缭绕都提示
+//战歌生效播放动画提示
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	Global("BI#PAUSE","LOCALS",1)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		CreateVisualEffectObject("BI#B00Z",Myself)
+END
+//战歌生效触发自动暂停
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	Global("BI#PAUSE","LOCALS",2)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		PauseGame()
+END
+//不提示不暂停
+IF
+	Global("BI#B_MOD","LOCALS",1)
+	Global("BI#PAUSE","LOCALS",0)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+//只要开了暂停或提示，且没有余音缭绕，则施法完毕立刻唱歌，且屏蔽后继打人
+IF
+	GlobalGT("BI#PAUSE","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",1)
+	Global("BI#B_LIN","LOCALS",0)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	SpellCast(Myself,0)
+	!SpellCastOnMeRES("BI#B00Z",Myself)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("BI#B_SIN","Locals",0)
+		BattleSong()
 END
 
 //b1计时结束前，只管打人。计时结束后不执行
@@ -469,6 +574,44 @@ THEN
 	RESPONSE #100
 		SetGlobal("BI#B_ATK","LOCALS",2)
 		SetGlobalTimer("BI#B_SIN","Locals",15)
+		Continue()
+END
+//战歌生效提示，有余音缭绕，之后不管
+//战歌生效播放动画提示
+IF
+	Global("BI#PAUSE","LOCALS",1)
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		CreateVisualEffectObject("BI#B00Z",Myself)
+END
+//战歌生效触发自动暂停
+IF
+	Global("BI#PAUSE","LOCALS",2)
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		PauseGame()
+END
+//不提示不暂停
+IF
+	Global("BI#PAUSE","LOCALS",0)
+	Global("BI#B_LIN","LOCALS",1)
+	Global("BI#B_MOD","LOCALS",2)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		NoAction()
 END
 
 //a1初遇敌人，如果正在唱歌且有效果在则计时10秒用于攻击，标记BI#B_ATK为1，计时到期转向b
@@ -970,6 +1113,60 @@ THEN
 	RESPONSE #100
 		SetGlobal("BI#B_ATK","LOCALS",2)
 		SetGlobalTimer("BI#B_SIN","Locals",4)
+		Continue()
+END
+//战歌生效提示，没有余音缭绕
+//战歌生效播放动画提示
+IF
+	Global("BI#PAUSE","LOCALS",1)
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		CreateVisualEffectObject("BI#B00Z",Myself)
+END
+//战歌生效触发自动暂停
+IF
+	Global("BI#PAUSE","LOCALS",2)
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		PauseGame()
+END
+//不提示不暂停
+IF
+	Global("BI#PAUSE","LOCALS",0)
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	SpellCastOnMeRES("BI#B00Z",Myself)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+//只要开了暂停，且没有余音缭绕，则施法完毕立刻唱歌，且屏蔽后继打人
+IF
+	GlobalGT("BI#PAUSE","LOCALS",0)
+	Global("BI#B_LIN","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",2)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	SpellCast(Myself,0)
+	!SpellCastOnMeRES("BI#B00Z",Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#B_ATK","LOCALS",2)
+		SetGlobalTimer("BI#B_SIN","Locals",0)
+		BattleSong()
 END
 
 //初始遇敌，a>(a1)*0-2>a11或a>(a1)*0-2>a2>d>a11
@@ -1185,7 +1382,7 @@ END
 IF
 	Global("BI#B_LIN","LOCALS",0)
 	Global("BI#B_MOD","LOCALS",2)
-	Global("BI#B_ATK","LOCALS",5)
+	Global("BI#B_ATK","LOCALS",4)
 	See(NearestEnemyOf())
 	Class(Myself,BARD_ALL)
 	!ModalState(BATTLESONG)

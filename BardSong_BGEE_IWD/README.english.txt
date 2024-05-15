@@ -1,6 +1,6 @@
 ﻿@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @                                                           @
-@   Bard Song Switching (Icewind Mode) for BGEE Series V4.1   @
+@   Bard Song Switching (Icewind Mode) for BGEE Series V4.2   @
 @   By Shohy                                                @
 @                                                           @
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -70,6 +70,8 @@ Different battle songs can work at the same time. The same bard song has no accu
 
 	Press "V" to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
 
+	Press "Z" to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
+
 	Press "F" to force a bard to sing and attack when invisible. As a bards will be visible when he starts singing, this AI tells him to do nothing when invisible, unless "F" is pressed to give a command.
 	This command ends with your invisibility, and "F" should be pressed again next time.
 
@@ -111,6 +113,9 @@ Different battle songs can work at the same time. The same bard song has no accu
 
 
 ***** History *****
+
+	V4.2	Fixed the problem that bards often stop singing on 'More attack actions than singing' mode of the Custom AI.
+	A new ability in Custom AI: Press "Z" to toggle whether or not to prompt the effective moment of bard songs. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted.
 
 	V4.1	Kit descriptions of all bards will also be modified to show all of the adjustments (including instructions for the Chorus and Custom AI).
 	The Custom AI and the Kit Adjustment are combined into one component.

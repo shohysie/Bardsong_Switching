@@ -120,6 +120,10 @@ While singing the Enhanced Skald Song, the Skald himself gains an extra bonus of
 @87 = "Switching is no longer required as you already learned the High-Level Ability of Lingering Song."
 @88 = "Sing and attack when invisible."
 
+@75 = "Prompt the effective moment of bard songs with animation."
+@76 = "Prompt the effective moment of bard songs with game pause."
+@77 = "No Prompt."
+
 @91 = "Join the chorus"
 @92 = "Lead a chorus"
 @93 = "Drop out of the chorus"
