@@ -1,7 +1,7 @@
 BACKUP ~BardSong_BGEE_IWD/backup~
 AUTHOR ~shohy@126.com~
 
-VERSION ~v4.2~
+VERSION ~v4.3~
 AUTO_EVAL_STRINGS
 
 README ~BardSong_BGEE_IWD/README.%LANGUAGE%.txt~
@@ -458,6 +458,10 @@ COPY    ~BardSong_BGEE_IWD/SPL/BI#B3SS.SPL~   ~override~
 	SAY NAME1 @29    SAY UNIDENTIFIED_DESC @33
 COPY    ~BardSong_BGEE_IWD/SPL/BI#B3SB.SPL~   ~override~
 	WRITE_SHORT   0x98 ~%BI#BINNP%~
+	SAY 0x27e @3	//AI用
+	READ_SHORT 0x27e ~AIname~
+	SAY 0x27e @4	//AI用
+	READ_SHORT 0x27e ~AIdesc~
 	SAY 0x27e @7	//迷惑
 	SAY 0x2de @8	//迟缓
 	SAY 0x33e @9	//昏迷不醒
@@ -471,7 +475,9 @@ COPY    ~BardSong_BGEE_IWD/bam~         ~override~
 //专用AI
 COMPILE    ~BardSong_BGEE_IWD/AI/BI#BARD.baf~
 MOVE    ~override/BI#BARD.bcs~ ~scripts/BI#BARD.bs~
-
+APPEND ~SCRPDESC.2da~ ~BI#BARD    %AIname%      %AIdesc%~
+	
+	
 //修改描述
 OUTER_SET "bard_desc" = 0
 OUTER_SET "blade_desc" = 0

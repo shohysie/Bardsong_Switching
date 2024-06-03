@@ -1,4 +1,4 @@
-<div align="center"><h1></a> Bard Song Switching (Icewind Mode) for BGEE series V4.2</h1>
+<div align="center"><h1></a> Bard Song Switching (Icewind Mode) for BGEE series V4.3</h1>
 
 <h3>A mod for Baldur's Gate I & II EE, and EET<h3>
 
@@ -94,10 +94,10 @@ Only BG EE series are supported.
 >----------Custom AI (for bards in this MOD only)----------
 
   The Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs, but only for bards fixed by this MOD. 
-  Select Customize Script BI#BARD in the character's Record interface. 
+  Select Customize > Script > BI#BARD in the character's Record interface. 
 
   Press "V" to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
-  
+
   Press "Z" to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
 
   Press "F" to force a bard to sing and attack when invisible. As a bards will be visible when he starts singing, this AI tells him to do nothing when invisible, unless "F" is pressed to give a command.
@@ -145,6 +145,8 @@ In the enhanced edition games, image projections made by Mislead can no longer p
 
 </a><br>
 
+  V4.3	Added detailed description for the Custom AI.
+  
   V4.2  Fixed the problem that bards often stop singing on 'More attack actions than singing' mode of the Custom AI.
   A new ability in Custom AI: Press "Z" to toggle whether or not to prompt the effective moment of bard songs. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted.
 

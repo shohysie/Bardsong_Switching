@@ -1,6 +1,6 @@
 ﻿@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @                                                           @
-@   Bard Song Switching (Icewind Mode) for BGEE Series V4.2   @
+@   Bard Song Switching (Icewind Mode) for BGEE Series V4.3   @
 @   By Shohy                                                @
 @                                                           @
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -113,6 +113,8 @@ Different battle songs can work at the same time. The same bard song has no accu
 
 
 ***** History *****
+
+	V4.3	Added detailed description for the Custom AI.
 
 	V4.2	Fixed the problem that bards often stop singing on 'More attack actions than singing' mode of the Custom AI.
 	A new ability in Custom AI: Press "Z" to toggle whether or not to prompt the effective moment of bard songs. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted.
