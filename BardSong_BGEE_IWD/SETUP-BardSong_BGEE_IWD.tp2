@@ -1,7 +1,7 @@
 BACKUP ~BardSong_BGEE_IWD/backup~
 AUTHOR ~shohy@126.com~
 
-VERSION ~v4.3~
+VERSION ~v4.4~
 AUTO_EVAL_STRINGS
 
 README ~BardSong_BGEE_IWD/README.%LANGUAGE%.txt~
@@ -458,9 +458,7 @@ COPY    ~BardSong_BGEE_IWD/SPL/BI#B3SS.SPL~   ~override~
 	SAY NAME1 @29    SAY UNIDENTIFIED_DESC @33
 COPY    ~BardSong_BGEE_IWD/SPL/BI#B3SB.SPL~   ~override~
 	WRITE_SHORT   0x98 ~%BI#BINNP%~
-	SAY 0x27e @3	//AI用
 	READ_SHORT 0x27e ~AIname~
-	SAY 0x27e @4	//AI用
 	READ_SHORT 0x27e ~AIdesc~
 	SAY 0x27e @7	//迷惑
 	SAY 0x2de @8	//迟缓
@@ -475,14 +473,16 @@ COPY    ~BardSong_BGEE_IWD/bam~         ~override~
 //专用AI
 COMPILE    ~BardSong_BGEE_IWD/AI/BI#BARD.baf~
 MOVE    ~override/BI#BARD.bcs~ ~scripts/BI#BARD.bs~
-APPEND ~SCRPDESC.2da~ ~BI#BARD    %AIname%      %AIdesc%~
-	
-	
+OUTER_SET AIname = RESOLVE_STR_REF(@3)
+OUTER_SET AIdesc = RESOLVE_STR_REF(@4)
+APPEND ~SCRPDESC.2da~ ~BI#BARD    %AIname%      %AIdesc%~	
+
 //修改描述
 OUTER_SET "bard_desc" = 0
 OUTER_SET "blade_desc" = 0
 OUTER_SET "jester_desc" = 0
 OUTER_SET "skald_desc" = 0
+
 COPY_EXISTING ~clastext.2da~ ~override~
 	COUNT_2DA_ROWS 9 rows
 	FOR ( index = 0 ; index < rows ; index = index + 1 ) BEGIN
@@ -498,6 +498,25 @@ STRING_SET_EVALUATE bard_desc @100
 STRING_SET_EVALUATE blade_desc @101
 STRING_SET_EVALUATE jester_desc @102
 STRING_SET_EVALUATE skald_desc @103
+
+ACTION_IF FILE_EXISTS_IN_GAME ~bgclatxt.2da~ BEGIN
+	COPY_EXISTING ~bgclatxt.2da~ ~override~
+		COUNT_2DA_ROWS 9 rows
+		FOR ( index = 0 ; index < rows ; index = index + 1 ) BEGIN
+			READ_2DA_ENTRY "%index%" 0 9 "kit_name"
+			READ_2DA_ENTRY "%index%" 4 9 "kit_desc"
+			PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "BARD" = 0) BEGIN SET "bard_desc" = "kit_desc" END
+			PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "BLADE" = 0) BEGIN SET "blade_desc" = "kit_desc" END
+			PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "JESTER" = 0) BEGIN SET "jester_desc" = "kit_desc" END
+			PATCH_IF ("%kit_name%" STRING_COMPARE_CASE "SKALD" = 0) BEGIN SET "skald_desc" = "kit_desc" END
+		END
+	BUT_ONLY
+	STRING_SET_EVALUATE bard_desc @100
+	STRING_SET_EVALUATE blade_desc @101
+	STRING_SET_EVALUATE jester_desc @102
+	STRING_SET_EVALUATE skald_desc @103
+END
+
 
 ////////////////////////////////////////////////////////////////////////////
 

@@ -1,6 +1,6 @@
 ﻿@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @                                                           @
-@   Bard Song Switching (Icewind Mode) for BGEE Series V4.3   @
+@   Bard Song Switching (Icewind Mode) for BGEE Series V4.4   @
 @   By Shohy                                                @
 @                                                           @
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -113,6 +113,9 @@ Different battle songs can work at the same time. The same bard song has no accu
 
 
 ***** History *****
+
+	V4.4	Fixed the problem that in BGEET there were some unmodified Kit descriptions.
+	Fixed the problem that description of Custom AI were prone to text misplacement with many MODs installed.
 
 	V4.3	Added detailed description for the Custom AI.
 

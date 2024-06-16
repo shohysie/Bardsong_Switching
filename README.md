@@ -1,4 +1,4 @@
-<div align="center"><h1></a> Bard Song Switching (Icewind Mode) for BGEE series V4.3</h1>
+<div align="center"><h1></a> Bard Song Switching (Icewind Mode) for BGEE series V4.4</h1>
 
 <h3>A mod for Baldur's Gate I & II EE, and EET<h3>
 
@@ -145,6 +145,9 @@ In the enhanced edition games, image projections made by Mislead can no longer p
 
 </a><br>
 
+  V4.4	Fixed the problem that in BGEET there were some unmodified Kit descriptions.
+  Fixed the problem that description of Custom AI were prone to text misplacement with many MODs installed.
+  
   V4.3	Added detailed description for the Custom AI.
   
   V4.2  Fixed the problem that bards often stop singing on 'More attack actions than singing' mode of the Custom AI.
