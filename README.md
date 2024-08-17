@@ -1,4 +1,4 @@
-<div align="center"><h1></a> Bard Song Switching (Icewind Mode) for BGEE series V4.4</h1>
+<div align="center"><h1></a> Bard Song Switching (Icewind Mode) for BGEE series V4.5</h1>
 
 <h3>A mod for Baldur's Gate I & II EE, and EET<h3>
 
@@ -103,7 +103,7 @@ Only BG EE series are supported.
   Press "F" to force a bard to sing and attack when invisible. As a bards will be visible when he starts singing, this AI tells him to do nothing when invisible, unless "F" is pressed to give a command.
   This command ends with your invisibility, and "F" should be pressed again next time.
 
-  Press "B" to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press "F" to active an invisible bard) and Mirror Image.
+  Press "B" to cast a memorized protective spell, in the order of Stone Skin, Strength, Protection from Magic Energy, Spirit Armor / Ghost Armor / Armor, Shield, Protection from Normal Missiles, Resist Fear, Blur, Protection from Evil, Improved Invisibility (remember to press "F" to active an invisible bard), Mirror Image, Improved Haste, Spell Shield, Spell Immunity: Abjuration, Protection from the Elements, True Sight, Spell Turning (or Minor), Spell Deflection (or Minor), Globe of Invulnerability.
   You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
 
   Press "S" to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. 
@@ -144,6 +144,10 @@ In the enhanced edition games, image projections made by Mislead can no longer p
 ## <a name="ver" id="ver"></a>Version History
 
 </a><br>
+
+  V4.5	Fixed a serious problem that Lingering Songs do not work.
+  Fixed the problem that the Custom AI prompts too frequently and inaccurately.
+  Adjusted the Custom AI to cast more buff spells, and further optimized the AI to make characters more active in fighting.
 
   V4.4	Fixed the problem that in BGEET there were some unmodified Kit descriptions.
   Fixed the problem that description of Custom AI were prone to text misplacement with many MODs installed.
