@@ -268,6 +268,28 @@ END
 IF
 	HotKey(B)
 	ActionListEmpty()
+	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)	//60-138s
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_IMPROVED_INVISIBILITY)
+		RemoveSpell(WIZARD_IMPROVED_INVISIBILITY)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_MIRROR_IMAGE)
+	!StateCheck(Myself,STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_MIRROR_IMAGE)	//36-138s
+		RemoveSpell(WIZARD_MIRROR_IMAGE)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
 	HaveSpell(WIZARD_SPELL_SHIELD)
 	!CheckSpellState(Myself,SPELL_SHIELD)
 THEN
@@ -285,6 +307,17 @@ THEN
 	RESPONSE #100
 		ForceSpell(Myself,WIZARD_SPELL_IMMUNITY_ABJURATION)  //54-120
 		RemoveSpell(WIZARD_SPELL_IMMUNITY)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_IMPROVED_HASTE)
+	!CheckStatGT(Myself,0,IMPROVEDHASTE)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_IMPROVED_HASTE)	//90-138s
+		RemoveSpell(WIZARD_IMPROVED_HASTE)
 END
 
 IF
@@ -313,39 +346,6 @@ THEN
 		ForceSpell(Myself,WIZARD_TRUE_SIGHT)  // 60s
 		RemoveSpell(WIZARD_TRUE_SIGHT)
 		Continue()
-END
-
-IF
-	HotKey(B)
-	ActionListEmpty()
-	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
-	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)	//60-138s
-THEN
-	RESPONSE #100
-		ForceSpell(Myself,WIZARD_IMPROVED_INVISIBILITY)
-		RemoveSpell(WIZARD_IMPROVED_INVISIBILITY)
-END
-
-IF
-	HotKey(B)
-	ActionListEmpty()
-	HaveSpell(WIZARD_MIRROR_IMAGE)
-	!StateCheck(Myself,STATE_MIRRORIMAGE)
-THEN
-	RESPONSE #100
-		ForceSpell(Myself,WIZARD_MIRROR_IMAGE)	//36-138s
-		RemoveSpell(WIZARD_MIRROR_IMAGE)
-END
-
-IF
-	HotKey(B)
-	ActionListEmpty()
-	HaveSpell(WIZARD_IMPROVED_HASTE)
-	!CheckStatGT(Myself,0,IMPROVEDHASTE)
-THEN
-	RESPONSE #100
-		ForceSpell(Myself,WIZARD_IMPROVED_HASTE)	//90-138s
-		RemoveSpell(WIZARD_IMPROVED_HASTE)
 END
 
 IF
@@ -821,7 +821,7 @@ IF
 	GlobalGT("BI#B_MOD","LOCALS",0)
 	GlobalTimerNotExpired("BI#B_SIN","Locals")
 	ActionListEmpty()
-	AttackedBy([Enemy])
+	AttackedBy([ENEMY],DEFAULT)
 	OR(2)
 		Global("BI#B_INV","LOCALS",1)
 		!StateCheck(Myself,STATE_INVISIBLE)
@@ -841,7 +841,7 @@ IF
 	GlobalGT("BI#B_MOD","LOCALS",0)
 	GlobalTimerNotExpired("BI#B_SIN","Locals")
 	ActionListEmpty()
-	AttackedBy([Enemy])
+	AttackedBy([ENEMY],DEFAULT)
 	OR(2)
 		Global("BI#B_INV","LOCALS",1)
 		!StateCheck(Myself,STATE_INVISIBLE)

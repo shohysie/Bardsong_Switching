@@ -1,5 +1,5 @@
-@3 = "BARD (attacks with songs remaining): "
-@4 = "The Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs, but only for the 4 original bard kits modified by Bard Song Switching (Icewind Mode) MOD. 
+@3 = "BARD (attacks in playing intervals): "
+@4 = "The Custom AI provides the ability to make brief attacks in playing intervals and maintain the presence of battle songs, but only for the 4 original bard kits modified by Bard Song Switching (Icewind Mode) MOD. 
 
 	Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
 
@@ -8,7 +8,7 @@
 	Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when he starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command.
 	This command ends with your invisibility, and 'F' should be pressed again next time.
 
-	Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image.
+	Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Strength, Protection from Magic Energy, Spirit Armor / Ghost Armor / Armor, Shield, Protection from Normal Missiles, Resist Fear, Blur, Protection from Evil, Improved Invisibility (remember to press "F" to active an invisible bard), Mirror Image, Spell Shield, Spell Immunity: Abjuration, Improved Haste, Protection from the Elements, True Sight, Spell Turning (or Minor), Spell Deflection (or Minor), Globe of Invulnerability.
 	You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
 
 	Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. 
@@ -171,13 +171,8 @@ CLASS FEATURES:
  LV20: The WarChant of Sith, which has the effect of AC-2, +10% physical damage resistance, and regenerate 3 HP per round.
  Enhanced Bard Song: Gives all allies +4 to hit, +4 to damage, -4 to AC, +5% magic resistance, and grants them immunity to Fear, Morale Break, Confusion and normal weapons. While singing the Enhanced Bard Song, the Bard <PRO_HIMHER>self gains an extra bonus of -6 to AC and +5% magic resistance.
  
-[Custom AI for bards]
- This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
- Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire.
- Press 'Z' to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
- Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
- Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
- Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+[Custom AI available]
+ This Custom AI provides the ability to make brief attacks in playing intervals and maintain the presence of battle songs. Select Customize > Script > 'BARD (attacks in playing intervals)' in the character's Record interface. "
 @101 = "BLADE: The Blade is an expert fighter and adventurer whose bardic acting abilities make <PRO_HIMHER> appear more intimidating and fearsome. This Bard's fighting style is flashy and entertaining, but is also lethally dangerous.
 
 Advantages:
@@ -195,13 +190,8 @@ Disadvantages:
 – Only has one half the normal Lore value.
 – Only has one half the normal Pick Pockets skill.
  
-[Custom AI for bards]
- This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
- Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire.
- Press 'Z' to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
- Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
- Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
- Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+[Custom AI available]
+ This Custom AI provides the ability to make brief attacks in playing intervals and maintain the presence of battle songs. Select Customize > Script > 'BARD (attacks in playing intervals)' in the character's Record interface. "
 @102 = "JESTER: This Bard is well versed in the arts of ridicule and hilarity, and uses <PRO_HISHER> abilities to distract and confuse <PRO_HISHER> enemies, cavorting madly during combat. Do not mistake <PRO_HIMHER> for a true fool, however, as <PRO_HESHE> can also be quite deadly.
 
 Advantages:
@@ -218,13 +208,8 @@ Advantages:
 Disadvantages:
 – None.
 
-[Custom AI for bards]
- This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
- Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire.
- Press 'Z' to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
- Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
- Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
- Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+[Custom AI available]
+ This Custom AI provides the ability to make brief attacks in playing intervals and maintain the presence of battle songs. Select Customize > Script > 'BARD (attacks in playing intervals)' in the character's Record interface. "
 @103 = "SKALD: This nordic Bard is also a warrior of great strength, skill, and virtue; <PRO_HISHER> songs are inspiring sagas of battle and valor, and the Skald devotes <PRO_HISHER> life to those pursuits.
 
 Advantages:
@@ -240,13 +225,8 @@ Advantages:
 Disadvantages:
 – Only has one quarter the normal Pick Pockets score.
 
-[Custom AI for bards]
- This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
- Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire.
- Press 'Z' to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
- Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
- Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
- Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+[Custom AI available]
+ This Custom AI provides the ability to make brief attacks in playing intervals and maintain the presence of battle songs. Select Customize > Script > 'BARD (attacks in playing intervals)' in the character's Record interface. "
  
  
  
@@ -289,13 +269,8 @@ CLASS FEATURES:
   For all other battle songs that provide bonus values, the bonus values are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original songs. (To avoid touching the lower limit of AC, Chorus of Enhanced Songs afford bonus AC vs. crushing, missile, piercing and slashing instead of normal AC)
   Extra bounses of Enhanced Songs for bards themselves, e.g. -6 to AC and +5% magic resistance, are not improved in the chorus.
  
-[Custom AI for bards]
- This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
- Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire.
- Press 'Z' to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
- Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
- Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
- Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+[Custom AI available]
+ This Custom AI provides the ability to make brief attacks in playing intervals and maintain the presence of battle songs. Select Customize > Script > 'BARD (attacks in playing intervals)' in the character's Record interface. "
 @111 = "BLADE: The Blade is an expert fighter and adventurer whose bardic acting abilities make <PRO_HIMHER> appear more intimidating and fearsome. This Bard's fighting style is flashy and entertaining, but is also lethally dangerous.
 
 Advantages:
@@ -330,13 +305,8 @@ Disadvantages:
   For all other battle songs that provide bonus values, the bonus values are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original songs. (To avoid touching the lower limit of AC, Chorus of Enhanced Songs afford bonus AC vs. crushing, missile, piercing and slashing instead of normal AC)
   Extra bounses of Enhanced Songs for bards themselves, e.g. -6 to AC and +5% magic resistance, are not improved in the chorus.
  
-[Custom AI for bards]
- This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
- Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire.
- Press 'Z' to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
- Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
- Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
- Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+[Custom AI available]
+ This Custom AI provides the ability to make brief attacks in playing intervals and maintain the presence of battle songs. Select Customize > Script > 'BARD (attacks in playing intervals)' in the character's Record interface. "
 @112 = "JESTER: This Bard is well versed in the arts of ridicule and hilarity, and uses <PRO_HISHER> abilities to distract and confuse <PRO_HISHER> enemies, cavorting madly during combat. Do not mistake <PRO_HIMHER> for a true fool, however, as <PRO_HESHE> can also be quite deadly.
 
 Advantages:
@@ -370,13 +340,8 @@ Disadvantages:
   For all other battle songs that provide bonus values, the bonus values are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original songs. (To avoid touching the lower limit of AC, Chorus of Enhanced Songs afford bonus AC vs. crushing, missile, piercing and slashing instead of normal AC)
   Extra bounses of Enhanced Songs for bards themselves, e.g. -6 to AC and +5% magic resistance, are not improved in the chorus.
 
-[Custom AI for bards]
- This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
- Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire.
- Press 'Z' to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
- Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
- Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
- Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+[Custom AI available]
+ This Custom AI provides the ability to make brief attacks in playing intervals and maintain the presence of battle songs. Select Customize > Script > 'BARD (attacks in playing intervals)' in the character's Record interface. "
 @113 = "SKALD: This nordic Bard is also a warrior of great strength, skill, and virtue; <PRO_HISHER> songs are inspiring sagas of battle and valor, and the Skald devotes <PRO_HISHER> life to those pursuits.
 
 Advantages:
@@ -409,10 +374,5 @@ Disadvantages:
   For all other battle songs that provide bonus values, the bonus values are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original songs. (To avoid touching the lower limit of AC, Chorus of Enhanced Songs afford bonus AC vs. crushing, missile, piercing and slashing instead of normal AC)
   Extra bounses of Enhanced Songs for bards themselves, e.g. -6 to AC and +5% magic resistance, are not improved in the chorus.
 
-[Custom AI for bards]
- This Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs. Select Customize > Script > BI#BARD in the character's Record interface. 
- Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire.
- Press 'Z' to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
- Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when <PRO_HESHE> starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command. This command ends with your invisibility, and 'F' should be pressed again next time.
- Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Spirit Armor / Ghost Armor / Armor, Shield, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard) and Mirror Image. You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
- Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. If your bard has acquired an High-Level Ability of Lingering Song, <PRO_HESHE> will automatically enter the Lingering Mode and will not switch back. If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means. Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat)."
+[Custom AI available]
+ This Custom AI provides the ability to make brief attacks in playing intervals and maintain the presence of battle songs. Select Customize > Script > 'BARD (attacks in playing intervals)' in the character's Record interface. "

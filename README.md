@@ -103,7 +103,7 @@ Only BG EE series are supported.
   Press "F" to force a bard to sing and attack when invisible. As a bards will be visible when he starts singing, this AI tells him to do nothing when invisible, unless "F" is pressed to give a command.
   This command ends with your invisibility, and "F" should be pressed again next time.
 
-  Press "B" to cast a memorized protective spell, in the order of Stone Skin, Strength, Protection from Magic Energy, Spirit Armor / Ghost Armor / Armor, Shield, Protection from Normal Missiles, Resist Fear, Blur, Protection from Evil, Improved Invisibility (remember to press "F" to active an invisible bard), Mirror Image, Improved Haste, Spell Shield, Spell Immunity: Abjuration, Protection from the Elements, True Sight, Spell Turning (or Minor), Spell Deflection (or Minor), Globe of Invulnerability.
+  Press "B" to cast a memorized protective spell, in the order of Stone Skin, Strength, Protection from Magic Energy, Spirit Armor / Ghost Armor / Armor, Shield, Protection from Normal Missiles, Resist Fear, Blur, Protection from Evil, Improved Invisibility (remember to press "F" to active an invisible bard), Mirror Image, Spell Shield, Spell Immunity: Abjuration, Improved Haste, Protection from the Elements, True Sight, Spell Turning (or Minor), Spell Deflection (or Minor), Globe of Invulnerability.
   You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
 
   Press "S" to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. 
