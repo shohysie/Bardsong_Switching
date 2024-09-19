@@ -68,17 +68,17 @@ Different battle songs can work at the same time. The same bard song has no accu
 	The Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs, but only for bards fixed by this MOD. 
 	Select Customize > Script > BI#BARD in the character's Record interface. 
 
-	Press "V" to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+	Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
 
-	Press "Z" to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
+	Press 'Z' to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
 
-	Press "F" to force a bard to sing and attack when invisible. As a bards will be visible when he starts singing, this AI tells him to do nothing when invisible, unless "F" is pressed to give a command.
-	This command ends with your invisibility, and "F" should be pressed again next time.
+	Press 'F' to force a bard to sing and attack when invisible. As a bards will be visible when he starts singing, this AI tells him to do nothing when invisible, unless 'F' is pressed to give a command.
+	This command ends with your invisibility, and 'F' should be pressed again next time.
 
-	Press "B" to cast a memorized protective spell, in the order of Stone Skin, Strength, Protection from Magic Energy, Spirit Armor / Ghost Armor / Armor, Shield, Protection from Normal Missiles, Resist Fear, Blur, Protection from Evil, Improved Invisibility (remember to press "F" to active an invisible bard), Mirror Image, Spell Shield, Spell Immunity: Abjuration, Improved Haste, Protection from the Elements, True Sight, Spell Turning (or Minor), Spell Deflection (or Minor), Globe of Invulnerability.
+	Press 'B' to cast a memorized protective spell, in the order of Stone Skin, Strength, Protection from Magic Energy, Spirit Armor / Ghost Armor / Armor, Shield, Protection from Normal Missiles, Resist Fear, Blur, Protection from Evil, Improved Invisibility (remember to press 'F' to active an invisible bard), Mirror Image, Spell Shield, Spell Immunity: Abjuration, Improved Haste, Protection from the Elements, True Sight, Spell Turning (or Minor), Spell Deflection (or Minor), Globe of Invulnerability.
 	You can press it multiple times to add all BUFFs. Existing spells will not be repeated.
 
-	Press "S" to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. 
+	Press 'S' to switch Lingering Mode and Normal Mode. The character will greatly increase the attack chance and reduce time of singing in the Lingering Mode. 
 	If your bard has acquired an High-Level Ability of Lingering Song, he will automatically enter the Lingering Mode and will not switch back. 
 	If your bard gets the ability of Lingering Song by means other than High-Level Ability (such as the Bard Hat in Siege Of Dragonspear), you need to switch to Lingering Mode manually because the game engine does not provide a way to check those means.
 	Please remember to switch back to Normal Mode manually if your bard lose ability of Lingering Song (such as taking off the Bard Hat).
@@ -87,17 +87,17 @@ Different battle songs can work at the same time. The same bard song has no accu
 [The Chorus]
 
 	With this component installed, all songs can be played by multiple bards (or their magical illusions) at the same time to gain extra bonus. 
-	You need to click the "Lead a chorus" skill button of one of the bards to specify the leader of chorus. 
+	You need to click the 'Lead a chorus' skill button of one of the bards to specify the leader of chorus. 
 	When the other bards join the chorus and play the same song with the designated leader, they will get extra bonus. 
 	If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader is singing.
 	If there is no designated leader of chorus, there will be no chorus effect. 
 	Each time you assign a new leader of chorus, the other bards stop leading chorus. 
-	In addition, the lead singer must be one of the 6 team members. Clicking the "Lead a chorus" skill button of other creatures (such as magic illusions) takes not work. In this case, effects of his song can coexist with others but without a chorus bonus. 
-	All bards agree to join the chorus by default. Clicking the "Drop out of the chorus" skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking "Join the chorus" he can join the chorus again.
+	In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' skill button of other creatures (such as magic illusions) takes not work. In this case, effects of his song can coexist with others but without a chorus bonus. 
+	All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
 	The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
 	Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
 
-	The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+	The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
 	The details are as follows：
 
 		The Tale of Curran Strongheart, which gains immunities to Charm/ Confusion/ Hold and Slow/ Feeblemindedness and Unconscious/ Berserk, Fatigue and Stun/ Maze and Imprisonment at the 6 levels. 
@@ -124,7 +124,7 @@ Different battle songs can work at the same time. The same bard song has no accu
 	V4.3	Added detailed description for the Custom AI.
 
 	V4.2	Fixed the problem that bards often stop singing on 'More attack actions than singing' mode of the Custom AI.
-	A new ability in Custom AI: Press "Z" to toggle whether or not to prompt the effective moment of bard songs. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted.
+	A new ability in Custom AI: Press 'Z' to toggle whether or not to prompt the effective moment of bard songs. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted.
 
 	V4.1	Kit descriptions of all bards will also be modified to show all of the adjustments (including instructions for the Chorus and Custom AI).
 	The Custom AI and the Kit Adjustment are combined into one component.

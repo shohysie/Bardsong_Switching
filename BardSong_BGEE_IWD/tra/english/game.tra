@@ -76,43 +76,43 @@ Effects of all bard songs last for 2 extra rounds."
 @46 = "The WarChant of Sith, which has the effect of AC-2, +10% physical damage resistance, and regenerate 3 HP per round to friendly creatures in the visual range."
 
 @51 = "The Ballad of Three Heroes, initially has the effect of +1 to hit, +1 to damage and +1 to all saving throws to friendly creatures in the visual range.
-When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists." 
+When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists." 
 @52 = "The Tale of Curran Strongheart, initially gives the immunity to Fear and Morale Break to friendly creatures in the visual range.
-When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, friendly creatures gain immunities to Charm/ Confusion/ Hold and Slow/ Feeblemindedness and Unconscious/ Berserk, Fatigue and Stun/ Maze and Imprisonment, which can be identified by red / yellow / green / green / blue / purple glow on chorists." 
+When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, friendly creatures gain immunities to Charm/ Confusion/ Hold and Slow/ Feeblemindedness and Unconscious/ Berserk, Fatigue and Stun/ Maze and Imprisonment, which can be identified by red / yellow / green / green / blue / purple glow on chorists." 
 @53 = "Tymora's Melody, initially has the effect of +1 luck, +3 to all saving throws, +10 to lore and thief's skills to friendly creatures in the visual range.
-When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists." 
+When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists." 
 @54 = "The Song of Kaudies, initially gives the immunity to all sound effects like silence, deafness and spells that use sound as a medium (e.g. Power Words) to friendly creatures in the visual range.
-When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, enemies in the visual range must make save vs. breath with a penalty of -1/ -2/ -3/ -4/ -5/ -6, to avoid a sound blast per round to avoid Deafness and Bleeding (1 damage per round) each round, which can be identified by red / yellow / green / green / blue / purple glow on chorists."
+When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, enemies in the visual range must make save vs. breath with a penalty of -1/ -2/ -3/ -4/ -5/ -6, to avoid a sound blast per round to avoid Deafness and Bleeding (1 damage per round) each round, which can be identified by red / yellow / green / green / blue / purple glow on chorists."
 @55 = "The Siren's Yearning, initially enthrals enemies in the visual range unless they make save vs. spell. Does NOT affect mindless enemies e.g. golems.
-When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, the song takes an extra chance each round and forces enemies to save with a penalty of -1/ -2/ -3/ -4/ -5/ -6, which can be identified by red / yellow / green / green / blue / purple glow on chorists."
+When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, the song takes an extra chance each round and forces enemies to save with a penalty of -1/ -2/ -3/ -4/ -5/ -6, which can be identified by red / yellow / green / green / blue / purple glow on chorists."
 @56 = "The WarChant of Sith, initially has the effect of AC-2, +10% physical damage resistance, and regenerate 3 HP per round to friendly creatures in the visual range.
-When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists." 
+When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists." 
 
 @57 = "Enhanced Bard Song
 
 This is a powerful aid to both the bard and his allies in twice of the visual range.
 The song gives all allies +4 to hit, +4 to damage, -4 to AC, +5% magic resistance, and grants them immunity to Fear, Morale Break, Confusion and normal weapons. 
-When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
 While singing the Enhanced Bard Song, the Bard himself gains an extra bonus of -6 to AC and +5% magic resistance."
 
 @58 = "Enhanced Blade Song
 
 This is a powerful aid to both the blade and his allies in twice of the visual range.
 The song gives all allies +4 to hit, +4 to damage, -4 to AC, +5% magic resistance, and grants them immunity to Fear, Morale Break and normal weapons.
-When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
 While singing the Enhanced Blade Song, the Blade himself gains an extra bonus of -2 to AC, +2 to hit, +2 to damage and +5% magic resistance." 
 
 @59 = "Enhanced Jester Song
 
 The Enhanced Jester Song affects all opponents within 30 feet, they must save vs. spells once per round or be slowed (-4 save penalty) confused (-2 save penalty), and must save vs. poly or be unconscious (no penalty). They may also fail in casting spells and innates by 10% chance.
-When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, the song takes an extra chance each round and forces enemies to save with penalty of -1/ -2/ -3/ -4/ -5/ -6, the caused casting failure is also improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, the song takes an extra chance each round and forces enemies to save with penalty of -1/ -2/ -3/ -4/ -5/ -6, the caused casting failure is also improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
 While singing the Enhanced Jester Song, the Jester himself gains an extra bonus of -6 to AC and +5% magic resistance."
 
 @60 = "Enhanced Skald Song
 
 This is a powerful aid to both the Skald and to his allies in twice of the visual range.
 The song gives all allies +4 to hit, +4 to damage, -4 to AC, +2 to all saving throws, +5% magic resistance, and grants them immunity to Fear, Stun, Confusion and normal weapons.
-When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, numerical values of this song are improved to 1.5/ 2/ 2.5/ 3/ 3.5/ 4 times as the original one, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
 While singing the Enhanced Skald Song, the Skald himself gains an extra bonus of -6 to AC and +5% magic resistance." 
 
 
@@ -261,7 +261,7 @@ CLASS FEATURES:
  All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
  The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
  Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
- The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+ The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
  The details are as follows：
   The Tale of Curran Strongheart, which gains immunities to Charm/ Confusion/ Hold and Slow/ Feeblemindedness and Unconscious/ Berserk, Fatigue and Stun/ Maze and Imprisonment at the 6 levels. 
   The Song of Kaudies, which forces enemies around to make save vs. breath with a penalty of -1/ -2/ -3/ -4/ -5/ -6, to avoid deafness and bleeding (1 damage per second) for 1 round.
@@ -297,7 +297,7 @@ Disadvantages:
  All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
  The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
  Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
- The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+ The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
  The details are as follows：
   The Tale of Curran Strongheart, which gains immunities to Charm/ Confusion/ Hold and Slow/ Feeblemindedness and Unconscious/ Berserk, Fatigue and Stun/ Maze and Imprisonment at the 6 levels. 
   The Song of Kaudies, which forces enemies around to make save vs. breath with a penalty of -1/ -2/ -3/ -4/ -5/ -6, to avoid deafness and bleeding (1 damage per second) for 1 round.
@@ -332,7 +332,7 @@ Disadvantages:
  All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
  The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
  Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
- The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+ The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
  The details are as follows：
   The Tale of Curran Strongheart, which gains immunities to Charm/ Confusion/ Hold and Slow/ Feeblemindedness and Unconscious/ Berserk, Fatigue and Stun/ Maze and Imprisonment at the 6 levels. 
   The Song of Kaudies, which forces enemies around to make save vs. breath with a penalty of -1/ -2/ -3/ -4/ -5/ -6, to avoid deafness and bleeding (1 damage per second) for 1 round.
@@ -366,7 +366,7 @@ Disadvantages:
  All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
  The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
  Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
- The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4~5/ 6/ 7~9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
+ The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
  The details are as follows：
   The Tale of Curran Strongheart, which gains immunities to Charm/ Confusion/ Hold and Slow/ Feeblemindedness and Unconscious/ Berserk, Fatigue and Stun/ Maze and Imprisonment at the 6 levels. 
   The Song of Kaudies, which forces enemies around to make save vs. breath with a penalty of -1/ -2/ -3/ -4/ -5/ -6, to avoid deafness and bleeding (1 damage per second) for 1 round.
