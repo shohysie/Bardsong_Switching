@@ -1,4 +1,4 @@
-<div align="center"><h1></a> Bard Song Switching (Icewind Mode) for BGEE series V4.5</h1>
+<div align="center"><h1></a> Bard Song Switching (Icewind Mode) for BGEE series V4.6</h1>
 
 <h3>A mod for Baldur's Gate I & II EE, and EET<h3>
 
@@ -144,6 +144,10 @@ In the enhanced edition games, image projections made by Mislead can no longer p
 ## <a name="ver" id="ver"></a>Version History
 
 </a><br>
+
+  V4.6	Fixed the the Custom AI that switches melee and ranged weapon incorrectly.
+  The Custom AI no longer interrupts your commands except for Mode 2 (More singing than attack actions, try to keep songs effective). On Mode 2, press "Z" to switch the prompt and cast spell immediately after the prompt appears, then the spell won't be interrupted by singing.
+  Fixed the incorrectly displayed text when the Blade leads his Enhanced Song.
 
   V4.5	Fixed a serious problem that Lingering Songs do not work.
   Fixed the problem that the Custom AI prompts too frequently and inaccurately.

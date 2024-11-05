@@ -1,7 +1,7 @@
 BACKUP ~BardSong_BGEE_IWD/backup~
 AUTHOR ~shohy@126.com~
 
-VERSION ~v4.5~
+VERSION ~v4.6~
 AUTO_EVAL_STRINGS
 
 README ~BardSong_BGEE_IWD/README.%LANGUAGE%.txt~

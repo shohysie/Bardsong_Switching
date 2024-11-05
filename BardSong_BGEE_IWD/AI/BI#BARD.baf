@@ -421,7 +421,8 @@ END
 
 ////////////////////////不同攻击状态的战歌处理///////////////////////
 
-/////////////不攻击状态（保证一直在唱歌）
+/////////////闲下来就唱歌
+//不攻击状态
 IF
 	Global("BI#B_MOD","LOCALS",0)
 	ActionListEmpty()
@@ -435,37 +436,6 @@ IF
 THEN
 	RESPONSE #100
 		BattleSong()
-END
-//战歌生效提示，有无余音缭绕都提示
-//战歌生效播放动画提示
-IF
-	Global("BI#B_MOD","LOCALS",0)
-	Global("BI#PAUSE","LOCALS",1)
-	SpellCastOnMeRES("BI#B00Z",Myself)
-	CheckSpellState(Myself,KENSAI_KIA)
-	CheckSpellState(Myself,ARCHER_CALL_SHOT)
-	See(NearestEnemyOf())
-	Class(Myself,BARD_ALL)
-THEN
-	RESPONSE #100
-		ReallyForceSpellRES("BI#B00O",Myself)
-		CreateVisualEffectObject("BI#B00Z",Myself)
-		BattleSong()
-END
-//战歌生效触发自动暂停
-IF
-	Global("BI#B_MOD","LOCALS",0)
-	Global("BI#PAUSE","LOCALS",2)
-	SpellCastOnMeRES("BI#B00Z",Myself)
-	CheckSpellState(Myself,KENSAI_KIA)
-	CheckSpellState(Myself,ARCHER_CALL_SHOT)
-	See(NearestEnemyOf())
-	Class(Myself,BARD_ALL)
-THEN
-	RESPONSE #100
-		ReallyForceSpellRES("BI#B00O",Myself)
-		BattleSong()
-		PauseGame()
 END
 
 //或者攻击状态没看到敌人
@@ -473,13 +443,13 @@ IF
 	GlobalGT("BI#B_MOD","LOCALS",0)
 	ActionListEmpty()
 	!ModalState(BATTLESONG)
+	!Detect([EVILCUTOFF])
 	OR(2)
 		Global("BI#B_INV","LOCALS",1)
 		!StateCheck(Myself,STATE_INVISIBLE)
 	OR(2)
 		Global("BI#B_INV","LOCALS",1)
 		CheckStatLT(Myself,1,SANCTUARY)
-	!See(NearestEnemyOf())
 THEN
 	RESPONSE #100
 		SetGlobal("BI#B_ATK","LOCALS",0)
@@ -514,11 +484,11 @@ END
 //																			b1计时中无论战歌是否有效
 //																			打架
 
-//a战歌失效或无事
-//优先唱歌
+//a偶尔攻击模式，有敌人存在时，如果战歌失效或无事，优先唱歌。
 IF
-	GlobalGT("BI#B_MOD","LOCALS",0)
+	Global("BI#B_MOD","LOCALS",1)
 	!ModalState(BATTLESONG)
+	Detect([EVILCUTOFF])
 	OR(2)
 		Global("BI#B_INV","LOCALS",1)
 		!StateCheck(Myself,STATE_INVISIBLE)
@@ -529,6 +499,25 @@ IF
 		CheckStatLT(Myself,11,BACKSTABDAMAGEMULTIPLIER)
 		CheckStatGT(Myself,22,BACKSTABDAMAGEMULTIPLIER)
 		ActionListEmpty()
+THEN
+	RESPONSE #100
+		BattleSong()
+END
+//a更多攻击模式，有敌人存在时，如果战歌失效，只有没命令才唱歌。
+IF
+	Global("BI#B_MOD","LOCALS",2)
+	!ModalState(BATTLESONG)
+	Detect([EVILCUTOFF])
+	ActionListEmpty()
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("BI#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	OR(2)
+		CheckStatLT(Myself,11,BACKSTABDAMAGEMULTIPLIER)
+		CheckStatGT(Myself,22,BACKSTABDAMAGEMULTIPLIER)
 THEN
 	RESPONSE #100
 		BattleSong()
@@ -683,10 +672,9 @@ THEN
 		Continue()
 END
 
-//ex战歌生效提示，有无余音缭绕都提示
+//ex战歌生效提示，有无余音缭绕、所有战斗模式都提示
 //ex战歌生效播放动画提示
 IF
-	Global("BI#B_MOD","LOCALS",1)
 	Global("BI#PAUSE","LOCALS",1)
 	SpellCastOnMeRES("BI#B00Z",Myself)
 	CheckSpellState(Myself,KENSAI_KIA)
@@ -701,7 +689,6 @@ THEN
 END
 //ex战歌生效触发自动暂停
 IF
-	Global("BI#B_MOD","LOCALS",1)
 	Global("BI#PAUSE","LOCALS",2)
 	SpellCastOnMeRES("BI#B00Z",Myself)
 	CheckSpellState(Myself,KENSAI_KIA)
@@ -711,13 +698,13 @@ IF
 THEN
 	RESPONSE #100
 		ReallyForceSpellRES("BI#B00O",Myself)
-		Battlesong()
+		BattleSong()
 		PauseGame()
 END
 //ex只要开了暂停或提示，且没有余音缭绕，则施法完毕立刻唱歌，且屏蔽后继打人
 IF
 	GlobalGT("BI#PAUSE","LOCALS",0)
-	Global("BI#B_MOD","LOCALS",1)
+	GlobalGT("BI#B_MOD","LOCALS",1)
 	Global("BI#B_LIN","LOCALS",0)
 	See(NearestEnemyOf())
 	Class(Myself,BARD_ALL)
@@ -738,7 +725,7 @@ IF
 	Global("BI#B_RNG","LOCALS",1)
 	OR(2)
 		!See(NearestEnemyOf(Myself))
-		Range(NearestEnemyOf(Myself),10)
+		!Range(NearestEnemyOf(Myself),6)
 THEN
 	RESPONSE #100
 		SetGlobal("BI#B_RNG","LOCALS",0)
@@ -757,7 +744,7 @@ IF
 	OR(2)
 		Global("BI#B_INV","LOCALS",1)
 		CheckStatLT(Myself,1,SANCTUARY)
-	Range(NearestEnemyOf(Myself),10)
+	Range(NearestEnemyOf(Myself),6)
 	IsWeaponRanged(Myself)
 THEN
 	RESPONSE #100
@@ -782,35 +769,17 @@ IF
 		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	!IsWeaponRanged(Myself)
-	Range(LastSeenBy(Myself),10)
 	WeaponEffectiveVs(LastSeenBy(Myself),MAINHAND)
 	WeaponCanDamage(LastSeenBy(Myself),MAINHAND)
-THEN
-	RESPONSE #100
-		AttackReevaluate(LastSeenBy(Myself),15)
-END
-
-IF
-	GlobalGT("BI#B_MOD","LOCALS",0)
-	GlobalTimerNotExpired("BI#B_SIN","Locals")
-	ActionListEmpty()
 	OR(2)
-		Global("BI#B_INV","LOCALS",1)
-		!StateCheck(Myself,STATE_INVISIBLE)
+		Range(LastSeenBy(Myself),6)
+		IsWeaponRanged(Myself)
 	OR(2)
-		Global("BI#B_INV","LOCALS",1)
-		CheckStatLT(Myself,1,SANCTUARY)
-	OR(4)
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	IsWeaponRanged(Myself)
-	!Range(LastSeenBy(Myself),10)
-	!Range(NearestEnemyOf(Myself),10)
-	WeaponEffectiveVs(LastSeenBy(Myself),MAINHAND)
-	WeaponCanDamage(LastSeenBy(Myself),MAINHAND)
+		!IsWeaponRanged(Myself)
+		!Range(NearestEnemyOf(Myself),6)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		!CheckStatGT(LastSeenBy(Myself),0,CLERIC_PHYSICAL_MIRROR)
 THEN
 	RESPONSE #100
 		AttackReevaluate(LastSeenBy(Myself),15)
@@ -828,31 +797,17 @@ IF
 	OR(2)
 		Global("BI#B_INV","LOCALS",1)
 		CheckStatLT(Myself,1,SANCTUARY)
-	!IsWeaponRanged(Myself)
-	Range(LastAttackerOf(Myself),10)
 	WeaponEffectiveVs(LastAttackerOf(Myself),MAINHAND)
 	WeaponCanDamage(LastAttackerOf(Myself),MAINHAND)
-THEN
-	RESPONSE #100
-		AttackReevaluate(LastAttackerOf(Myself),30)
-END
-
-IF
-	GlobalGT("BI#B_MOD","LOCALS",0)
-	GlobalTimerNotExpired("BI#B_SIN","Locals")
-	ActionListEmpty()
-	AttackedBy([ENEMY],DEFAULT)
 	OR(2)
-		Global("BI#B_INV","LOCALS",1)
-		!StateCheck(Myself,STATE_INVISIBLE)
+		Range(LastSeenBy(Myself),6)
+		IsWeaponRanged(Myself)
 	OR(2)
-		Global("BI#B_INV","LOCALS",1)
-		CheckStatLT(Myself,1,SANCTUARY)
-	IsWeaponRanged(Myself)
-	!Range(LastAttackerOf(Myself),10)
-	!Range(NearestEnemyOf(Myself),10)
-	WeaponEffectiveVs(LastAttackerOf(Myself),MAINHAND)
-	WeaponCanDamage(LastAttackerOf(Myself),MAINHAND)
+		!IsWeaponRanged(Myself)
+		!Range(NearestEnemyOf(Myself),6)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		!CheckStatGT(LastSeenBy(Myself),0,CLERIC_PHYSICAL_MIRROR)
 THEN
 	RESPONSE #100
 		AttackReevaluate(LastAttackerOf(Myself),30)

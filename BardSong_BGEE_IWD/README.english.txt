@@ -1,6 +1,6 @@
 ﻿@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @                                                           @
-@   Bard Song Switching (Icewind Mode) for BGEE Series V4.5   @
+@   Bard Song Switching (Icewind Mode) for BGEE Series V4.6   @
 @   By Shohy                                                @
 @                                                           @
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -66,9 +66,9 @@ Different battle songs can work at the same time. The same bard song has no accu
 	[Custom AI]
 
 	The Custom AI provides the ability to make brief attacks between playing intervals and maintain the presence of battle songs, but only for bards fixed by this MOD. 
-	Select Customize > Script > BI#BARD in the character's Record interface. 
+	Select Customize > Script > 'BARD (attacks in playing intervals): ' in the character's Record interface. 
 
-	Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+	Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. On the second mode the bards force singing during combat, which causes interruption of casting and other actions. Cast immediately after the following prompts to avoid interruption:
 
 	Press 'Z' to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
 
@@ -113,6 +113,10 @@ Different battle songs can work at the same time. The same bard song has no accu
 
 
 ***** History *****
+
+	V4.6	Fixed the the Custom AI that switches melee and ranged weapon incorrectly.
+	The Custom AI no longer interrupts your commands except for Mode 2 (More singing than attack actions, try to keep songs effective). On Mode 2, press "Z" to switch the prompt and cast spell immediately after the prompt appears, then the spell won't be interrupted by singing.
+	Fixed the incorrectly displayed text when the Blade leads his Enhanced Song.
 
 	V4.5	Fixed a serious problem that Lingering Songs do not work.
 	Fixed the problem that the Custom AI prompts too frequently and inaccurately.

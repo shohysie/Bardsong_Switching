@@ -1,7 +1,7 @@
 @3 = "BARD (attacks in playing intervals): "
 @4 = "The Custom AI provides the ability to make brief attacks in playing intervals and maintain the presence of battle songs, but only for the 4 original bard kits modified by Bard Song Switching (Icewind Mode) MOD. 
 
-	Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. 
+	Press 'V' to switch in three Attackive Modes: Sing songs without attack actions / More singing than attack actions, try to keep songs effective / More attack actions than singing, with songs occasionnally expire. On the second mode the bards force singing during combat, which causes interruption of casting and other actions. Cast immediately after the following prompts to avoid interruption:
 
 	Press 'Z' to toggle whether or not to prompt the effective moment of bard songs: prompt with animation/ prompt with game pause / not prompt. At this time you can control the bard to cast a spell manually, then the poet will automatically continue to sing and keep effect of songs uninterrupted. Such prompts only exist in battle.
 
@@ -123,7 +123,7 @@ While singing the Enhanced Skald Song, the Skald himself gains an extra bonus of
 @65 = "Lead the chorus: The Siren's Yearning"
 @66 = "Lead the chorus: The WarChant of Sith"
 @67 = "Lead the chorus: Enhanced Bard Song"
-@68 = "Lead the chorus: Enhanced Bard Song"
+@68 = "Lead the chorus: Enhanced Blade Song"
 @69 = "Lead the chorus: Jester Song"
 @70 = "Lead the chorus: Enhanced Jester Song"
 @71 = "Lead the chorus: Skald Song"
