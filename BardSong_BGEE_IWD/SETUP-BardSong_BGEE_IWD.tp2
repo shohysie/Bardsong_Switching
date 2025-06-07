@@ -1,7 +1,7 @@
 BACKUP ~BardSong_BGEE_IWD/backup~
 AUTHOR ~shohy@126.com~
 
-VERSION ~v4.6~
+VERSION ~v4.7~
 AUTO_EVAL_STRINGS
 
 README ~BardSong_BGEE_IWD/README.%LANGUAGE%.txt~
@@ -9,14 +9,16 @@ AUTO_TRA ~BardSong_BGEE_IWD/tra/%s~
 
 LANGUAGE	~American English~		~english~	~BardSong_BGEE_IWD/tra/english/setup.tra~	~BardSong_BGEE_IWD/tra/english/game.tra~
 LANGUAGE	~Chinese Simplified~	~chinese~	~BardSong_BGEE_IWD/tra/chinese/setup.tra~	~BardSong_BGEE_IWD/tra/chinese/game.tra~
-//LANGUAGE	~French~							~french~	  ~BardSong_BGEE_IWD/tra/french/setup.tra~	~BardSong_BGEE_IWD/tra/french/game.tra~
+LANGUAGE	~French~				~french~	~BardSong_BGEE_IWD/tra/french/setup.tra~	~BardSong_BGEE_IWD/tra/french/game.tra~
 
 ////////////////////////////////////////////////////////////////////////////
 
 BEGIN @1
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet~ OR FILE_EXISTS_IN_GAME ~BD1000.are~ @11
 
-//¶ÁÈ¡kitlistÖĞabilityÁĞ£¬È·¶¨¼¼ÄÜÁĞ±íµÄÃû³Æ
+////////////////////////éé«˜é˜¶æŠ€èƒ½//////////////////////////
+
+//è¯»å–kitlistä¸­abilityåˆ—ï¼Œç¡®å®šæŠ€èƒ½åˆ—è¡¨çš„åç§°
 COPY_EXISTING ~kitlist.2da~ ~override~
 	COUNT_2DA_ROWS 10 kitsmax
 	FOR (kitrow = 0 ; kitrow < kitsmax ; ++kitrow) BEGIN
@@ -36,58 +38,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	END
 BUT_ONLY
 
-//´¦Àí¼¼ÄÜÁĞ±í
-OUTER_SET "bardabdone" = 0
-OUTER_SET "bladeabdone" = 0
-OUTER_SET "jesterabdone" = 0
-OUTER_SET "skaldabdone" = 0
-
-COPY_EXISTING ~CLABBA01.2da~ ~override~
-COUNT_2DA_ROWS ~20~ "rows"
-FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
-  READ_2DA_ENTRY "%index%" 1 20 "abil"
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B10A" = 0) BEGIN	//ÒÑ¾­ÓĞÏà¹ØÄÜÁ¦ÁË
-		SET "bardabdone" = 1
-  END
-END
-BUT_ONLY
-
-COPY_EXISTING ~%bladeability%.2da~ ~override~
-COUNT_2DA_ROWS ~20~ "rows"
-FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
-  READ_2DA_ENTRY "%index%" 1 20 "abil"
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B20A" = 0) BEGIN	//ÒÑ¾­ÓĞÏà¹ØÄÜÁ¦ÁË
-		SET "bladeabdone" = 1
-  END
-END
-BUT_ONLY
-
-COPY_EXISTING ~%jesterability%.2da~ ~override~
-COUNT_2DA_ROWS ~20~ "rows"
-FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
-  READ_2DA_ENTRY "%index%" 1 20 "abil"
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B30A" = 0) BEGIN	//ÒÑ¾­ÓĞÏà¹ØÄÜÁ¦ÁË
-		SET "jesterabdone" = 1
-  END
-END
-BUT_ONLY
-
-COPY_EXISTING ~%skaldability%.2da~ ~override~
-COUNT_2DA_ROWS ~20~ "rows"
-FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
-  READ_2DA_ENTRY "%index%" 1 20 "abil"
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B40A" = 0) BEGIN	//ÒÑ¾­ÓĞÏà¹ØÄÜÁ¦ÁË
-		SET "skaldabdone" = 1
-  END
-END
-BUT_ONLY
-
-//PRINT "bardabdone=%bardabdone%"
-//PRINT "bladeabdone=%bladeabdone%"
-//PRINT "jesterabdone=%jesterabdone%"
-//PRINT "skaldabdone=%skaldabdone%"
-
-ACTION_IF (bardabdone = 0) THEN BEGIN
+ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~CLABBA01.2da~ ~AP_BI#B10A~)) BEGIN
 	APPEND ~CLABBA01.2da~ ~ABILITYA AP_BI#B10A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE
 	ABILITYB GA_BI#B11A **** **** GA_BI#B12A **** **** **** GA_BI#B13A **** **** **** GA_BI#B14A **** **** **** GA_BI#B15A **** **** **** GA_BI#B16A CDREPLACE~
 	COPY_EXISTING ~CLABBA01.2da~ ~override~
@@ -99,7 +50,7 @@ ACTION_IF (bardabdone = 0) THEN BEGIN
 	  PRETTY_PRINT_2DA
 END
 
-ACTION_IF (bladeabdone = 0) THEN BEGIN
+ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%bladeability%.2da~ ~AP_BI#B20A~)) BEGIN
 	APPEND ~%bladeability%.2da~ ~ABILITYA AP_BI#B20A **** **** **** **** **** **** **** **** AP_SPCL541 **** **** **** **** **** **** **** **** **** AP_SPCL541 CDREPLACE
 	ABILITYB GA_BI#B11A **** **** **** **** GA_BI#B12A **** **** **** **** **** GA_BI#B13A **** **** **** **** **** GA_BI#B14A **** **** CDREPLACE~
 	COPY_EXISTING ~%bladeability%.2da~ ~override~
@@ -108,7 +59,7 @@ ACTION_IF (bladeabdone = 0) THEN BEGIN
 	    REPLACE_TEXTUALLY ~CDREPLACE~ ~**** CDREPLACE~
 	  END
 	  REPLACE_TEXTUALLY ~CDREPLACE~ ~****~
-	  COUNT_2DA_ROWS 15 rows	//ĞĞÊı
+	  COUNT_2DA_ROWS 15 rows	//è¡Œæ•°
 	  FOR (index = 0 ; index < rows ; ++index) BEGIN
 		  READ_2DA_ENTRY index 1 15 bladeab1
 		  PATCH_IF ("%bladeab1%" STRING_COMPARE_CASE "AP_BI#B20A" = 0) BEGIN
@@ -122,7 +73,7 @@ ACTION_IF (bladeabdone = 0) THEN BEGIN
 	  PRETTY_PRINT_2DA
 END
 
-ACTION_IF (jesterabdone = 0) THEN BEGIN
+ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%jesterability%.2da~ ~AP_BI#B30A~)) BEGIN
 	APPEND ~%jesterability%.2da~ ~ABILITYA AP_BI#B30A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE~
 	COPY_EXISTING ~%jesterability%.2da~ ~override~
 	  COUNT_2DA_COLS cols
@@ -133,7 +84,7 @@ ACTION_IF (jesterabdone = 0) THEN BEGIN
 	  PRETTY_PRINT_2DA
 END
 
-ACTION_IF (skaldabdone =0) THEN BEGIN
+ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%skaldability%.2da~ ~AP_BI#B40A~)) BEGIN
 	APPEND ~%skaldability%.2da~ ~ABILITYA AP_BI#B40A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE~
 	COPY_EXISTING ~%skaldability%.2da~ ~override~
 	  COUNT_2DA_COLS cols
@@ -144,7 +95,9 @@ ACTION_IF (skaldabdone =0) THEN BEGIN
 	  PRETTY_PRINT_2DA
 END
 
-//¶ÁÈ¡luabbr.2daÖĞabbrevÁĞ£¬È·¶¨¸ß½×¼¼ÄÜÁĞ±íµÄÃû³Æ£¨Ba0µÈ£©
+////////////////////////é«˜é˜¶æŠ€èƒ½//////////////////////////
+
+//è¯»å–luabbr.2daä¸­abbrevåˆ—ï¼Œç¡®å®šé«˜é˜¶æŠ€èƒ½åˆ—è¡¨çš„åç§°ï¼ˆBa0ç­‰ï¼‰
 COPY_EXISTING ~luabbr.2da~ ~override~
 	COUNT_2DA_ROWS 2 kitsmax
 	FOR (kitrow = 0 ; kitrow < kitsmax ; ++kitrow) BEGIN
@@ -168,229 +121,107 @@ COPY_EXISTING ~luabbr.2da~ ~override~
 	END
 BUT_ONLY
 
-//Èç¹ûÊÇÔ­°æÄÇÖÖ¸ß½×¼¼ÄÜÓÃÍ¬Ò»¸ö±í£¨ÈçBa0£©µÄÇé¿ö
-ACTION_IF ~%skaldabbrev%~ STRING_EQUAL ~%jesterabbrev%~ THEN BEGIN
-	COPY_EXISTING_REGEXP ~LU%skaldabbrev%.2da~ ~override/LUBA3.2da~	//¿½±´Ò»·İ»ù´¡¸ß½×¼¼ÄÜ±í×÷ÎªLUBA3
-	OUTER_SPRINT ~skaldabbrev~ ~Ba3~
-	COPY_EXISTING ~luabbr.2da~ ~override~
-	SET_2DA_ENTRY "%skaldrow%" 1 1 ~%skaldabbrev%~  // ÔÚluabbr.2daÀïÖ¸¶¨Ba3ÎªSkaldµÄ¸ß½×¼¼ÄÜ
-END
-
-ACTION_IF ~%jesterabbrev%~ STRING_EQUAL ~%bladeabbrev%~ THEN BEGIN
-	COPY_EXISTING_REGEXP ~LU%jesterabbrev%.2da~ ~override/LUBA2.2da~	//¿½±´Ò»·İ»ù´¡¸ß½×¼¼ÄÜ±í×÷ÎªLUBA2
-	OUTER_SPRINT ~jesterabbrev~ ~Ba2~
-	COPY_EXISTING ~luabbr.2da~ ~override~
-	SET_2DA_ENTRY "%jesterrow%" 1 1 ~%jesterabbrev%~  // ÔÚluabbr.2daÀïÖ¸¶¨Ba2ÎªJesterµÄ¸ß½×¼¼ÄÜ
-END
-
+//Bladeæ²¡æœ‰å•ç‹¬é«˜é˜¶æŠ€èƒ½åˆ—è¡¨
 ACTION_IF ~%bladeabbrev%~ STRING_EQUAL ~%bardabbrev%~ THEN BEGIN
-	COPY_EXISTING_REGEXP ~LU%bladeabbrev%.2da~ ~override/LUBA1.2da~	//¿½±´Ò»·İ»ù´¡¸ß½×¼¼ÄÜ±í×÷ÎªLUBA1
-	OUTER_SPRINT ~bladeabbrev~ ~Ba1~
+	ACTION_IF FILE_CONTAINS_EVALUATED (~luabbr.2da~ ~Ba1~) THEN BEGIN	//Ba1å·²ç»è¢«å ç”¨äº†
+		OUTER_FOR (index = 4 ; index < 10 ; ++index) BEGIN
+			ACTION_IF NOT FILE_CONTAINS_EVALUATED (~luabbr.2da~ ~Ba%index%~) THEN BEGIN	//åœ¨4-9æ‰¾ä¸€ä¸ªæ²¡è¢«å ç”¨çš„
+				OUTER_SPRINT bladeabbrev ~Ba%index%~
+				OUTER_SET "index" = 10 // kills loop
+			END
+		END
+		ACTION_IF index <10  THEN BEGIN	//ä»€ä¹ˆé¬¼ï¼Œ5-9å…¨å äº†ï¼Œä¸‹é¢å‡ ä¸ªæ€»èƒ½é€‰åˆ°ä¸€ä¸ªå§ï¼ˆåè€…ä¼˜å…ˆï¼‰
+			ACTION_FOR_EACH ~abbrevname~ IN ~Baa~ ~Bau~ ~Bax~ ~BLD~ ~Bbl~ BEGIN
+				ACTION_IF NOT FILE_CONTAINS_EVALUATED (~luabbr.2da~ ~%abbrevname%~) THEN BEGIN
+					OUTER_SPRINT bladeabbrev ~%abbrevname%~
+				END
+			END
+		END
+	END ELSE BEGIN	//Ba1æ²¡è¢«å ç”¨ï¼Œå°±ç”¨å®ƒ
+		OUTER_SPRINT bladeabbrev ~Ba1~
+	END
 	COPY_EXISTING ~luabbr.2da~ ~override~
-	SET_2DA_ENTRY "%bladerow%" 1 1 ~%bladeabbrev%~  // ÔÚluabbr.2daÀïÖ¸¶¨Ba1ÎªBladeµÄ¸ß½×¼¼ÄÜ
+		SET_2DA_ENTRY "%bladerow%" 1 1 ~%bladeabbrev%~  // åœ¨luabbr.2daé‡ŒæŒ‡å®šBa1ä¸ºBladeçš„é«˜é˜¶æŠ€èƒ½
+	BUT_ONLY
+	COPY_EXISTING ~LU%bardabbrev%.2da~ ~override/LU%bladeabbrev%.2da~
+END
+//Jesteræ²¡æœ‰å•ç‹¬é«˜é˜¶æŠ€èƒ½åˆ—è¡¨
+ACTION_IF (~%jesterabbrev%~ STRING_EQUAL ~%bardabbrev%~)||(~%jesterabbrev%~ STRING_EQUAL ~%bladeabbrev%~) THEN BEGIN
+	ACTION_IF FILE_CONTAINS_EVALUATED (~luabbr.2da~ ~Ba2~) THEN BEGIN	//Ba2å·²ç»è¢«å ç”¨äº†
+		OUTER_FOR (index = 4 ; index < 10 ; ++index) BEGIN
+			ACTION_IF NOT FILE_CONTAINS_EVALUATED (~luabbr.2da~ ~Ba%index%~) THEN BEGIN	//åœ¨4-9æ‰¾ä¸€ä¸ªæ²¡è¢«å ç”¨çš„
+				OUTER_SPRINT jesterabbrev ~Ba%index%~
+				OUTER_SET "index" = 10 // kills loop
+			END
+		END
+		ACTION_IF index <10  THEN BEGIN	//ä»€ä¹ˆé¬¼ï¼Œ5-9å…¨å äº†ï¼Œä¸‹é¢å‡ ä¸ªæ€»èƒ½é€‰åˆ°ä¸€ä¸ªå§ï¼ˆåè€…ä¼˜å…ˆï¼‰
+			ACTION_FOR_EACH ~abbrevname~ IN ~Bab~ ~Bav~ ~Bay~ ~JST~ ~Bje~ BEGIN
+				ACTION_IF NOT FILE_CONTAINS_EVALUATED (~luabbr.2da~ ~%abbrevname%~) THEN BEGIN
+					OUTER_SPRINT jesterabbrev ~%abbrevname%~
+				END
+			END
+		END
+	END ELSE BEGIN	//Ba2æ²¡è¢«å ç”¨ï¼Œå°±ç”¨å®ƒ
+		OUTER_SPRINT jesterabbrev ~Ba2~
+	END
+	COPY_EXISTING ~luabbr.2da~ ~override~
+		SET_2DA_ENTRY "%jesterrow%" 1 1 ~%jesterabbrev%~  // åœ¨luabbr.2daé‡ŒæŒ‡å®šBa2ä¸ºJesterçš„é«˜é˜¶æŠ€èƒ½
+	BUT_ONLY
+	COPY_EXISTING ~LU%bardabbrev%.2da~ ~override/LU%jesterabbrev%.2da~
+END
+//Skaldæ²¡æœ‰å•ç‹¬é«˜é˜¶æŠ€èƒ½åˆ—è¡¨
+ACTION_IF (~%skaldabbrev%~ STRING_EQUAL ~%bardabbrev%~)||(~%skaldabbrev%~ STRING_EQUAL ~%bladeabbrev%~)||(~%skaldabbrev%~ STRING_EQUAL ~%jesterabbrev%~) THEN BEGIN
+	ACTION_IF FILE_CONTAINS_EVALUATED (~luabbr.2da~ ~Ba3~) THEN BEGIN	//Ba3å·²ç»è¢«å ç”¨äº†
+		OUTER_FOR (index = 4 ; index < 10 ; ++index) BEGIN
+			ACTION_IF NOT FILE_CONTAINS_EVALUATED (~luabbr.2da~ ~Ba%index%~) THEN BEGIN	//åœ¨4-9æ‰¾ä¸€ä¸ªæ²¡è¢«å ç”¨çš„
+				OUTER_SPRINT skaldabbrev ~Ba%index%~
+				OUTER_SET "index" = 10 // kills loop
+			END
+		END
+		ACTION_IF index <10  THEN BEGIN	//ä»€ä¹ˆé¬¼ï¼Œ5-9å…¨å äº†ï¼Œä¸‹é¢å‡ ä¸ªæ€»èƒ½é€‰åˆ°ä¸€ä¸ªå§ï¼ˆåè€…ä¼˜å…ˆï¼‰
+			ACTION_FOR_EACH ~abbrevname~ IN ~Bac~ ~Baw~ ~Baz~ ~SKD~ ~Bsk~ BEGIN
+				ACTION_IF NOT FILE_CONTAINS_EVALUATED (~luabbr.2da~ ~%abbrevname%~) THEN BEGIN
+					OUTER_SPRINT skaldabbrev ~%abbrevname%~
+				END
+			END
+		END
+	END ELSE BEGIN	//Ba3æ²¡è¢«å ç”¨ï¼Œå°±ç”¨å®ƒ
+		OUTER_SPRINT skaldabbrev ~Ba3~
+	END
+	COPY_EXISTING ~luabbr.2da~ ~override~
+		SET_2DA_ENTRY "%skaldrow%" 1 1 ~%skaldabbrev%~  // åœ¨luabbr.2daé‡ŒæŒ‡å®šBa3ä¸ºSkaldçš„é«˜é˜¶æŠ€èƒ½
+	BUT_ONLY
+	COPY_EXISTING ~LU%bardabbrev%.2da~ ~override/LU%skaldabbrev%.2da~
 END
 
-//´¦Àí¸ß½×¼¼ÄÜÁĞ±í
-OUTER_SET "bardabdone" = 0
-OUTER_SET "bladeabdone" = 0
-OUTER_SET "jesterabdone" = 0
-OUTER_SET "skaldabdone" = 0
-OUTER_SET "whirlwind" = 0
+INCLUDE ~BardSong_BGEE_IWD/lib/hlaadd.tpa~
+//å¤„ç†é«˜é˜¶æŠ€èƒ½åˆ—è¡¨
+LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%bardabbrev%~ hlaenhancedsong = ~AP_BI#B1SS~ hlalingeredsong = ~AP_BI#B1ST~ END
+LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%bladeabbrev%~ hlaenhancedsong = ~AP_BI#B2SS~ hlalingeredsong = ~AP_BI#B1ST~ END
+LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%jesterabbrev%~ hlaenhancedsong = ~AP_BI#B3SS~ hlalingeredsong = ~AP_BI#B1ST~ END
+LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%skaldabbrev%~ hlaenhancedsong = ~AP_BI#B4SS~ hlalingeredsong = ~AP_BI#B1ST~ END
 
-COPY_EXISTING ~LU%bardabbrev%.2da~ ~override~
-COUNT_2DA_ROWS ~9~ "rows"
-SET "patch" = 0
-FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
-  READ_2DA_ENTRY "%index%" 1 9 "abil"
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_SPCL920" = 0) BEGIN	//Óöµ½Ô­°æ¸ß¼¶Õ½¸è£¬¸Ä³ÉĞÂµÄ¸ß¼¶Õ½¸è
-  	SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1SS~
-		SET_2DA_ENTRY "%index%" 4 9 ~1~
-		SET_2DA_ENTRY "%index%" 5 9 ~99~
-		SET_2DA_ENTRY "%index%" 6 9 ~1~
-		SET "bardabdone" = 1
-  END
-	PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B1ST" = 0) BEGIN	//ÒÑ¾­ÓĞÓàÒôçÔÈÆÁË£¬²»ÔÙ¼ÌĞø
-		SET "bardabdone" = 2
-    SET "index" = "%rows%" + 1 // kills loop
-  END
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (bardabdone = 1) BEGIN	//Óöµ½¿ÕĞĞ£¬¼ÓÉÏÓàÒôçÔÈÆ
-    SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
-    SET_2DA_ENTRY "%index%" 4 9 ~1~
-    SET_2DA_ENTRY "%index%" 5 9 ~99~
-    SET_2DA_ENTRY "%index%" 6 9 ~1~
-  	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B1SS~
-  	SPRINT abil "%bardabbrev%"	//Ëæ±ãÉè¸öÖµ²»ÈÃºóÃæÄÇ¸öpatch¼ÌĞø
-    SET "index" = "%rows%" + 1 // kills loop
-  END
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (bardabdone = 0) BEGIN	//Ç°ÃæÃ»»»¸ß¼¶Õ½¸è£¬Óöµ½¿ÕĞĞ£¬¼ÓÉÏ¸ß¼¶Õ½¸èºÍÓàÒôçÔÈÆ
-    PATCH_IF ("%patch%" = 0) BEGIN
-      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1SS~
-      SET_2DA_ENTRY "%index%" 4 9 ~1~
-      SET_2DA_ENTRY "%index%" 5 9 ~99~
-      SET_2DA_ENTRY "%index%" 6 9 ~1~
-      SET "patch" = 1
-    END ELSE BEGIN
-      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
-      SET_2DA_ENTRY "%index%" 4 9 ~1~
-      SET_2DA_ENTRY "%index%" 5 9 ~99~
-      SET_2DA_ENTRY "%index%" 6 9 ~1~
-    	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B1SS~
-      SET "index" = "%rows%" + 1 // kills loop
-    END
-  END
+//èˆå‰‘å£«æ²¡æœ‰å°æ—‹é£çš„è¯ï¼ŒåŠ ä¸Š
+ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~LU%bladeabbrev%.2da~ ~GA_SPCL900~)) BEGIN
+//PRINT ~LU%bladeabbrev%.2daä¸å«å°æ—‹é£~
+	COPY_EXISTING_REGEXP ~LU%bladeabbrev%.2da~ ~override~
+	COUNT_2DA_ROWS ~9~ "rows"
+	FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
+		READ_2DA_ENTRY "%index%" 1 9 "abil"
+		PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) BEGIN	//é‡åˆ°ç©ºè¡Œï¼ŒåŠ ä¸Šå°æ—‹é£
+//PATCH_PRINT ~ç¬¬%index%è¡Œä¸ºç©ºè¡Œï¼Œæ”¹æˆå°æ—‹é£~
+			SET_2DA_ENTRY "%index%" 1 9 ~GA_SPCL900~
+			SET_2DA_ENTRY "%index%" 4 9 ~1~
+			SET_2DA_ENTRY "%index%" 5 9 ~99~
+			SET_2DA_ENTRY "%index%" 6 9 ~20~
+			SET "index" = "%rows%" + 1 // kills loop
+		END
+	END
 END
-BUT_ONLY
 
-OUTER_SET "whirlwind" = 0
-COPY_EXISTING_REGEXP ~LU%bladeabbrev%.2da~ ~override~
-COUNT_2DA_ROWS ~9~ "rows"
-SET "patch" = 0
-FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
-  READ_2DA_ENTRY "%index%" 1 9 "abil"
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_SPCL920" = 0) BEGIN	//Óöµ½Ô­°æ¸ß¼¶Õ½¸è£¬¸Ä³ÉĞÂµÄ¸ß¼¶Õ½¸è
-  	SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B2SS~
-		SET_2DA_ENTRY "%index%" 4 9 ~1~
-		SET_2DA_ENTRY "%index%" 5 9 ~99~
-		SET_2DA_ENTRY "%index%" 6 9 ~1~
-		SET "bladeabdone" = 1
-  END
-	PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B1ST" = 0) BEGIN	//ÒÑ¾­ÓĞÓàÒôçÔÈÆÁË
-		SET "bladeabdone" = 2
-  END
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "GA_SPCL900" = 0) BEGIN	//ÓĞĞ¡Ğı·ç
-		SET "whirlwind" = 1
-		PATCH_IF (bladeabdone =2) BEGIN	//É¶¶¼ÓĞÁË
-  		SET "index" = "%rows%" + 1 // kills loop
-  	END
-  END
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (whirlwind =0) BEGIN	//Óöµ½¿ÕĞĞ£¬¼ÓÉÏĞ¡Ğı·ç
-		SET_2DA_ENTRY "%index%" 1 9 ~GA_SPCL900~
-		SET_2DA_ENTRY "%index%" 4 9 ~1~
-		SET_2DA_ENTRY "%index%" 5 9 ~99~
-		SET_2DA_ENTRY "%index%" 6 9 ~20~
-    SET "whirlwind" = 1
-    SPRINT abil "%bladeabbrev%"	//Ëæ±ãÉè¸öÖµ²»ÈÃºóÃæÄÇ¸öpatch¼ÌĞø
-  END
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (bladeabdone = 1) BEGIN	//Óöµ½¿ÕĞĞ£¬¼ÓÉÏÓàÒôçÔÈÆ
-    SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
-    SET_2DA_ENTRY "%index%" 4 9 ~1~
-    SET_2DA_ENTRY "%index%" 5 9 ~99~
-    SET_2DA_ENTRY "%index%" 6 9 ~1~
-  	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B2SS~
-  	SPRINT abil "%bladeabbrev%"	//Ëæ±ãÉè¸öÖµ²»ÈÃºóÃæÄÇ¸öpatch¼ÌĞø
-    SET "index" = "%rows%" + 1 // kills loop
-  END
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (bladeabdone = 0) BEGIN	//Óöµ½¿ÕĞĞ£¬¼ÓÉÏ¸ß¼¶Õ½¸èºÍÓàÒôçÔÈÆ
-    PATCH_IF ("%patch%" = 0) BEGIN
-      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B2SS~
-      SET_2DA_ENTRY "%index%" 4 9 ~1~
-      SET_2DA_ENTRY "%index%" 5 9 ~99~
-      SET_2DA_ENTRY "%index%" 6 9 ~1~
-      SET "patch" = 1
-    END ELSE BEGIN
-      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
-      SET_2DA_ENTRY "%index%" 4 9 ~1~
-      SET_2DA_ENTRY "%index%" 5 9 ~99~
-      SET_2DA_ENTRY "%index%" 6 9 ~1~
-    	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B2SS~
-      SET "index" = "%rows%" + 1 // kills loop
-    END
-  END
-END
-BUT_ONLY
-
-COPY_EXISTING_REGEXP ~LU%jesterabbrev%.2da~ ~override~
-COUNT_2DA_ROWS ~9~ "rows"
-SET "patch" = 0
-FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
-  READ_2DA_ENTRY "%index%" 1 9 "abil"
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_SPCL920" = 0) BEGIN	//Óöµ½Ô­°æ¸ß¼¶Õ½¸è£¬¸Ä³ÉĞÂµÄ¸ß¼¶Õ½¸è
-  	SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B3SS~
-		SET_2DA_ENTRY "%index%" 4 9 ~1~
-		SET_2DA_ENTRY "%index%" 5 9 ~99~
-		SET_2DA_ENTRY "%index%" 6 9 ~1~
-		SET "jesterabdone" = 1
-  END
-	PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B1ST" = 0) BEGIN	//ÒÑ¾­ÓĞÓàÒôçÔÈÆÁË£¬²»ÔÙ¼ÌĞø
-		SET "jesterabdone" = 2
-    SET "index" = "%rows%" + 1 // kills loop
-  END
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (jesterabdone = 1) BEGIN	//Óöµ½¿ÕĞĞ£¬¼ÓÉÏÓàÒôçÔÈÆ
-    SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
-    SET_2DA_ENTRY "%index%" 4 9 ~1~
-    SET_2DA_ENTRY "%index%" 5 9 ~99~
-    SET_2DA_ENTRY "%index%" 6 9 ~1~
-  	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B3SS~
-  	SPRINT abil "%jesterabbrev%"	//Ëæ±ãÉè¸öÖµ²»ÈÃºóÃæÄÇ¸öpatch¼ÌĞø
-    SET "index" = "%rows%" + 1 // kills loop
-  END
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (jesterabdone = 0) BEGIN	//Óöµ½¿ÕĞĞ£¬¼ÓÉÏ¸ß¼¶Õ½¸èºÍÓàÒôçÔÈÆ
-    PATCH_IF ("%patch%" = 0) BEGIN
-      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B3SS~
-      SET_2DA_ENTRY "%index%" 4 9 ~1~
-      SET_2DA_ENTRY "%index%" 5 9 ~99~
-      SET_2DA_ENTRY "%index%" 6 9 ~1~
-      SET "patch" = 1
-    END ELSE BEGIN
-      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
-      SET_2DA_ENTRY "%index%" 4 9 ~1~
-      SET_2DA_ENTRY "%index%" 5 9 ~99~
-      SET_2DA_ENTRY "%index%" 6 9 ~1~
-    	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B3SS~
-      SET "index" = "%rows%" + 1 // kills loop
-    END
-  END
-END
-BUT_ONLY
-
-COPY_EXISTING_REGEXP ~LU%skaldabbrev%.2da~ ~override~
-COUNT_2DA_ROWS ~9~ "rows"
-SET "patch" = 0
-FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
-  READ_2DA_ENTRY "%index%" 1 9 "abil"
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_SPCL920" = 0) BEGIN	//Óöµ½Ô­°æ¸ß¼¶Õ½¸è£¬¸Ä³ÉĞÂµÄ¸ß¼¶Õ½¸è
-  	SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B4SS~
-		SET_2DA_ENTRY "%index%" 4 9 ~1~
-		SET_2DA_ENTRY "%index%" 5 9 ~99~
-		SET_2DA_ENTRY "%index%" 6 9 ~1~
-		SET "skaldabdone" = 1
-  END
-	PATCH_IF ("%abil%" STRING_COMPARE_CASE "AP_BI#B1ST" = 0) BEGIN	//ÒÑ¾­ÓĞÓàÒôçÔÈÆÁË£¬²»ÔÙ¼ÌĞø
-		SET "skaldabdone" = 2
-    SET "index" = "%rows%" + 1 // kills loop
-  END
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (skaldabdone = 1) BEGIN	//Óöµ½¿ÕĞĞ£¬¼ÓÉÏÓàÒôçÔÈÆ
-    SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
-    SET_2DA_ENTRY "%index%" 4 9 ~1~
-    SET_2DA_ENTRY "%index%" 5 9 ~99~
-    SET_2DA_ENTRY "%index%" 6 9 ~1~
-  	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B4SS~
-  	SPRINT abil "%skaldabbrev%"	//Ëæ±ãÉè¸öÖµ²»ÈÃºóÃæÄÇ¸öpatch¼ÌĞø
-    SET "index" = "%rows%" + 1 // kills loop
-  END
-  PATCH_IF ("%abil%" STRING_COMPARE_CASE "*" = 0) & (skaldabdone = 0) BEGIN	//Óöµ½¿ÕĞĞ£¬¼ÓÉÏ¸ß¼¶Õ½¸èºÍÓàÒôçÔÈÆ
-    PATCH_IF ("%patch%" = 0) BEGIN
-      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B4SS~
-      SET_2DA_ENTRY "%index%" 4 9 ~1~
-      SET_2DA_ENTRY "%index%" 5 9 ~99~
-      SET_2DA_ENTRY "%index%" 6 9 ~1~
-      SET "patch" = 1
-    END ELSE BEGIN
-      SET_2DA_ENTRY "%index%" 1 9 ~AP_BI#B1ST~
-      SET_2DA_ENTRY "%index%" 4 9 ~1~
-      SET_2DA_ENTRY "%index%" 5 9 ~99~
-      SET_2DA_ENTRY "%index%" 6 9 ~1~
-    	SET_2DA_ENTRY "%index%" 7 9 ~AP_BI#B4SS~
-      SET "index" = "%rows%" + 1 // kills loop
-    END
-  END
-END
-BUT_ONLY
-
-ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINPA.pro~	//¶Ô50…ÕÄÚÓÑ¾ü
-ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINPL.pro~	//¶Ô100…ÕÄÚÓÑ¾ü
-ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINNP.pro~	//¶Ô50…ÕÄÚµĞ¾ü
-
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINPA.pro~	//å¯¹50å‘å†…å‹å†›
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINPL.pro~	//å¯¹100å‘å†…å‹å†›
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINNP.pro~	//å¯¹50å‘å†…æ•Œå†›
 
 COPY    ~BardSong_BGEE_IWD/SPL/BI#B11A.SPL~   ~override~
 	SAY NAME1 @21    SAY UNIDENTIFIED_DESC @41
@@ -410,32 +241,32 @@ COPY    ~BardSong_BGEE_IWD/SPL/BI#B15A.SPL~   ~override~
 COPY    ~BardSong_BGEE_IWD/SPL/BI#B16A.SPL~   ~override~
 	SAY NAME1 @26    SAY UNIDENTIFIED_DESC @46
 	
-COPY    ~BardSong_BGEE_IWD/SPL/innp~   ~override~	//¶ÔµĞÕ½¸è
+COPY    ~BardSong_BGEE_IWD/SPL/innp~   ~override~	//å¯¹æ•Œæˆ˜æ­Œ
 	WRITE_SHORT   0x98 ~%BI#BINNP%~
 
-COPY    ~BardSong_BGEE_IWD/SPL/inpa~   ~override~	//¶ÔÓÑÕ½¸è
+COPY    ~BardSong_BGEE_IWD/SPL/inpa~   ~override~	//å¯¹å‹æˆ˜æ­Œ
 	WRITE_SHORT   0x98 ~%BI#BINPA%~
 
-COPY    ~BardSong_BGEE_IWD/SPL/inpl~   ~override~	//¶ÔÓÑÇ¿Á¦Õ½¸è
+COPY    ~BardSong_BGEE_IWD/SPL/inpl~   ~override~	//å¯¹å‹å¼ºåŠ›æˆ˜æ­Œ
 	WRITE_SHORT   0x98 ~%BI#BINPL%~
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B30B.SPL~   ~override~	//Ğ¡³óÆÕÍ¨Õ½¸èĞ§¹û£¬²»ĞèÒªÓàÒôçÔÈÆ
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B30B.SPL~   ~override~	//å°ä¸‘æ™®é€šæˆ˜æ­Œæ•ˆæœï¼Œä¸éœ€è¦ä½™éŸ³ç¼­ç»•
 	WRITE_SHORT   0x98 ~%BI#BINNP%~
 	WRITE_SHORT   0xc0 ~%BI#BINNP%~
 	WRITE_SHORT   0xe8 ~%BI#BINNP%~
 	WRITE_SHORT   0x110 ~%BI#BINNP%~
 	WRITE_SHORT   0x138 ~%BI#BINNP%~
-	SAY 0x2ee @7	//ÃÔ»ó
+	SAY 0x2ee @7	//è¿·æƒ‘
 	SAY 0x43e @7
 	SAY 0x58e @7
-	SAY 0x5ee @8	//³Ù»º
+	SAY 0x5ee @8	//è¿Ÿç¼“
 	SAY 0x73e @7
 	SAY 0x79e @8
 	SAY 0x8ee @7
 	SAY 0x94e @8
-	SAY 0x9ae @9	//»èÃÔ²»ĞÑ
+	SAY 0x9ae @9	//æ˜è¿·ä¸é†’
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B40B.SPL~   ~override~	//±±µØÊ«ÈËÆÕÍ¨Õ½¸èĞ§¹û£¬²»ĞèÒªÓàÒôçÔÈÆ
+COPY    ~BardSong_BGEE_IWD/SPL/BI#B40B.SPL~   ~override~	//åŒ—åœ°è¯—äººæ™®é€šæˆ˜æ­Œæ•ˆæœï¼Œä¸éœ€è¦ä½™éŸ³ç¼­ç»•
 	WRITE_SHORT   0x98 ~%BI#BINPA%~
 	WRITE_SHORT   0xc0 ~%BI#BINPA%~
 	WRITE_SHORT   0xe8 ~%BI#BINPA%~
@@ -460,9 +291,9 @@ COPY    ~BardSong_BGEE_IWD/SPL/BI#B3SB.SPL~   ~override~
 	WRITE_SHORT   0x98 ~%BI#BINNP%~
 	READ_SHORT 0x27e ~AIname~
 	READ_SHORT 0x27e ~AIdesc~
-	SAY 0x27e @7	//ÃÔ»ó
-	SAY 0x2de @8	//³Ù»º
-	SAY 0x33e @9	//»èÃÔ²»ĞÑ
+	SAY 0x27e @7	//è¿·æƒ‘
+	SAY 0x2de @8	//è¿Ÿç¼“
+	SAY 0x33e @9	//æ˜è¿·ä¸é†’
 
 COPY    ~BardSong_BGEE_IWD/SPL/BI#B4SS.SPL~   ~override~
 	SAY NAME1 @29    SAY UNIDENTIFIED_DESC @34
@@ -470,14 +301,14 @@ COPY    ~BardSong_BGEE_IWD/SPL/BI#B4SS.SPL~   ~override~
 COPY    ~BardSong_BGEE_IWD/SPL/noname~   ~override~
 COPY    ~BardSong_BGEE_IWD/bam~         ~override~
 
-//×¨ÓÃAI
+//ä¸“ç”¨AI
 COMPILE    ~BardSong_BGEE_IWD/AI/BI#BARD.baf~
 MOVE    ~override/BI#BARD.bcs~ ~scripts/BI#BARD.bs~
 OUTER_SET AIname = RESOLVE_STR_REF(@3)
 OUTER_SET AIdesc = RESOLVE_STR_REF(@4)
 APPEND ~SCRPDESC.2da~ ~BI#BARD    %AIname%      %AIdesc%~	
 
-//ĞŞ¸ÄÃèÊö
+//ä¿®æ”¹æè¿°
 OUTER_SET "bard_desc" = 0
 OUTER_SET "blade_desc" = 0
 OUTER_SET "jester_desc" = 0
@@ -520,7 +351,7 @@ END
 
 ////////////////////////////////////////////////////////////////////////////
 
-BEGIN @12	//ºÏ³ª¹¦ÄÜ×é¼ş
+BEGIN @12	//åˆå”±åŠŸèƒ½ç»„ä»¶
 REQUIRE_COMPONENT "SETUP-BardSong_BGEE_IWD.tp2" "0" @13
 
 OUTER_SET "splprot_row" = 0
@@ -531,7 +362,7 @@ COPY_EXISTING ~splprot.2da~ ~override~
 		READ_2DA_ENTRY "%index%" 2 4 "splprot_value"
 		READ_2DA_ENTRY "%index%" 3 4 "splprot_relation"
 	  //PATCH_PRINT ~%index% %splprot_stat% %splprot_value% %splprot_relation%~
-		PATCH_IF ("%splprot_stat%" STRING_COMPARE_CASE "56" = 0) & ("%splprot_value%" STRING_COMPARE_CASE "-1" = 0) & ("%splprot_relation%" STRING_COMPARE_CASE "1" = 0) BEGIN	//ÓĞÏÖ³ÉµÄBACKSTABDAMAGEMULTIPLIERÅĞ¶ÏĞĞ
+		PATCH_IF ("%splprot_stat%" STRING_COMPARE_CASE "56" = 0) & ("%splprot_value%" STRING_COMPARE_CASE "-1" = 0) & ("%splprot_relation%" STRING_COMPARE_CASE "1" = 0) BEGIN	//æœ‰ç°æˆçš„BACKSTABDAMAGEMULTIPLIERåˆ¤æ–­è¡Œ
 			SET "splprot_row" = "%index%"
 			SET "index" = "%rows%" + 1 // kills loop
 		END
@@ -541,9 +372,9 @@ COPY_EXISTING ~splprot.2da~ ~override~
 		INSERT_2DA_ROW rows 4 ~%rows%_BACKSTABDAMAGEMULTIPLIER=n                56                                            -1                                            1~
 	END
 BUT_ONLY
-//splprot_rowÎªsplprot.2daĞÂÔöBACKSTABDAMAGEMULTIPLIERÅĞ¶ÏĞĞµÄ±àºÅ
+//splprot_rowä¸ºsplprot.2daæ–°å¢BACKSTABDAMAGEMULTIPLIERåˆ¤æ–­è¡Œçš„ç¼–å·
 
-ADD_PROJECTILE      ~BardSong_BGEE_IWD/chorus/pro/BI#BBIRD.pro~	//¶Ô50…ÕÄÚ·Ç×ÔÉíµÄÓÑ¾ü
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/chorus/pro/BI#BBIRD.pro~	//å¯¹50å‘å†…éè‡ªèº«çš„å‹å†›
 
 COPY_EXISTING ~BI#B10A.spl~ ~override~	~BI#B20A.spl~ ~override~	 ~BI#B30A.spl~ ~override~	 ~BI#B40A.spl~ ~override~
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 timing = 4 parameter2 = 1 duration = 1 STR_VAR resource = BI#B00D END
@@ -566,15 +397,15 @@ COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00C.spl~   ~override~
 	SAY NAME1 @93    SAY UNIDENTIFIED_DESC @96
 
 COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00F.spl~   ~override~
-	SAY 0xfe  @16	//ÎÒ¿ÉÊÇ×Ô´ø±³¾°ÒôÀÖµÄÈËÎï£¡
-	SAY 0x12e @17	//Ã»ÓĞÈËÄÜÔÚÎÒµÄ±³¾°ÒôÀÖÀï´ò°ÜÎÒ£¡
-	SAY 0x15e @18	//ÎªÁË±£»¤·ÑÂ×£¬ÎÒÃÇĞèÒª³ÉÎªÅ¼Ïñ£¡
-	SAY 0x18e @19	//ÄãÄÜ¸úÉÏÎÒµÄ½Ú×àÂğ£¿
-	SAY 0x1be @20	//À´ÌıÎÒ³ª¸è°É£¡
-	SAY 0x1ee @5	//ÏÖÔÚÓÉÎÒÀ´Áì³ª¡£
+	SAY 0xfe  @16	//æˆ‘å¯æ˜¯è‡ªå¸¦èƒŒæ™¯éŸ³ä¹çš„äººç‰©ï¼
+	SAY 0x12e @17	//æ²¡æœ‰äººèƒ½åœ¨æˆ‘çš„èƒŒæ™¯éŸ³ä¹é‡Œæ‰“è´¥æˆ‘ï¼
+	SAY 0x15e @18	//ä¸ºäº†ä¿æŠ¤è´¹ä¼¦ï¼Œæˆ‘ä»¬éœ€è¦æˆä¸ºå¶åƒï¼
+	SAY 0x18e @19	//ä½ èƒ½è·Ÿä¸Šæˆ‘çš„èŠ‚å¥å—ï¼Ÿ
+	SAY 0x1be @20	//æ¥å¬æˆ‘å”±æ­Œå§ï¼
+	SAY 0x1ee @5	//ç°åœ¨ç”±æˆ‘æ¥é¢†å”±ã€‚
 
 COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00B.eff~   ~override~
-	SAY 0x1c @6	//Ö»ÓĞ¶ÓÎé³ÉÔ±¿ÉÒÔ½øĞĞÁì³ª¡£
+	SAY 0x1c @6	//åªæœ‰é˜Ÿä¼æˆå‘˜å¯ä»¥è¿›è¡Œé¢†å”±ã€‚
 
 COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00X.spl~   ~override~
 	WRITE_SHORT   0x98 ~%BI#BBIRD%~
@@ -643,7 +474,7 @@ COPY    ~BardSong_BGEE_IWD/chorus/spl/noname~   ~override~
 
 COMPILE    ~BardSong_BGEE_IWD/chorus/baf~
 
-//ĞŞ¸ÄÃèÊö
+//ä¿®æ”¹æè¿°
 OUTER_SET "bard_desc" = 0
 OUTER_SET "blade_desc" = 0
 OUTER_SET "jester_desc" = 0
@@ -666,7 +497,7 @@ STRING_SET_EVALUATE skald_desc @113
 
 ////////////////////////////////////////////////////////////////////////////
 
-BEGIN @14	//ÔÊĞíÍ¶Ó°ÊõÖÆÔìµÄÊ«ÈË»ÃÏñ½øĞĞÑİ×à£¨ÒÔ¼°ºÏ³ª£©
+BEGIN @14	//å…è®¸æŠ•å½±æœ¯åˆ¶é€ çš„è¯—äººå¹»åƒè¿›è¡Œæ¼”å¥ï¼ˆä»¥åŠåˆå”±ï¼‰
 
 COPY_EXISTING ~MISLEAD.spl~ ~override~
 	LPF DELETE_EFFECT INT_VAR match_opcode = 144 match_parameter2 = 10 END

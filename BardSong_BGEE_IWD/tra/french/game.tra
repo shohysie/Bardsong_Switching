@@ -1,0 +1,398 @@
+@3 = "BARDE (attaque pendant les interludes de jeu) :"
+@4 = "L'IA Personnalisée offre la capacité d'effectuer de brèves attaques pendant les interludes de jeu et de maintenir les chants de bataille, mais uniquement pour les 4 kits de barde originaux modifiés par le MOD Correctif de Changement de Chant de Barde (Mode Icewind). 
+
+	Appuyez sur 'V' pour alterner entre trois Modes Offensifs :
+	- Chanter sans effectuer d'attaques
+	- Privilégier le chant aux attaques (tenter de maintenir les effets des chants)
+	- Privilégier les attaques au chant (les chants expirant occasionnellement).
+	En mode 2, les bardes forcent le chant durant les combats, ce qui interrompt les incantations et autres actions. Lancez immédiatement un sort après les alertes suivantes pour éviter l'interruption :
+
+	Appuyez sur 'Z' pour activer/désactiver les alertes des moments clés des chants de barde :
+	- Alerte avec animation
+	- Alerte avec pause du jeu
+	- Pas d'alerte.
+	À ce moment, vous pouvez contrôler manuellement le barde pour lancer un sort, puis le poète reprendra automatiquement son chant sans interrompre les effets. Ces alertes n'existent qu'en combat.
+
+	Appuyez sur 'F' pour forcer un barde invisible à chanter et attaquer. Puisqu'un barde devient visible en chantant, cette IA lui ordonne de rester inactif lorsqu'invisible, sauf si 'F' est pressé.
+	Cette commande s'annule quand l'invisibilité cesse, et 'F' devra être réactivé ultérieurement.
+
+	Appuyez sur 'B' pour lancer des sorts défensifs mémorisés dans cet ordre :
+	Peau de Pierre, Force, Protection contre l'Énergie Magique, Armure Spirituelle/Armure Fantôme/Armure, Bouclier, Protection contre les Projectiles Normaux, Résistance à la Peur, Flou, Protection contre le Mal, Invisibilité Améliorée (penser à presser 'F' pour activer un barde invisible), Image Mirroir, Bouclier Anti-Sort, Immunité aux Sorts : Abjuration, Hâte Améliorée, Protection contre les Éléments, Vision Véritable, Renvoi de Sort (ou Mineur), Déviation de Sort (ou Mineur), Globe d'Invulnérabilité.
+	Appuyez plusieurs fois pour cumuler tous les BUFFs. Les sorts actifs ne seront pas relancés.
+
+	Appuyez sur 'S' pour basculer entre Mode Persistant et Mode Normal. Le personnage augmentera considérablement ses chances d'attaque et réduira le temps de chant en Mode Persistant.
+	Si votre barde a acquis le Chant Persistant comme Capacité de Haut Niveau, il passera automatiquement en Mode Persistant sans retour possible.
+	Si votre barde obtient le Chant Persistant par d'autres moyens (ex: le Chapeau de Barde dans Siege of Dragonspear), basculez manuellement car le moteur de jeu ne permet pas de détecter ces sources.
+	Pensez à repasser manuellement en Mode Normal si votre barde perd le Chant Persistant (ex: retrait du Chapeau)."
+
+@5 = "Je suis désormais le maître de chœur."
+@6 = "Un seul des 6 compagnons peut diriger le chœur."
+
+@7 = "Confusion"
+@8 = "Ralenti(e)"
+@9 = "Inconscient"
+
+@16 = "Mon cœur, suis mon rythme !"
+@17 = "Mon cœur, suis mon rythme !"
+@18 = "Mon cœur, suis mon rythme !"
+@19 = "Peux-tu suivre ma cadence ?"
+@20 = "Synchronise-toi sur mon rythme !"
+
+@21 = "Activer la Ballade des Trois Héros" 
+@22 = "Activer le Ballade de Curran Cœurvaillant"
+@23 = "Activer la Mélodie de Tymora" 
+@24 = "Activer le Chant de Kaudies"
+@25 = "Activer le Désir de la Sirène" 
+@26 = "Activer le Chant de Guerre des Sith"
+
+@29 = "Chant Amplifié"
+@30 = "Activer le Chant Amplifié"
+
+@31 = "Chant de Barde Amplifié
+
+Bénédiction puissante pour le barde et ses alliés (double portée visuelle).
+Confère : +4 pour toucher, +4 aux dégâts, -4 à la CA, +5% résistance magique, immunité contre Peur/Baisse de Moral/Confusion/armes normales.
+Le Barde gagne un bonus supplémentaire : -6 à la CA, +5% résistance magique."
+
+@32 = "Chant de Lame Amplifié
+
+Bénédiction puissante pour la Lame et ses alliés (double portée visuelle).
+Confère : +4 pour toucher, +4 aux dégâts, -4 à la CA, +5% résistance magique, immunité contre Peur/Baisse de Moral/armes normales.
+La Lame gagne un bonus supplémentaire : -2 à la CA, +2 pour toucher, +2 aux dégâts, +5% résistance magique."
+
+@33 = "Chant de Bouffon Amplifié
+
+Affecte tous les ennemis dans 9 m (30 pieds). Par round : 
+- Jet de sauvegarde contre les sorts raté → Ralenti (malus -4) ou Confus (malus -2)
+- Jet contre polymorphie raté → Inconscient
+- 10% d'échec aux sorts/capacités innées.
+Le Bouffon gagne : -6 à la CA, +5% résistance magique."
+
+@34 = "Chant de Skalde Amplifié
+
+Bénédiction puissante pour le Skalde et ses alliés (double portée visuelle).
+Confère : +4 pour toucher, +4 aux dégâts, -4 à la CA, +2 à tous les jets de sauvegarde, +5% résistance magique, immunité contre Peur/Étourdissement/Confusion/armes normales.
+Le Skalde gagne : -6 à la CA, +5% résistance magique."
+
+@39 = "Chant Persistant" 
+@40 = "Chant Persistant
+
+Prolonge de 2 rounds tous les effets des chants de barde." 
+
+@41 = "Ballade des Trois Héros : +1 pour toucher, +1 aux dégâts, +1 à tous les jets de sauvegarde pour les alliés à portée visuelle." 
+@42 = "Ballade de Curran Cœurvaillant : immunise contre Peur et Baisse de Moral pour les alliés à portée visuelle." 
+@43 = "Mélodie de Tymora : +1 en chance, +3 aux jets de sauvegarde, +10 au Savoir et compétences de voleur pour les alliés à portée visuelle." 
+@44 = "Chant de Kaudies : immunise contre les effets sonores (silence, surdité, Mots de Pouvoir) pour les alliés à portée visuelle." 
+@45 = "Désir de la Sirène : charme les ennemis à portée visuelle (jet de sauvegarde contre les sorts). N'affecte pas les créatures sans esprit (golems, etc.)." 
+@46 = "Chant de Guerre des Sith : -2 à la CA, +10% résistance physique, régénère 3 PV/round pour les alliés à portée visuelle."
+
+@51 = "La Ballade des Trois Héros confère initialement aux créatures amies à portée visuelle un bonus de +1 pour toucher, +1 aux dégâts et +1 à tous les jets de sauvegarde.
+Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les valeurs numériques de ce chant sont améliorées à 1.5/2/2.5/3/3.5/4 fois la valeur originale, ce qui peut être identifié par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes."
+
+@52 = "Le Ballade de Curran Cœurvaillant accorde initialement l'immunité à la Peur et à la Baisse de Moral aux créatures amies à portée visuelle.
+Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les créatures amies gagnent respectivement des immunités contre : Charmement/Confusion/Immobilisation et Ralentissement/Débilité mentale et Inconscience/Berserk, Fatigue et Étourdissement/Labyrinthe et Emprisonnement, ce qui peut être identifié par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes."
+
+@53 = "La Mélodie de Tymora confère initialement aux créatures amies à portée visuelle un bonus de +1 en chance, +3 à tous les jets de sauvegarde, +10 au Savoir et aux compétences de voleur.
+Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les valeurs numériques de ce chant sont améliorées à 1.5/2/2.5/3/3.5/4 fois la valeur originale, ce qui peut être identifié par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes."
+
+@54 = "Le Chant de Kaudies accorde initialement l'immunité à tous les effets sonores tels que le silence, la surdité et les sorts utilisant le son comme medium (par exemple les Mots de Pouvoir) aux créatures amies à portée visuelle.
+Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les ennemis à portée visuelle doivent réussir un jet de sauvegarde contre le souffle avec un malus de -1/-2/-3/-4/-5/-6 chaque round pour éviter une explosion sonore causant Surdité et Saignement (1 dégât par round), ce qui peut être identifié par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes."
+
+@55 = "Le Désir de la Sirène charme initialement les ennemis à portée visuelle à moins qu'ils ne réussissent un jet de sauvegarde contre les sorts. N'affecte pas les ennemis sans esprit comme les golems.
+Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, le chant effectue une tentative supplémentaire chaque round et impose aux ennemis un malus de -1/-2/-3/-4/-5/-6 à leur jet de sauvegarde, ce qui peut être identifié par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes."
+
+@56 = "Le Chant de Guerre des Sith confère initialement aux créatures amies à portée visuelle un effet de CA-2, +10% de résistance aux dégâts physiques, et régénère 3 PV par round.
+Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les valeurs numériques de ce chant sont améliorées à 1.5/2/2.5/3/3.5/4 fois la valeur originale, ce qui peut être identifié par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes."
+
+@57 = "Chant de Barde Amplifié
+
+Ceci constitue une aide puissante à la fois pour le barde et ses alliés dans un rayon correspondant au double de la portée visuelle.
+Le chant accorde à tous les alliés +4 pour toucher, +4 aux dégâts, -4 à la CA, +5% de résistance magique, et leur confère l'immunité contre la Peur, la Baisse de Moral, la Confusion et les armes normales.
+Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les valeurs numériques de ce chant sont améliorées à 1.5/2/2.5/3/3.5/4 fois la valeur originale, ce qui peut être identifié par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes.
+Pendant qu'il chante le Chant de Barde Amplifié, le Barde lui-même gagne un bonus supplémentaire de -6 à la CA et +5% de résistance magique."
+
+@58 = "Chant de Lame Amplifié
+
+Ceci constitue une aide puissante à la fois pour la Lame et ses alliés dans un rayon correspondant au double de la portée visuelle.
+Le chant accorde à tous les alliés +4 pour toucher, +4 aux dégâts, -4 à la CA, +5% de résistance magique, et leur confère l'immunité contre la Peur, la Baisse de Moral et les armes normales.
+Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les valeurs numériques de ce chant sont améliorées à 1.5/2/2.5/3/3.5/4 fois la valeur originale, ce qui peut être identifié par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes.
+Pendant qu'il chante le Chant de Lame Amplifié, la Lame elle-même gagne un bonus supplémentaire de -2 à la CA, +2 pour toucher, +2 aux dégâts et +5% de résistance magique."
+
+@59 = "Chant de Bouffon Amplifié
+
+Le Chant de Bouffon Amplifié affecte tous les adversaires dans un rayon de 30 pieds ; ils doivent réussir un jet de sauvegarde contre les sorts une fois par round sous peine d'être ralentis (malus de -4 au jet) ou confus (malus de -2 au jet), et doivent réussir un jet de sauvegarde contre la polymorphie sous peine d'être inconscients (aucun malus). Ils peuvent également échouer à lancer des sorts et capacités innées avec 10% de probabilité.
+Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, le chant effectue une tentative supplémentaire chaque round et impose aux ennemis un malus de -1/-2/-3/-4/-5/-6 à leur jet de sauvegarde, et le taux d'échec aux incantations est également amélioré à 1.5/2/2.5/3/3.5/4 fois la valeur originale, ce qui peut être identifié par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes.
+Pendant qu'il chante le Chant de Bouffon Amplifié, le Bouffon lui-même gagne un bonus supplémentaire de -6 à la CA et +5% de résistance magique."
+
+@60 = "Chant de Skalde Amplifié
+
+Ceci constitue une aide puissante à la fois pour le Skalde et ses alliés dans un rayon correspondant au double de la portée visuelle.
+Le chant accorde à tous les alliés +4 pour toucher, +4 aux dégâts, -4 à la CA, +2 à tous les jets de sauvegarde, +5% de résistance magique, et leur confère l'immunité contre la Peur, l'Étourdissement, la Confusion et les armes normales.
+Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les valeurs numériques de ce chant sont améliorées à 1.5/2/2.5/3/3.5/4 fois la valeur originale, ce qui peut être identifié par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes.
+Pendant qu'il chante le Chant de Skalde Amplifié, le Skalde lui-même gagne un bonus supplémentaire de -6 à la CA et +5% de résistance magique."
+
+@61 = "Diriger le chœur : Ballade des Trois Héros"
+@62 = "Diriger le chœur : Ballade de Curran Cœurvaillant"
+@63 = "Diriger le chœur : Mélodie de Tymora Persistante"
+@64 = "Diriger le chœur : Chant de Kaudies"
+@65 = "Diriger le chœur : Désir de la Sirène"
+@66 = "Diriger le chœur : Chant de Guerre des Sith"
+@67 = "Diriger le chœur : Chant de Barde Amplifié"
+@68 = "Diriger le chœur : Chant de Lame Amplifié"
+@69 = "Diriger le chœur : Chant de Bouffon"
+@70 = "Diriger le chœur : Chant de Bouffon Amplifié"
+@71 = "Diriger le chœur : Chant de Skalde"
+@72 = "Diriger le chœur : Chant de Skalde Amplifié"
+
+@81 = "Chanter sans effectuer d'attaques."
+@82 = "Privilégier le chant aux attaques (maintien des effets)."
+@83 = "Privilégier les attaques au chant (effets occasionnellement interrompus)."
+@84 = "Passé en Mode Persistant. Inutile sans Chant Persistant."
+@85 = "Passé en Mode Normal."
+@86 = "Capacité de Haut Niveau « Chant Persistant » détectée. Passage en mode persistant."
+@87 = "Changement inutile : vous maîtrisez déjà le Chant Persistant (Capacité Haut Niveau)."
+@88 = "Chanter et attaquer en état d'invisibilité."
+
+@75 = "Alerter des moments clés des chants par animation."
+@76 = "Alerter des moments clés des chants par pause du jeu."
+@77 = "Pas d'alerte."
+
+@91 = "Rejoindre le chœur"
+@92 = "Diriger un chœur"
+@93 = "Quitter le chœur"
+@94 = "Chanter la même chanson que le chef de chœur pour l'amplifier. Si un chant différent est en cours, il changera au round suivant."
+@95 = "Tous les bardes rejoignant votre chœur chanteront temporairement comme vous. Le chant s'amplifie selon le nombre de choristes."
+@96 = "Vos chants de bataille et ceux d'autres bardes peuvent coexister sans synchronisation, mais sans bonus de chœur."
+
+@100 = "BARDE : Le Barde est un roublard, mais il est très différent du Voleur. La force du Barde réside dans sa personnalité agréable et charmante. Grâce à elle et à son esprit, il se fraye un chemin dans le monde. Un Barde est un musicien talentueux et un vivier ambulant de ragots, de contes exagérés et de savoir ; il apprend un peu de tout ce qui croise son chemin et est un touche-à-tout mais maître en rien. Bien que de nombreux Bardes soient des canailles, leurs histoires et chansons sont les bienvenues presque partout.
+
+CARACTÉRISTIQUES DE CLASSE :
+
+– Ne peut porter d'armure plus lourde que la cotte de mailles. (Les sorts ne peuvent être lancés en portant une armure.)
+– Ne peut équiper de boucliers plus grands que des targes.
+– Ne peut devenir Compétent (un emplacement) que dans une seule classe d'arme.
+– Ne peut devenir Compétent (un emplacement) que dans un seul style de combat.
+– Compétences de voleur : Vol à la tire.
+– Score de Savoir augmenté.
+– Peut lancer des sorts arcaniques à partir du niveau 2.
+– Alignement restreint à tout neutre.
+– Dés de vie : d6
+– Le Barde apprend différents chants à différents niveaux. Vous pouvez changer de chant en cliquant sur les nouveaux boutons dans les Capacités Spéciales.
+ Niv1 : La Ballade des Trois Héros, qui confère +1 pour toucher, +1 aux dégâts et +1 à tous les jets de sauvegarde.
+ Niv4 : Le Ballade de Curran Cœurvaillant, qui accorde l'immunité à la Peur et à la Baisse de Moral.
+ Niv8 : La Mélodie de Tymora, qui confère +1 en chance, +3 à tous les jets de sauvegarde, +10 au Savoir et aux compétences de voleur.
+ Niv12 : Le Chant de Kaudies, qui accorde l'immunité à tous les effets sonores comme le silence, la surdité et les sorts utilisant le son comme medium (ex: Mots de Pouvoir).
+ Niv16 : Le Désir de la Sirène, qui charme les ennemis à portée visuelle sauf s'ils réussissent un jet de sauvegarde contre les sorts. N'affecte pas les ennemis sans esprit comme les golems.
+ Niv20 : Le Chant de Guerre des Sith, qui confère AC-2, +10% de résistance aux dégâts physiques, et régénère 3 PV par round.
+ Chant de Barde Amplifié : Accorde à tous les alliés +4 pour toucher, +4 aux dégâts, -4 à la CA, +5% de résistance magique, et leur confère l'immunité contre la Peur, la Baisse de Moral, la Confusion et les armes normales. Pendant qu'il chante le Chant de Barde Amplifié, le Barde lui-même gagne un bonus supplémentaire de -6 à la CA et +5% de résistance magique.
+
+[IA Personnalisée disponible]
+ Cette IA Personnalisée permet d'effectuer de brèves attaques pendant les interludes de jeu et de maintenir les chants de bataille. Sélectionnez Personnaliser > Script > 'BARDE (attaque pendant les interludes de jeu)' dans l'interface du personnage."
+
+@101 = "LAME : La Lame est un expert en combat et aventurier dont les talents d'acteur bardique le rendent plus intimidant et redoutable. Son style de combat est spectaculaire et divertissant, mais aussi mortellement dangereux.
+
+Avantages :
+– Peut utiliser les capacités Tournoiement Offensif et Tournoiement Défensif une fois par jour. Obtient une utilisation de chaque au niveau 1 et une utilisation supplémentaire de chaque tous les 4 niveaux.
+ TOURNOIEMENT OFFENSIF : Pendant les 4 rounds suivants, la vitesse de déplacement de la Lame double et il gagne un bonus de +2 pour toucher et aux dégâts ainsi qu'une attaque supplémentaire par round. Toutes les attaques infligent des dégâts maximum pendant la durée. Le Tournoiement Offensif ne peut être utilisé avec les sorts Hâte ou Hâte Améliorée.
+ TOURNOIEMENT DÉFENSIF : Pendant les 4 rounds suivants, la Lame est enracinée sur place et gagne un bonus de +1 à la Classe d'Armure par niveau, jusqu'à un maximum de +10.
+– La Lame commence avec +1 pour toucher et aux dégâts, obtient la compétence maximum (3 points) dans le style de combat à deux armes, puis +1 pour toucher et aux dégâts tous les 10 niveaux. Il peut apprendre différents chants à différents niveaux, mais moins que le Barde normal.
+ Niv1 : La Ballade des Trois Héros, qui confère +1 pour toucher, +1 aux dégâts et +1 à tous les jets de sauvegarde.
+ Niv6 : Le Ballade de Curran Cœurvaillant, qui accorde l'immunité à la Peur et à la Baisse de Moral.
+ Niv12 : La Mélodie de Tymora, qui confère +1 en chance, +3 à tous les jets de sauvegarde, +10 au Savoir et aux compétences de voleur.
+ Niv18 : Le Chant de Kaudies, qui accorde l'immunité à tous les effets sonores comme le silence, la surdité et les sorts utilisant le son comme medium (ex: Mots de Pouvoir).
+ Chant de Lame Amplifié : Accorde à tous les alliés +4 pour toucher, +4 aux dégâts, -4 à la CA, +5% de résistance magique, et leur confère l'immunité contre la Peur, la Baisse de Moral et les armes normales. Pendant qu'il chante le Chant de Lame Amplifié, la Lame elle-même gagne un bonus supplémentaire de +2 pour toucher, +2 aux dégâts, -2 à la CA et +5% de résistance magique.
+
+Inconvénients :
+– Ne possède que la moitié de la valeur normale de Savoir.
+– Ne possède que la moitié de la compétence normale de Vol à la tire.
+
+[IA Personnalisée disponible]
+ Cette IA Personnalisée permet d'effectuer de brèves attaques pendant les interludes de jeu et de maintenir les chants de bataille. Sélectionnez Personnaliser > Script > 'BARDE (attaque pendant les interludes de jeu)' dans l'interface du personnage."
+
+@102 = "BOUFFON : Ce Barde est expert dans l'art de la moquerie et de l'hilarité, et utilise ses capacités pour distraire et confondre ses ennemis, cabriolant follement pendant les combats. Ne le prenez cependant pas pour un vrai fou, car il peut aussi être très mortel.
+
+Avantages :
+– Le Bouffon commence avec +1 en chance, +5% au vol, immunité au charme et à la confusion. 
+– L'effet du chant de bataille du Bouffon s'améliore avec le niveau, mais il ne peut pas interpréter d'autres chants.
+ Niv1 : Les adversaires dans un rayon de 30 pieds doivent réussir un jet de sauvegarde contre les sorts par round ou être confus (malus de +4 au jet).
+ Niv5 : Les adversaires dans un rayon de 30 pieds doivent réussir un jet de sauvegarde contre les sorts par round ou être charmés (malus de +2 au jet).
+ Niv10 : Les adversaires dans un rayon de 30 pieds doivent réussir un jet de sauvegarde contre les sorts par round ou être ralentis (aucun malus) ou confus (malus de +2 au jet).
+ Niv15 : Les adversaires dans un rayon de 30 pieds doivent réussir un jet de sauvegarde contre les sorts par round ou être ralentis (malus de -2 au jet) ou confus (aucun malus).
+ Niv20 : Les adversaires dans un rayon de 30 pieds doivent réussir un jet de sauvegarde contre les sorts par round ou être ralentis (malus de -2 au jet) confus (malus de -2 au jet), et doivent réussir un jet contre la polymorphie ou être inconscients (malus de +2 au jet).
+ Chant de Bouffon Amplifié : Affecte tous les adversaires dans un rayon de 30 pieds ; ils doivent réussir un jet de sauvegarde contre les sorts par round sous peine d'être ralentis (malus de -4 au jet) ou confus (malus de -2 au jet), et doivent réussir un jet contre la polymorphie sous peine d'être inconscients (aucun malus). Ils peuvent également échouer à lancer des sorts et capacités innées avec 10% de probabilité. Pendant qu'il chante le Chant de Bouffon Amplifié, le Bouffon lui-même gagne un bonus supplémentaire de -6 à la CA et +5% de résistance magique. Le Chant de Bouffon Amplifié remplace simplement le chant original.
+ Note : les créatures sans esprit comme les golems sont immunisées contre les chants du Bouffon.
+
+Inconvénients :
+– Aucun.
+
+[IA Personnalisée disponible]
+ Cette IA Personnalisée permet d'effectuer de brèves attaques pendant les interludes de jeu et de maintenir les chants de bataille. Sélectionnez Personnaliser > Script > 'BARDE (attaque pendant les interludes de jeu)' dans l'interface du personnage."
+
+@103 = "SKALDE : Ce Barde nordique est aussi un guerrier d'une grande force, habileté et vertu ; ses chants sont des sagas inspirantes de bataille et de vaillance, et le Skalde consacre sa vie à ces quêtes.
+
+Avantages :
+– Bonus de +1 pour toucher et aux dégâts.
+– L'effet du chant de bataille du Skalde s'améliore avec le niveau, mais il ne peut pas interpréter d'autres chants.
+ Niv1 : +2 pour toucher, +2 aux dégâts, -2 à la CA.
+ Niv5 : +2 pour toucher, +2 aux dégâts, -2 à la CA, offre l'immunité à la Peur et à la Baisse de Moral.
+ Niv10 : +3 pour toucher, +3 aux dégâts, -3 à la CA, offre l'immunité à la Peur et à la Baisse de Moral.
+ Niv15 : +4 pour toucher, +4 aux dégâts, -4 à la CA, offre l'immunité à la Peur et à la Baisse de Moral.
+ Niv20 : +4 pour toucher, +4 aux dégâts, -4 à la CA, offre l'immunité à la Peur, la Baisse de Moral, l'Étourdissement et la Confusion.
+ Chant de Skalde Amplifié : Accorde à tous les alliés +4 pour toucher, +4 aux dégâts, -4 à la CA, +2 à tous les jets de sauvegarde, +5% de résistance magique, et leur confère l'immunité contre la Peur, l'Étourdissement, la Confusion et les armes normales. Pendant qu'il chante le Chant de Skalde Amplifié, le Skalde lui-même gagne un bonus supplémentaire de -6 à la CA et +5% de résistance magique. Le Chant de Skalde Amplifié remplace simplement le chant original.
+
+Inconvénients :
+– Ne possède que le quart de la valeur normale de Vol à la tire.
+
+[IA Personnalisée disponible]
+ Cette IA Personnalisée permet d'effectuer de brèves attaques pendant les interludes de jeu et de maintenir les chants de bataille. Sélectionnez Personnaliser > Script > 'BARDE (attaque pendant les interludes de jeu)' dans l'interface du personnage."
+
+@110 = "BARDE : Le Barde est un roublard, mais il est très différent du Voleur. La force du Barde réside dans sa personnalité agréable et charmante. Grâce à elle et à son esprit, il se fraye un chemin dans le monde. Un Barde est un musicien talentueux et un vivier ambulant de ragots, de contes exagérés et de savoir ; il apprend un peu de tout ce qui croise son chemin et est un touche-à-tout mais maître en rien. Bien que de nombreux Bardes soient des canailles, leurs histoires et chansons sont les bienvenues presque partout.
+
+CARACTÉRISTIQUES DE CLASSE :
+
+– Ne peut porter d'armure plus lourde que la cotte de mailles. (Les sorts ne peuvent être lancés en portant une armure.)
+– Ne peut équiper de boucliers plus grands que des targes.
+– Ne peut devenir Compétent (un emplacement) que dans une seule classe d'arme.
+– Ne peut devenir Compétent (un emplacement) que dans un seul style de combat.
+– Compétences de voleur : Vol à la tire.
+– Score de Savoir augmenté.
+– Peut lancer des sorts arcaniques à partir du niveau 2.
+– Alignement restreint à tout neutre.
+– Dés de vie : d6
+– Le Barde apprend différents chants à différents niveaux. Vous pouvez changer de chant en cliquant sur les nouveaux boutons dans les Capacités Spéciales.
+ Niv1 : La Ballade des Trois Héros, qui confère +1 pour toucher, +1 aux dégâts et +1 à tous les jets de sauvegarde.
+ Niv4 : Le Ballade de Curran Cœurvaillant, qui accorde l'immunité à la Peur et à la Baisse de Moral.
+ Niv8 : La Mélodie de Tymora, qui confère +1 en chance, +3 à tous les jets de sauvegarde, +10 au Savoir et aux compétences de voleur.
+ Niv12 : Le Chant de Kaudies, qui accorde l'immunité à tous les effets sonores comme le silence, la surdité et les sorts utilisant le son comme medium (ex: Mots de Pouvoir).
+ Niv16 : Le Désir de la Sirène, qui charme les ennemis à portée visuelle sauf s'ils réussissent un jet de sauvegarde contre les sorts. N'affecte pas les ennemis sans esprit comme les golems.
+ Niv20 : Le Chant de Guerre des Sith, qui confère AC-2, +10% de résistance aux dégâts physiques, et régénère 3 PV par round.
+ Chant de Barde Amplifié : Accorde à tous les alliés +4 pour toucher, +4 aux dégâts, -4 à la CA, +5% de résistance magique, et leur confère l'immunité contre la Peur, la Baisse de Moral, la Confusion et les armes normales. Pendant qu'il chante le Chant de Barde Amplifié, le Barde lui-même gagne un bonus supplémentaire de -6 à la CA et +5% de résistance magique.
+
+[Le Chœur]
+ Vous devez cliquer sur le bouton de capacité 'Diriger un chœur' d'un des bardes pour désigner le chef de chœur. 
+ Lorsque les autres bardes rejoignent le chœur et jouent le même chant que le chef désigné, ils obtiennent un bonus supplémentaire. 
+ Si les autres bardes rejoignent le chœur mais jouent des chants différents du chef désigné, leurs chants deviendront temporairement identiques à celui du chef et obtiendront un bonus supplémentaire au round suivant. Il n'est pas nécessaire qu'ils aient appris le chant que le chef interprète.
+ S'il n'y a pas de chef de chœur désigné, il n'y aura pas d'effet de chœur. Chaque fois que vous assignez un nouveau chef de chœur, les autres bardes cessent de diriger. 
+ De plus, le chef de chœur doit être l'un des 6 membres de l'équipe. Cliquer sur le bouton 'Diriger un chœur' d'autres créatures (comme des illusions magiques) est sans effet. Dans ce cas, les effets de son chant peuvent coexister avec d'autres mais sans bonus de chœur. 
+ Tous les bardes acceptent de rejoindre le chœur par défaut. Cliquer sur le bouton 'Quitter le chœur' garantit que le chant d'un barde ne change pas avec le chef de chœur. Les effets de son chant coexisteront avec d'autres chants, mais ne contribueront pas à un bonus de chœur. En cliquant sur 'Rejoindre le chœur', il peut à nouveau intégrer le chœur.
+ L'effet bonus du chœur ne dure qu'un round, et la durée ne peut être augmentée même par le Chant Persistant.
+ Les bardes avec Kits d'autres MOD rejoignent probablement aussi le chœur, mais ils ne peuvent pas le diriger ni le quitter.
+ Plus il y a de bardes dans le chœur, plus les effets du chant de bataille sont puissants. Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les effets supplémentaires s'améliorent à différents niveaux, identifiables par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes.
+ Les détails sont les suivants :
+  Le Ballade de Curran Cœurvaillant, qui acquiert des immunités contre Charmement/Confusion/Immobilisation et Ralentissement/Débilité mentale et Inconscience/Berserk, Fatigue et Étourdissement/Labyrinthe et Emprisonnement aux 6 niveaux. 
+  Le Chant de Kaudies, qui force les ennemis alentour à effectuer un jet de sauvegarde contre le souffle avec un malus de -1/-2/-3/-4/-5/-6, pour éviter la surdité et le saignement (1 dégât par seconde) pendant 1 round.
+  Le Désir de la Sirène et les chants de Bouffon, gagnent une chance supplémentaire par round de prendre effet, qui force les ennemis à effectuer un jet de sauvegarde avec un malus de -1/-2/-3/-4/-5/-6.
+  Pour tous les autres chants de bataille fournissant des valeurs bonus, ces valeurs sont améliorées à 1.5/2/2.5/3/3.5/4 fois celles des chants originaux. (Pour éviter de toucher la limite inférieure de la CA, le Chœur des Chants Amplifiés accorde un bonus de CA contre les dégâts contondants, projectiles, perforants et tranchants au lieu de la CA normale)
+  Les bonus supplémentaires des Chants Amplifiés pour les bardes eux-mêmes, par exemple -6 à la CA et +5% de résistance magique, ne sont pas améliorés dans le chœur.
+
+[IA Personnalisée disponible]
+ Cette IA Personnalisée permet d'effectuer de brèves attaques pendant les interludes de jeu et de maintenir les chants de bataille. Sélectionnez Personnaliser > Script > 'BARDE (attaque pendant les interludes de jeu)' dans l'interface du personnage."
+
+@111 = "LAME : La Lame est un expert en combat et aventurier dont les talents d'acteur bardique le rendent plus intimidant et redoutable. Son style de combat est spectaculaire et divertissant, mais aussi mortellement dangereux.
+
+Avantages :
+– Peut utiliser les capacités Tournoiement Offensif et Tournoiement Défensif une fois par jour. Obtient une utilisation de chaque au niveau 1 et une utilisation supplémentaire de chaque tous les 4 niveaux.
+ TOURNOIEMENT OFFENSIF : Pendant les 4 rounds suivants, la vitesse de déplacement de la Lame double et il gagne un bonus de +2 pour toucher et aux dégâts ainsi qu'une attaque supplémentaire par round. Toutes les attaques infligent des dégâts maximum pendant la durée. Le Tournoiement Offensif ne peut être utilisé avec les sorts Hâte ou Hâte Améliorée.
+ TOURNOIEMENT DÉFENSIF : Pendant les 4 rounds suivants, la Lame est enracinée sur place et gagne un bonus de +1 à la Classe d'Armure par niveau, jusqu'à un maximum de +10.
+– La Lame commence avec +1 pour toucher et aux dégâts, obtient la compétence maximum (3 points) dans le style de combat à deux armes, puis +1 pour toucher et aux dégâts tous les 10 niveaux. Il peut apprendre différents chants à différents niveaux, mais moins que le Barde normal.
+ Niv1 : La Ballade des Trois Héros, qui confère +1 pour toucher, +1 aux dégâts et +1 à tous les jets de sauvegarde.
+ Niv6 : Le Ballade de Curran Cœurvaillant, qui accorde l'immunité à la Peur et à la Baisse de Moral.
+ Niv12 : La Mélodie de Tymora, qui confère +1 en chance, +3 à tous les jets de sauvegarde, +10 au Savoir et aux compétences de voleur.
+ Niv18 : Le Chant de Kaudies, qui accorde l'immunité à tous les effets sonores comme le silence, la surdité et les sorts utilisant le son comme medium (ex: Mots de Pouvoir).
+ Chant de Lame Amplifié : Accorde à tous les alliés +4 pour toucher, +4 aux dégâts, -4 à la CA, +5% de résistance magique, et leur confère l'immunité contre la Peur, la Baisse de Moral et les armes normales. Pendant qu'il chante le Chant de Lame Amplifié, la Lame elle-même gagne un bonus supplémentaire de +2 pour toucher, +2 aux dégâts, -2 à la CA et +5% de résistance magique.
+
+Inconvénients :
+– Ne possède que la moitié de la valeur normale de Savoir.
+– Ne possède que la moitié de la compétence normale de Vol à la tire.
+
+[Le Chœur]
+ Vous devez cliquer sur le bouton de capacité 'Diriger un chœur' d'un des bardes pour désigner le chef de chœur. 
+ Lorsque les autres bardes rejoignent le chœur et jouent le même chant que le chef désigné, ils obtiennent un bonus supplémentaire. 
+ Si les autres bardes rejoignent le chœur mais jouent des chants différents du chef désigné, leurs chants deviendront temporairement identiques à celui du chef et obtiendront un bonus supplémentaire au round suivant. Il n'est pas nécessaire qu'ils aient appris le chant que le chef interprète.
+ S'il n'y a pas de chef de chœur désigné, il n'y aura pas d'effet de chœur. Chaque fois que vous assignez un nouveau chef de chœur, les autres bardes cessent de diriger. 
+ De plus, le chef de chœur doit être l'un des 6 membres de l'équipe. Cliquer sur le bouton 'Diriger un chœur' d'autres créatures (comme des illusions magiques) est sans effet. Dans ce cas, les effets de son chant peuvent coexister avec d'autres mais sans bonus de chœur. 
+ Tous les bardes acceptent de rejoindre le chœur par défaut. Cliquer sur le bouton 'Quitter le chœur' garantit que le chant d'un barde ne change pas avec le chef de chœur. Les effets de son chant coexisteront avec d'autres chants, mais ne contribueront pas à un bonus de chœur. En cliquant sur 'Rejoindre le chœur', il peut à nouveau intégrer le chœur.
+ L'effet bonus du chœur ne dure qu'un round, et la durée ne peut être augmentée même par le Chant Persistant.
+ Les bardes avec Kits d'autres MOD rejoignent probablement aussi le chœur, mais ils ne peuvent pas le diriger ni le quitter.
+ Plus il y a de bardes dans le chœur, plus les effets du chant de bataille sont puissants. Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les effets supplémentaires s'améliorent à différents niveaux, identifiables par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes.
+ Les détails sont les suivants :
+  Le Ballade de Curran Cœurvaillant, qui acquiert des immunités contre Charmement/Confusion/Immobilisation et Ralentissement/Débilité mentale et Inconscience/Berserk, Fatigue et Étourdissement/Labyrinthe et Emprisonnement aux 6 niveaux. 
+  Le Chant de Kaudies, qui force les ennemis alentour à effectuer un jet de sauvegarde contre le souffle avec un malus de -1/-2/-3/-4/-5/-6, pour éviter la surdité et le saignement (1 dégât par seconde) pendant 1 round.
+  Le Désir de la Sirène et les chants de Bouffon, gagnent une chance supplémentaire par round de prendre effet, qui force les ennemis à effectuer un jet de sauvegarde avec un malus de -1/-2/-3/-4/-5/-6.
+  Pour tous les autres chants de bataille fournissant des valeurs bonus, ces valeurs sont améliorées à 1.5/2/2.5/3/3.5/4 fois celles des chants originaux. (Pour éviter de toucher la limite inférieure de la CA, le Chœur des Chants Amplifiés accorde un bonus de CA contre les dégâts contondants, projectiles, perforants et tranchants au lieu de la CA normale)
+  Les bonus supplémentaires des Chants Amplifiés pour les bardes eux-mêmes, par exemple -6 à la CA et +5% de résistance magique, ne sont pas améliorés dans le chœur.
+
+[IA Personnalisée disponible]
+ Cette IA Personnalisée permet d'effectuer de brèves attaques pendant les interludes de jeu et de maintenir les chants de bataille. Sélectionnez Personnaliser > Script > 'BARDE (attaque pendant les interludes de jeu)' dans l'interface du personnage."
+
+@112 = "BOUFFON : Ce Barde est expert dans l'art de la moquerie et de l'hilarité, et utilise ses capacités pour distraire et confondre ses ennemis, cabriolant follement pendant les combats. Ne le prenez cependant pas pour un vrai fou, car il peut aussi être très mortel.
+
+Avantages :
+– Le Bouffon commence avec +1 en chance, +5% au vol, immunité au charme et à la confusion. 
+– L'effet du chant de bataille du Bouffon s'améliore avec le niveau, mais il ne peut pas interpréter d'autres chants.
+ Niv1 : Les adversaires dans un rayon de 30 pieds doivent réussir un jet de sauvegarde contre les sorts par round ou être confus (malus de +4 au jet).
+ Niv5 : Les adversaires dans un rayon de 30 pieds doivent réussir un jet de sauvegarde contre les sorts par round ou être charmés (malus de +2 au jet).
+ Niv10 : Les adversaires dans un rayon de 30 pieds doivent réussir un jet de sauvegarde contre les sorts par round ou être ralentis (aucun malus) ou confus (malus de +2 au jet).
+ Niv15 : Les adversaires dans un rayon de 30 pieds doivent réussir un jet de sauvegarde contre les sorts par round ou être ralentis (malus de -2 au jet) ou confus (aucun malus).
+ Niv20 : Les adversaires dans un rayon de 30 pieds doivent réussir un jet de sauvegarde contre les sorts par round ou être ralentis (malus de -2 au jet) confus (malus de -2 au jet), et doivent réussir un jet contre la polymorphie ou être inconscients (malus de +2 au jet).
+ Chant de Bouffon Amplifié : Affecte tous les adversaires dans un rayon de 30 pieds ; ils doivent réussir un jet de sauvegarde contre les sorts par round sous peine d'être ralentis (malus de -4 au jet) ou confus (malus de -2 au jet), et doivent réussir un jet contre la polymorphie sous peine d'être inconscients (aucun malus). Ils peuvent également échouer à lancer des sorts et capacités innées avec 10% de probabilité. Pendant qu'il chante le Chant de Bouffon Amplifié, le Bouffon lui-même gagne un bonus supplémentaire de -6 à la CA et +5% de résistance magique. Le Chant de Bouffon Amplifié remplace simplement le chant original.
+ Note : les créatures sans esprit comme les golems sont immunisées contre les chants du Bouffon.
+
+Inconvénients :
+– Aucun.
+
+[Le Chœur]
+ Vous devez cliquer sur le bouton de capacité 'Diriger un chœur' d'un des bardes pour désigner le chef de chœur. 
+ Lorsque les autres bardes rejoignent le chœur et jouent le même chant que le chef désigné, ils obtiennent un bonus supplémentaire. 
+ Si les autres bardes rejoignent le chœur mais jouent des chants différents du chef désigné, leurs chants deviendront temporairement identiques à celui du chef et obtiendront un bonus supplémentaire au round suivant. Il n'est pas nécessaire qu'ils aient appris le chant que le chef interprète.
+ S'il n'y a pas de chef de chœur désigné, il n'y aura pas d'effet de chœur. Chaque fois que vous assignez un nouveau chef de chœur, les autres bardes cessent de diriger. 
+ De plus, le chef de chœur doit être l'un des 6 membres de l'équipe. Cliquer sur le bouton 'Diriger un chœur' d'autres créatures (comme des illusions magiques) est sans effet. Dans ce cas, les effets de son chant peuvent coexister avec d'autres mais sans bonus de chœur. 
+ Tous les bardes acceptent de rejoindre le chœur par défaut. Cliquer sur le bouton 'Quitter le chœur' garantit que le chant d'un barde ne change pas avec le chef de chœur. Les effets de son chant coexisteront avec d'autres chants, mais ne contribueront pas à un bonus de chœur. En cliquant sur 'Rejoindre le chœur', il peut à nouveau intégrer le chœur.
+ L'effet bonus du chœur ne dure qu'un round, et la durée ne peut être augmentée même par le Chant Persistant.
+ Les bardes avec Kits d'autres MOD rejoignent probablement aussi le chœur, mais ils ne peuvent pas le diriger ni le quitter.
+ Plus il y a de bardes dans le chœur, plus les effets du chant de bataille sont puissants. Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les effets supplémentaires s'améliorent à différents niveaux, identifiables par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes.
+ Les détails sont les suivants :
+  Le Ballade de Curran Cœurvaillant, qui acquiert des immunités contre Charmement/Confusion/Immobilisation et Ralentissement/Débilité mentale et Inconscience/Berserk, Fatigue et Étourdissement/Labyrinthe et Emprisonnement aux 6 niveaux. 
+  Le Chant de Kaudies, qui force les ennemis alentour à effectuer un jet de sauvegarde contre le souffle avec un malus de -1/-2/-3/-4/-5/-6, pour éviter la surdité et le saignement (1 dégât par seconde) pendant 1 round.
+  Le Désir de la Sirène et les chants de Bouffon, gagnent une chance supplémentaire par round de prendre effet, qui force les ennemis à effectuer un jet de sauvegarde avec un malus de -1/-2/-3/-4/-5/-6.
+  Pour tous les autres chants de bataille fournissant des valeurs bonus, ces valeurs sont améliorées à 1.5/2/2.5/3/3.5/4 fois celles des chants originaux. (Pour éviter de toucher la limite inférieure de la CA, le Chœur des Chants Amplifiés accorde un bonus de CA contre les dégâts contondants, projectiles, perforants et tranchants au lieu de la CA normale)
+  Les bonus supplémentaires des Chants Amplifiés pour les bardes eux-mêmes, par exemple -6 à la CA et +5% de résistance magique, ne sont pas améliorés dans le chœur.
+
+[IA Personnalisée disponible]
+ Cette IA Personnalisée permet d'effectuer de brèves attaques pendant les interludes de jeu et de maintenir les chants de bataille. Sélectionnez Personnaliser > Script > 'BARDE (attaque pendant les interludes de jeu)' dans l'interface du personnage."
+
+@113 = "SKALDE : Ce Barde nordique est aussi un guerrier d'une grande force, habileté et vertu ; ses chants sont des sagas inspirantes de bataille et de vaillance, et le Skalde consacre sa vie à ces quêtes.
+
+Avantages :
+– Bonus de +1 pour toucher et aux dégâts.
+– L'effet du chant de bataille du Skalde s'améliore avec le niveau, mais il ne peut pas interpréter d'autres chants.
+ Niv1 : +2 pour toucher, +2 aux dégâts, -2 à la CA.
+ Niv5 : +2 pour toucher, +2 aux dégâts, -2 à la CA, offre l'immunité à la Peur et à la Baisse de Moral.
+ Niv10 : +3 pour toucher, +3 aux dégâts, -3 à la CA, offre l'immunité à la Peur et à la Baisse de Moral.
+ Niv15 : +4 pour toucher, +4 aux dégâts, -4 à la CA, offre l'immunité à la Peur et à la Baisse de Moral.
+ Niv20 : +4 pour toucher, +4 aux dégâts, -4 à la CA, offre l'immunité à la Peur, la Baisse de Moral, l'Étourdissement et la Confusion.
+ Chant de Skalde Amplifié : Accorde à tous les alliés +4 pour toucher, +4 aux dégâts, -4 à la CA, +2 à tous les jets de sauvegarde, +5% de résistance magique, et leur confère l'immunité contre la Peur, l'Étourdissement, la Confusion et les armes normales. Pendant qu'il chante le Chant de Skalde Amplifié, le Skalde lui-même gagne un bonus supplémentaire de -6 à la CA et +5% de résistance magique. Le Chant de Skalde Amplifié remplace simplement le chant original.
+
+Inconvénients :
+– Ne possède que le quart de la valeur normale de Vol à la tire.
+
+[Le Chœur]
+ Vous devez cliquer sur le bouton de capacité 'Diriger un chœur' d'un des bardes pour désigner le chef de chœur. 
+ Lorsque les autres bardes rejoignent le chœur et jouent le même chant que le chef désigné, ils obtiennent un bonus supplémentaire. 
+ Si les autres bardes rejoignent le chœur mais jouent des chants différents du chef désigné, leurs chants deviendront temporairement identiques à celui du chef et obtiendront un bonus supplémentaire au round suivant. Il n'est pas nécessaire qu'ils aient appris le chant que le chef interprète.
+ S'il n'y a pas de chef de chœur désigné, il n'y aura pas d'effet de chœur. Chaque fois que vous assignez un nouveau chef de chœur, les autres bardes cessent de diriger. 
+ De plus, le chef de chœur doit être l'un des 6 membres de l'équipe. Cliquer sur le bouton 'Diriger un chœur' d'autres créatures (comme des illusions magiques) est sans effet. Dans ce cas, les effets de son chant peuvent coexister avec d'autres mais sans bonus de chœur. 
+ Tous les bardes acceptent de rejoindre le chœur par défaut. Cliquer sur le bouton 'Quitter le chœur' garantit que le chant d'un barde ne change pas avec le chef de chœur. Les effets de son chant coexisteront avec d'autres chants, mais ne contribueront pas à un bonus de chœur. En cliquant sur 'Rejoindre le chœur', il peut à nouveau intégrer le chœur.
+ L'effet bonus du chœur ne dure qu'un round, et la durée ne peut être augmentée même par le Chant Persistant.
+ Les bardes avec Kits d'autres MOD rejoignent probablement aussi le chœur, mais ils ne peuvent pas le diriger ni le quitter.
+ Plus il y a de bardes dans le chœur, plus les effets du chant de bataille sont puissants. Lorsque le nombre de choristes atteint 2/3/4-5/6/7-9/10, les effets supplémentaires s'améliorent à différents niveaux, identifiables par une lueur rouge/jaune/verte/verte/bleue/violette sur les choristes.
+ Les détails sont les suivants :
+  Le Ballade de Curran Cœurvaillant, qui acquiert des immunités contre Charmement/Confusion/Immobilisation et Ralentissement/Débilité mentale et Inconscience/Berserk, Fatigue et Étourdissement/Labyrinthe et Emprisonnement aux 6 niveaux. 
+  Le Chant de Kaudies, qui force les ennemis alentour à effectuer un jet de sauvegarde contre le souffle avec un malus de -1/-2/-3/-4/-5/-6, pour éviter la surdité et le saignement (1 dégât par seconde) pendant 1 round.
+  Le Désir de la Sirène et les chants de Bouffon, gagnent une chance supplémentaire par round de prendre effet, qui force les ennemis à effectuer un jet de sauvegarde avec un malus de -1/-2/-3/-4/-5/-6.
+  Pour tous les autres chants de bataille fournissant des valeurs bonus, ces valeurs sont améliorées à 1.5/2/2.5/3/3.5/4 fois celles des chants originaux. (Pour éviter de toucher la limite inférieure de la CA, le Chœur des Chants Amplifiés accorde un bonus de CA contre les dégâts contondants, projectiles, perforants et tranchants au lieu de la CA normale)
+  Les bonus supplémentaires des Chants Amplifiés pour les bardes eux-mêmes, par exemple -6 à la CA et +5% de résistance magique, ne sont pas améliorés dans le chœur.
+
+[IA Personnalisée disponible]
+ Cette IA Personnalisée permet d'effectuer de brèves attaques pendant les interludes de jeu et de maintenir les chants de bataille. Sélectionnez Personnaliser > Script > 'BARDE (attaque pendant les interludes de jeu)' dans l'interface du personnage."
+ 

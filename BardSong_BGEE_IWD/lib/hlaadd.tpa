@@ -1,0 +1,115 @@
+
+DEFINE_ACTION_FUNCTION ADD_BARD_HLA
+
+STR_VAR
+
+  2daname = ~LUBA0~
+  hlaenhancedsong = ~AP_BI#B1SS~
+  hlalingeredsong = ~AP_BI#B1ST~
+  
+BEGIN
+
+COPY_EXISTING ~%2daname%.2da~ ~override~
+//PATCH_PRINT ~处理%2daname%.2da~
+	SET enhancedsongfixed = 0
+	SET lingeredsongfixed = 0
+	COUNT_2DA_ROWS ~9~ "rows"
+	FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
+		SET isenhancedsong = 0
+		SET islingeredsong = 0
+		READ_2DA_ENTRY "%index%" 1 9 "abil"
+		PATCH_IF ("%abil%" STRING_CONTAINS_REGEXP "AP_" == 0) BEGIN	//是永久应用于自身的高阶技能
+//PATCH_PRINT ~第%index%行是AP开头，检查~
+			SNPRINT (3 - (STRING_LENGTH "%abil%")) abilname "%abil%"
+			PATCH_IF FILE_EXISTS_IN_GAME ~%abilname%.spl~ BEGIN
+				INNER_ACTION BEGIN
+					COPY_EXISTING ~%abilname%.spl~ ~override~
+						PATCH_IF (SOURCE_SIZE > 0x98) BEGIN
+							READ_LONG 0x6a effoffset
+							READ_SHORT 0x70 globaleffs
+							READ_SHORT 0x90 head1effs
+							FOR (spleff = 0; spleff < head1effs; ++spleff) BEGIN
+								READ_SHORT (effoffset + 0x30 * (globaleffs + spleff)) effcode
+								PATCH_IF effcode == 251 BEGIN	//是改变战歌的高阶技能
+									SET isenhancedsong = 1
+//PATCH_PRINT ~第%index%行%abil%的%abilname%.spl是改变战歌的高阶技能~
+								END
+								PATCH_IF effcode == 99 BEGIN
+									READ_LONG (8 + effoffset + 0x30 * (globaleffs + spleff)) effpara2
+									PATCH_IF effpara2 == 2 BEGIN	//是改变战歌持续时间的高阶技能
+										SET islingeredsong = 1
+//PATCH_PRINT ~第%index%行%abil%的%abilname%.spl是改变战歌持续时间的高阶技能~
+									END
+								END
+							END
+						END
+					BUT_ONLY
+				END
+			END
+		END
+		PATCH_IF (isenhancedsong == 1) && (enhancedsongfixed > 0) BEGIN	//删除其它改变战歌的高阶技能行并准备在最后补上一行
+			REMOVE_2DA_ROW "%index%" 9
+			SET index = index - 1
+			SET enhancedsongfixed = enhancedsongfixed + 1
+			SET rows = rows - 1
+//PATCH_PRINT ~第%index%行是其它改变战歌的高阶技能，删除~
+		END
+		PATCH_IF (isenhancedsong == 1) && (enhancedsongfixed == 0) BEGIN	//把遇到的第一个改变战歌的高阶技能重写
+			SET_2DA_ENTRY "%index%" 1 9 ~%hlaenhancedsong%~
+			SET_2DA_ENTRY "%index%" 4 9 ~1~
+			SET_2DA_ENTRY "%index%" 5 9 ~99~
+			SET_2DA_ENTRY "%index%" 6 9 ~1~
+			SET enhancedsongfixed = 1
+//PATCH_PRINT ~第%index%行改写为%hlaenhancedsong%~
+		END
+		PATCH_IF ("%abil%" STRING_CONTAINS_REGEXP "*" == 0) & (enhancedsongfixed == 0) BEGIN	//没发现改变战歌的高阶技能
+			SET_2DA_ENTRY "%index%" 1 9 ~%hlaenhancedsong%~
+			SET_2DA_ENTRY "%index%" 4 9 ~1~
+			SET_2DA_ENTRY "%index%" 5 9 ~99~
+			SET_2DA_ENTRY "%index%" 6 9 ~1~
+			SET enhancedsongfixed = 1
+//PATCH_PRINT ~第%index%行新增为%hlaenhancedsong%~
+		END
+		PATCH_IF (islingeredsong == 1) && (lingeredsongfixed > 0) BEGIN	//删除其它改变战歌持续时间的高阶技能行并准备在最后补上一行
+			REMOVE_2DA_ROW "%index%" 9
+			SET index = index - 1
+			SET lingeredsongfixed = lingeredsongfixed + 1
+			SET rows = rows - 1
+//PATCH_PRINT ~第%index%行是其它改变战歌持续时间的高阶技能，删除~
+		END
+		PATCH_IF (islingeredsong == 1) && (lingeredsongfixed == 0) BEGIN	//把遇到的第一个改变战歌持续时间的高阶技能重写
+			SET_2DA_ENTRY "%index%" 1 9 ~%hlalingeredsong%~
+			SET_2DA_ENTRY "%index%" 4 9 ~1~
+			SET_2DA_ENTRY "%index%" 5 9 ~99~
+			SET_2DA_ENTRY "%index%" 6 9 ~1~
+			SET lingeredsongfixed = 1
+//PATCH_PRINT ~第%index%行改写为%hlalingeredsong%~
+		END
+		PATCH_IF ("%abil%" STRING_CONTAINS_REGEXP "*" == 0) & (lingeredsongfixed == 0) BEGIN	//没发现改变战歌的高阶技能
+			SET_2DA_ENTRY "%index%" 1 9 ~%hlalingeredsong%~
+			SET_2DA_ENTRY "%index%" 4 9 ~1~
+			SET_2DA_ENTRY "%index%" 5 9 ~99~
+			SET_2DA_ENTRY "%index%" 6 9 ~1~
+			SET lingeredsongfixed = 1
+//PATCH_PRINT ~第%index%行新增为%hlalingeredsong%~
+		END
+	END
+BUT_ONLY
+
+//补上最后一行
+OUTER_SET rowstobeadd = enhancedsongfixed + lingeredsongfixed - 2
+//PRINT ~补上%rowstobeadd%行~
+OUTER_FOR ( index = 0 ; index < rowstobeadd ; index = index + 1 ) BEGIN
+	APPEND ~%2daname%.2da~ ~99         *           *          *         *         *          *            *            *             *~
+END
+
+//整理编号
+COPY_EXISTING ~%2daname%.2da~ ~override~
+	COUNT_2DA_ROWS ~9~ "rows"
+	FOR ( index = 1 ; index < rows ; index = index + 1 ) BEGIN
+		SET_2DA_ENTRY "%index%" 0 9 "%index%"
+	END
+BUT_ONLY
+
+END
+

@@ -1,9 +1,9 @@
-﻿@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@                                                           @
-@   Bard Song Switching (Icewind Mode) for BGEE Series V4.6   @
-@   By Shohy                                                @
-@                                                           @
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+﻿@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@                                                           				@
+@   Bard Song Switching (Icewind Mode) for BGEE Series V4.7   	@
+@   By Shohy                                               			@
+@                                                           				@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 With this pack you can freely switch your bard song in several songs, just like in Icewind Dale. 
 Jester and Skald song effects are modified and improved to make up for them not being able to switch between songs like Standard Bard and Blade. 
@@ -113,6 +113,9 @@ Different battle songs can work at the same time. The same bard song has no accu
 
 
 ***** History *****
+
+	V4.7	Improved compatibility. If the Bards has been modified by other MODs before this one, high-level abilities will no longer have multiple Enhanced Bard Songs and Lingering Songs occurring simultaneously.
+	Added a French version translated by Deepseek.
 
 	V4.6	Fixed the the Custom AI that switches melee and ranged weapon incorrectly.
 	The Custom AI no longer interrupts your commands except for Mode 2 (More singing than attack actions, try to keep songs effective). On Mode 2, press "Z" to switch the prompt and cast spell immediately after the prompt appears, then the spell won't be interrupted by singing.

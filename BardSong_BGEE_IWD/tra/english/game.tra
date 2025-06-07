@@ -147,7 +147,7 @@ While singing the Enhanced Skald Song, the Skald himself gains an extra bonus of
 @93 = "Drop out of the chorus"
 @94 = "Sing the same song with the designated leader to enchance the song. If a different song is being performed, it will be temporarily changed to the same of the leader in the next round."
 @95 = "All bards that join the chorus you starts will temporarily sing the same song with you. The song is enchance according to the amount of chorists."
-@96 = "The battle songs of you and other bards can work at the same time, and your song won't be change with the lead singer, but you'll not contribute to a chorus bonus too."
+@96 = "The battle songs of you and other bards can work at the same time, and your song won't be change with the lead singer, but you'll also not contribute to a chorus bonus."
 
 @100 = "BARD: The Bard is a rogue, but <PRO_HESHE> is very different from the Thief. The Bard's strength is <PRO_HISHER> pleasant and charming personality. With it and <PRO_HISHER> wits, <PRO_HESHE> makes <PRO_HISHER> way through the world. A Bard is a talented musician and a walking storehouse of gossip, tall tales, and lore; <PRO_HESHE> learns a little bit about everything that crosses <PRO_HISHER> path and is a jack-of-all-trades but master of none. While many Bards are scoundrels, their stories and songs are welcome almost everywhere.
 
@@ -253,12 +253,12 @@ CLASS FEATURES:
  Enhanced Bard Song: Gives all allies +4 to hit, +4 to damage, -4 to AC, +5% magic resistance, and grants them immunity to Fear, Morale Break, Confusion and normal weapons. While singing the Enhanced Bard Song, the Bard <PRO_HIMHER>self gains an extra bonus of -6 to AC and +5% magic resistance.
  
 [The Chorus]
- You need to click the 'Lead a chorus' skill button of one of the bards to specify the leader of chorus. 
+ You'd click the 'Lead a chorus' ability button of one of the bards to specify the leader of chorus. 
  When the other bards join the chorus and play the same song with the designated leader, they will get extra bonus. 
- If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader is singing.
+ If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader's singing.
  If there is no designated leader of chorus, there will be no chorus effect. Each time you assign a new leader of chorus, the other bards stop leading chorus. 
- In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' skill button of other creatures (such as magic illusions) takes not work. In this case, effects of his song can coexist with others but without a chorus bonus. 
- All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
+ In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' ability button of other creatures (such as magic illusions) takes no work. In this case, effects of his song can coexist with others but without a chorus bonus. 
+ All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' ability button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
  The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
  Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
  The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
@@ -289,12 +289,12 @@ Disadvantages:
 – Only has one half the normal Pick Pockets skill.
  
 [The Chorus]
- You need to click the 'Lead a chorus' skill button of one of the bards to specify the leader of chorus. 
+ You'd click the 'Lead a chorus' ability button of one of the bards to specify the leader of chorus. 
  When the other bards join the chorus and play the same song with the designated leader, they will get extra bonus. 
- If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader is singing.
+ If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader's singing.
  If there is no designated leader of chorus, there will be no chorus effect. Each time you assign a new leader of chorus, the other bards stop leading chorus. 
- In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' skill button of other creatures (such as magic illusions) takes not work. In this case, effects of his song can coexist with others but without a chorus bonus. 
- All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
+ In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' ability button of other creatures (such as magic illusions) takes no work. In this case, effects of his song can coexist with others but without a chorus bonus. 
+ All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' ability button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
  The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
  Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
  The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
@@ -324,12 +324,12 @@ Disadvantages:
 – None.
  
 [The Chorus]
- You need to click the 'Lead a chorus' skill button of one of the bards to specify the leader of chorus. 
+ You'd click the 'Lead a chorus' ability button of one of the bards to specify the leader of chorus. 
  When the other bards join the chorus and play the same song with the designated leader, they will get extra bonus. 
- If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader is singing.
+ If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader's singing.
  If there is no designated leader of chorus, there will be no chorus effect. Each time you assign a new leader of chorus, the other bards stop leading chorus. 
- In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' skill button of other creatures (such as magic illusions) takes not work. In this case, effects of his song can coexist with others but without a chorus bonus. 
- All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
+ In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' ability button of other creatures (such as magic illusions) takes no work. In this case, effects of his song can coexist with others but without a chorus bonus. 
+ All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' ability button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
  The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
  Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
  The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
@@ -358,12 +358,12 @@ Disadvantages:
 – Only has one quarter the normal Pick Pockets score.
  
 [The Chorus]
- You need to click the 'Lead a chorus' skill button of one of the bards to specify the leader of chorus. 
+ You'd click the 'Lead a chorus' ability button of one of the bards to specify the leader of chorus. 
  When the other bards join the chorus and play the same song with the designated leader, they will get extra bonus. 
- If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader is singing.
+ If the other bards join the chorus but play different songs with the designated leader, their songs will temporarily become the same with the designated leader and get extra bonus in the next round. They're not necessary to have learned the song that the leader's singing.
  If there is no designated leader of chorus, there will be no chorus effect. Each time you assign a new leader of chorus, the other bards stop leading chorus. 
- In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' skill button of other creatures (such as magic illusions) takes not work. In this case, effects of his song can coexist with others but without a chorus bonus. 
- All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' skill button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
+ In addition, the lead singer must be one of the 6 team members. Clicking the 'Lead a chorus' ability button of other creatures (such as magic illusions) takes no work. In this case, effects of his song can coexist with others but without a chorus bonus. 
+ All bards agree to join the chorus by default. Clicking the 'Drop out of the chorus' ability button ensures that a bard's song does not change with the leader of chorus. Effects of his song will coexist with other songs, but will not contribute to a chorus bonus. By clicking 'Join the chorus' he can join the chorus again.
  The bonus effect of the chorus lasts only one round, and the duration cannot be increased even by Lingering Song.
  Bards with Kits from other MODs also join the chorus probably, but they can't lead or drop out of the chorus.
  The more bards in the chorus, the stronger the effects of the battle song. When the amount of chorists reaches 2/ 3/ 4-5/ 6/ 7-9/ 10, the extra effects are improved to different levels, which can be identified by red / yellow / green / green / blue / purple glow on chorists.
