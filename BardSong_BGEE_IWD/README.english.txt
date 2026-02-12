@@ -1,6 +1,6 @@
 ﻿@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @                                                           				@
-@   Bard Song Switching (Icewind Mode) for BGEE Series V4.7   	@
+@   Bard Song Switching (Icewind Mode) for BGEE Series V4.8   	@
 @   By Shohy                                               			@
 @                                                           				@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -113,6 +113,11 @@ Different battle songs can work at the same time. The same bard song has no accu
 
 
 ***** History *****
+
+	V4.8	Modified all files' name prefix to avoid conflicts with other MODs.
+		Fixed the bug where the Joker's Pickpocket skill couldn't be improved.
+		Battle Song switching now ignores the silence effect, allowing you to select and perform the Song of Kaudies while silenced to remove the debuff.
+		Due to the chaotic effect of Jester's Song being completely unable to hinder enemy attacks, the actual effect has now been modified to better align with the described chaotic effect of causing enemies to 'either go berserk, stand confused, or wander about'.
 
 	V4.7	Improved compatibility. If the Bards has been modified by other MODs before this one, high-level abilities will no longer have multiple Enhanced Bard Songs and Lingering Songs occurring simultaneously.
 	Added a French version translated by Deepseek.

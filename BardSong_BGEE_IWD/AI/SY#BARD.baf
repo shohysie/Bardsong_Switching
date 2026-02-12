@@ -1,0 +1,870 @@
+/////////////////////////开启或关闭战歌生效瞬间自动暂停/////////////////////////
+IF
+	Global("BI#PAUSE","LOCALS",0)
+	HotKey(Z)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#PAUSE","LOCALS",1)
+		DisplayStringHead(Myself,@75)	//战歌生效播放动画提示
+END
+
+IF
+	Global("BI#PAUSE","LOCALS",1)
+	HotKey(Z)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#PAUSE","LOCALS",2)
+		DisplayStringHead(Myself,@76)	//战歌生效立刻自动暂停
+END
+
+IF
+	Global("BI#PAUSE","LOCALS",2)
+	HotKey(Z)
+THEN
+	RESPONSE #100
+		SetGlobal("BI#PAUSE","LOCALS",0)
+		DisplayStringHead(Myself,@77)	//关闭战歌生效的暂停和提示
+END
+
+/////////////////////////攻击模式切换///////////////////////////
+IF
+	Global("SY#B_MOD","LOCALS",2)
+	HotKey(V)
+THEN
+	RESPONSE #100
+		SetGlobal("SY#B_MOD","LOCALS",0)
+		SetGlobal("SY#B_ATK","LOCALS",0)
+		DisplayStringHead(Myself,@81)	//只唱歌不攻击
+END
+
+IF
+	Global("SY#B_MOD","LOCALS",0)
+	HotKey(V)
+THEN
+	RESPONSE #100
+		SetGlobal("SY#B_MOD","LOCALS",1)
+		SetGlobal("SY#B_ATK","LOCALS",0)
+		DisplayStringHead(Myself,@82)	//在保证歌曲持续的前提下偶尔攻击（遇敌等到歌曲触发再攻击，攻击间隔只有3秒，歌曲掉线立刻补上）
+END
+
+IF
+	Global("SY#B_MOD","LOCALS",1)
+	HotKey(V)
+THEN
+	RESPONSE #100
+		SetGlobal("SY#B_MOD","LOCALS",2)
+		SetGlobal("SY#B_ATK","LOCALS",0)
+		DisplayStringHead(Myself,@83)	//更多攻击，但不保证歌曲一直持续（遇敌立刻攻击并计时2秒再唱歌，攻击间隔4秒，歌曲掉线不立刻补上而是攻击4秒再唱歌）
+END
+
+/////////////////////////隐形行为切换///////////////////////////
+
+IF
+	HotKey(F)
+THEN
+	RESPONSE #100
+		SetGlobal("SY#B_INV","LOCALS",1)
+		DisplayStringHead(Myself,@88)	//强制隐形状态下的诗人进行演奏和攻击
+END
+
+IF
+	Global("SY#B_INV","LOCALS",1)
+	!CheckStat(Myself,1,WIZARD_MISLEAD)
+	!StateCheck(Myself,STATE_INVISIBLE)
+	CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobal("SY#B_INV","LOCALS",0)
+		Continue()
+END
+
+/////////////////////////余音缭绕切换///////////////////////////
+
+//如果有高阶技能则不需切换，直接linger=1
+IF
+	Global("SY#BLING","LOCALS",1)
+	Global("SY#B_LIN","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SY#B_LIN","LOCALS",1)
+		DisplayStringHead(Myself,@86)		//检测到人物习得余音缭绕高阶技能，切换到余音缭绕模式
+END
+
+IF
+	HotKey(S)
+	Global("SY#BLING","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@87)		//人物已经习得余音缭绕高阶技能，无需切换
+END
+
+//按S切换
+IF
+	HotKey(S)
+	Global("SY#B_LIN","LOCALS",0)
+	!Global("SY#BLING","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@84)		//切换到余音缭绕模式
+		SetGlobal("SY#B_LIN","LOCALS",1)
+		SetGlobal("SY#B_ATK","LOCALS",0)
+END
+
+IF
+	HotKey(S)
+	Global("SY#B_LIN","LOCALS",1)
+	!Global("SY#BLING","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@85)		//切换到非余音缭绕模式
+		SetGlobal("SY#B_LIN","LOCALS",0)
+		SetGlobal("SY#B_ATK","LOCALS",0)
+END
+
+//////////////////////////自动上BUFF//////////////////////////
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_STONE_SKIN)
+	CheckStatLT(Myself,1,STONESKINS)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_STONE_SKIN)
+		RemoveSpell(WIZARD_STONE_SKIN)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_STRENGTH)
+	!CheckStatGT(Myself,0,STRENGTH_MODIFIER)
+	!CheckStatGT(Myself,18,STR)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_STRENGTH)	//1080-7200s
+		RemoveSpell(WIZARD_STRENGTH)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	CheckStatLT(Myself,75,MAGICDAMAGERESISTANCE)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)  // 660-1200s
+		RemoveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+		Continue()
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_ARMOR)
+	CheckStatGT(Myself,6,ARMORCLASS)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_ARMOR)	//2700s
+		RemoveSpell(WIZARD_ARMOR)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_SHIELD)
+	!HaveSpell(WIZARD_SPIRIT_ARMOR)
+	OR(2)
+		CheckStatGT(Myself,4,ARMORCLASS)
+		!CheckSpellState(Myself,WIZARD_SHIELD)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_SHIELD)	//300s
+		RemoveSpell(WIZARD_SHIELD)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_SHIELD)
+	HaveSpell(WIZARD_SPIRIT_ARMOR)
+	OR(2)
+		CheckStatGT(Myself,4,ARMORCLASS)
+		!CheckSpellState(Myself,WIZARD_SHIELD)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_SHIELD)	//300s
+		RemoveSpell(WIZARD_SHIELD)
+		ForceSpell(Myself,WIZARD_SPIRIT_ARMOR)	//600s
+		RemoveSpell(WIZARD_SPIRIT_ARMOR)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_SPIRIT_ARMOR)
+	CheckStatGT(Myself,1,ARMORCLASS)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_SPIRIT_ARMOR)	//600s
+		RemoveSpell(WIZARD_SPIRIT_ARMOR)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_GHOST_ARMOR)
+	CheckStatGT(Myself,2,ARMORCLASS)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_GHOST_ARMOR)	//300s
+		RemoveSpell(WIZARD_GHOST_ARMOR)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_PROTECTION_FROM_NORMAL_MISSILES)
+	!CheckSpellState(Myself,PROTECTION_FROM_NORMAL_MISSILES)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_PROTECTION_FROM_NORMAL_MISSILES)	//300s
+		RemoveSpell(WIZARD_PROTECTION_FROM_NORMAL_MISSILES)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_RESIST_FEAR)
+	!CheckSpellState(Myself,RESIST_FEAR)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_RESIST_FEAR)	//300s
+		RemoveSpell(WIZARD_RESIST_FEAR)
+		Continue()
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_BLUR)
+	!StateCheck(Myself,STATE_BLUR)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_BLUR)	//60-264s
+		RemoveSpell(WIZARD_BLUR)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_PROTECTION_FROM_EVIL)
+	!CheckStatGT(Myself,0,PROTECTION_FROM_EVIL)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_PROTECTION_FROM_EVIL)	//12-240s
+		RemoveSpell(WIZARD_PROTECTION_FROM_EVIL)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)	//60-138s
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_IMPROVED_INVISIBILITY)
+		RemoveSpell(WIZARD_IMPROVED_INVISIBILITY)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_MIRROR_IMAGE)
+	!StateCheck(Myself,STATE_MIRRORIMAGE)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_MIRROR_IMAGE)	//36-138s
+		RemoveSpell(WIZARD_MIRROR_IMAGE)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_SPELL_SHIELD)
+	!CheckSpellState(Myself,SPELL_SHIELD)
+THEN
+	RESPONSE #100
+		ReallyForceSpell(Myself,WIZARD_SPELL_SHIELD)  //198-360
+		RemoveSpell(WIZARD_SPELL_SHIELD)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_SPELL_IMMUNITY)
+	!CheckStatGT(Myself,0,WIZARD_SPELL_IMMUNITY)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_SPELL_IMMUNITY_ABJURATION)  //54-120
+		RemoveSpell(WIZARD_SPELL_IMMUNITY)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_IMPROVED_HASTE)
+	!CheckStatGT(Myself,0,IMPROVEDHASTE)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_IMPROVED_HASTE)	//90-138s
+		RemoveSpell(WIZARD_IMPROVED_HASTE)
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+	OR(4)
+		CheckStatLT(Myself,75,RESISTFIRE)
+		CheckStatLT(Myself,75,RESISTCOLD)
+		CheckStatLT(Myself,75,RESISTELECTRICITY)
+		CheckStatLT(Myself,75,RESISTACID)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_PROTECTION_FROM_THE_ELEMENTS)  // 78-120s
+		RemoveSpell(WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+		Continue()
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_TRUE_SIGHT)
+	!CheckStatGT(Myself,0,TRUE_SIGHT)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_TRUE_SIGHT)  // 60s
+		RemoveSpell(WIZARD_TRUE_SIGHT)
+		Continue()
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_SPELL_TURNING)
+	!CheckStatGT(Myself,0,WIZARD_SPELL_TURNING)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_SPELL_TURNING)  // 234-360s
+		RemoveSpell(WIZARD_SPELL_TURNING)
+		Continue()
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_SPELL_DEFLECTION)
+	!CheckStatGT(Myself,0,WIZARD_SPELL_DEFLECTION)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_SPELL_DEFLECTION)  // 198-360s
+		RemoveSpell(WIZARD_SPELL_DEFLECTION)
+		Continue()
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_GLOBE_OF_INVULNERABILITY)
+	CheckStatLT(Myself,1,MINORGLOBE)
+	CheckStatLT(Myself,1,SHIELDGLOBE)
+THEN
+	RESPONSE #80
+		ForceSpell(Myself,WIZARD_GLOBE_OF_INVULNERABILITY)  // 66-120s
+		RemoveSpell(WIZARD_GLOBE_OF_INVULNERABILITY)
+		Continue()
+END
+
+IF
+	HotKey(B)
+	ActionListEmpty()
+	HaveSpell(WIZARD_MINOR_SPELL_TURNING)
+	!CheckStatGT(Myself,0,WIZARD_SPELL_TURNING)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_MINOR_SPELL_TURNING)  // 180-360s
+		RemoveSpell(WIZARD_MINOR_SPELL_TURNING)
+		Continue()
+END
+
+IF
+	HaveSpell(WIZARD_MINOR_SPELL_DEFLECTION)
+	!CheckStatGT(Myself,0,WIZARD_SPELL_DEFLECTION)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_MINOR_SPELL_DEFLECTION)  // 90-360s
+		RemoveSpell(WIZARD_MINOR_SPELL_DEFLECTION)
+		Continue()
+END
+
+IF
+	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
+	CheckStatLT(Myself,1,MINORGLOBE)
+	CheckStatLT(Myself,1,SHIELDGLOBE)
+THEN
+	RESPONSE #80
+		ForceSpell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)  // 42-120s
+		RemoveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
+		Continue()
+END
+
+
+////////////////////////不同攻击状态的战歌处理///////////////////////
+
+/////////////闲下来就唱歌
+//不攻击状态
+IF
+	Global("SY#B_MOD","LOCALS",0)
+	ActionListEmpty()
+	!ModalState(BATTLESONG)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		BattleSong()
+END
+
+//或者攻击状态没看到敌人
+IF
+	GlobalGT("SY#B_MOD","LOCALS",0)
+	ActionListEmpty()
+	!ModalState(BATTLESONG)
+	!Detect([EVILCUTOFF])
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobal("SY#B_ATK","LOCALS",0)
+		BattleSong()
+END
+
+//////////////在保证歌曲持续的前提下偶尔攻击（遇敌等到歌曲触发再攻击，攻击间隔较短，歌曲掉线立刻补上）
+//b>b1>c>b循环，可能中途有b>b1>a>b
+//a战歌失效
+//优先唱歌
+//							c打架计时结束
+//							不打了改唱歌
+//											b触发战歌生效
+//											计时用于打架
+//															ex中途施法
+//															施法完毕唱歌
+//																			b1计时中无论战歌是否有效
+//																			打架
+//
+//////////////更多攻击，但不保证歌曲一直持续（遇敌立刻攻击并计时再唱歌，攻击间隔较长，歌曲掉线立刻补上）
+//遇敌d>b1>c>b，然后b>b1>c>b循环，可能中途有b>b1>a>b
+//a战歌失效
+//优先唱歌
+//			d初遇敌人ATK为0
+//			短计时且ATK设1
+//							c打架计时结束
+//							不打了改唱歌
+//											b触发战歌生效
+//											计时用于打架
+//															ex中途施法
+//															施法完毕唱歌
+//																			b1计时中无论战歌是否有效
+//																			打架
+
+//a偶尔攻击模式，有敌人存在时，如果战歌失效或无事，优先唱歌。
+IF
+	Global("SY#B_MOD","LOCALS",1)
+	!ModalState(BATTLESONG)
+	Detect([EVILCUTOFF])
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	OR(3)
+		CheckStatLT(Myself,11,BACKSTABDAMAGEMULTIPLIER)
+		CheckStatGT(Myself,22,BACKSTABDAMAGEMULTIPLIER)
+		ActionListEmpty()
+THEN
+	RESPONSE #100
+		BattleSong()
+END
+//a更多攻击模式，有敌人存在时，如果战歌失效，只有没命令才唱歌。
+IF
+	Global("SY#B_MOD","LOCALS",2)
+	!ModalState(BATTLESONG)
+	Detect([EVILCUTOFF])
+	ActionListEmpty()
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	OR(2)
+		CheckStatLT(Myself,11,BACKSTABDAMAGEMULTIPLIER)
+		CheckStatGT(Myself,22,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		BattleSong()
+END
+
+//d初遇敌，有余音缭绕，未计时，计时10秒
+IF
+	Global("SY#B_ATK","LOCALS",0)
+	Global("SY#B_LIN","LOCALS",1)
+	Global("SY#B_MOD","LOCALS",2)
+	!GlobalTimerNotExpired("SY#B_SIN","Locals")
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobal("SY#B_ATK","LOCALS",1)
+		SetGlobalTimer("SY#B_SIN","Locals",10)
+		Continue()
+END
+//d初遇敌，无余音缭绕，未计时，计时3秒
+IF
+	Global("SY#B_ATK","LOCALS",0)
+	Global("SY#B_LIN","LOCALS",0)
+	Global("SY#B_MOD","LOCALS",2)
+	!GlobalTimerNotExpired("SY#B_SIN","Locals")
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		SetGlobal("SY#B_ATK","LOCALS",1)
+		SetGlobalTimer("SY#B_SIN","Locals",3)
+		Continue()
+END
+
+//c打架计时结束，不打了改唱歌，唱到歌曲效果出现转向b
+//不能用ActionListEmpty()，不然打人停不下来
+IF
+	GlobalGT("SY#B_MOD","LOCALS",0)
+	See(NearestEnemyOf())
+	GlobalTimerExpired("SY#B_SIN","Locals")
+	Class(Myself,BARD_ALL)
+	!ModalState(BATTLESONG)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		BattleSong()
+END
+
+//b有敌人且触发战歌生效，有余音缭绕，未计时，计时15秒
+IF
+	Global("SY#B_LIN","LOCALS",1)
+	Global("SY#B_MOD","LOCALS",1)
+	SpellCastOnMeRES("SY#B00Z",Myself)
+	CheckSpellState(Myself,KENSAI_KIA)
+	CheckSpellState(Myself,ARCHER_CALL_SHOT)
+	!GlobalTimerNotExpired("SY#B_SIN","Locals")
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SY#B00O",Myself)
+		SetGlobalTimer("SY#B_SIN","Locals",15)
+		Continue()
+END
+//b更多攻击模式计时16秒
+IF
+	Global("SY#B_LIN","LOCALS",1)
+	Global("SY#B_MOD","LOCALS",2)
+	SpellCastOnMeRES("SY#B00Z",Myself)
+	CheckSpellState(Myself,KENSAI_KIA)
+	CheckSpellState(Myself,ARCHER_CALL_SHOT)
+	!GlobalTimerNotExpired("SY#B_SIN","Locals")
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SY#B00O",Myself)
+		SetGlobalTimer("SY#B_SIN","Locals",16)
+		Continue()
+END
+//b有敌人且触发战歌生效，没余音缭绕，未计时，计时3秒
+IF
+	Global("SY#B_LIN","LOCALS",0)
+	Global("SY#B_MOD","LOCALS",1)
+	SpellCastOnMeRES("SY#B00Z",Myself)
+	CheckSpellState(Myself,KENSAI_KIA)
+	CheckSpellState(Myself,ARCHER_CALL_SHOT)
+	!GlobalTimerNotExpired("SY#B_SIN","Locals")
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SY#B00O",Myself)
+		SetGlobalTimer("SY#B_SIN","Locals",3)
+		Continue()
+END
+//b更多攻击模式计时5秒
+IF
+	Global("SY#B_LIN","LOCALS",0)
+	Global("SY#B_MOD","LOCALS",2)
+	SpellCastOnMeRES("SY#B00Z",Myself)
+	CheckSpellState(Myself,KENSAI_KIA)
+	CheckSpellState(Myself,ARCHER_CALL_SHOT)
+	!GlobalTimerNotExpired("SY#B_SIN","Locals")
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SY#B00O",Myself)
+		SetGlobalTimer("SY#B_SIN","Locals",5)
+		Continue()
+END
+
+//ex战歌生效提示，有无余音缭绕、所有战斗模式都提示
+//ex战歌生效播放动画提示
+IF
+	Global("BI#PAUSE","LOCALS",1)
+	SpellCastOnMeRES("SY#B00Z",Myself)
+	CheckSpellState(Myself,KENSAI_KIA)
+	CheckSpellState(Myself,ARCHER_CALL_SHOT)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SY#B00O",Myself)
+		CreateVisualEffectObject("SY#B00Z",Myself)
+		BattleSong()
+END
+//ex战歌生效触发自动暂停
+IF
+	Global("BI#PAUSE","LOCALS",2)
+	SpellCastOnMeRES("SY#B00Z",Myself)
+	CheckSpellState(Myself,KENSAI_KIA)
+	CheckSpellState(Myself,ARCHER_CALL_SHOT)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+THEN
+	RESPONSE #100
+		ReallyForceSpellRES("SY#B00O",Myself)
+		BattleSong()
+		PauseGame()
+END
+//ex只要开了暂停或提示，且没有余音缭绕，则施法完毕立刻唱歌，且屏蔽后继打人
+IF
+	GlobalGT("BI#PAUSE","LOCALS",0)
+	GlobalGT("SY#B_MOD","LOCALS",1)
+	Global("SY#B_LIN","LOCALS",0)
+	See(NearestEnemyOf())
+	Class(Myself,BARD_ALL)
+	SpellCast(Myself,0)
+	!SpellCastOnMeRES("SY#B00Z",Myself)
+	!CheckSpellState(Myself,KENSAI_KIA)
+	!CheckSpellState(Myself,ARCHER_CALL_SHOT)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("SY#B_SIN","Locals",0)
+		BattleSong()
+END
+
+//b1计时结束前，只管打人。计时结束后不执行
+//使用远程武器时因为敌人靠近而切换，敌人离开就切回去
+IF
+	ActionListEmpty()
+	Global("SY#B_RNG","LOCALS",1)
+	OR(2)
+		!See(NearestEnemyOf(Myself))
+		!Range(NearestEnemyOf(Myself),6)
+THEN
+	RESPONSE #100
+		SetGlobal("SY#B_RNG","LOCALS",0)
+		EquipRanged()
+END
+
+//敌人靠近，使用远程则切换肉搏
+IF
+	GlobalGT("SY#B_MOD","LOCALS",0)
+	GlobalTimerNotExpired("SY#B_SIN","Locals")
+	ActionListEmpty()
+	See(NearestEnemyOf())
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	Range(NearestEnemyOf(Myself),6)
+	IsWeaponRanged(Myself)
+THEN
+	RESPONSE #100
+		SetGlobal("SY#B_RNG","LOCALS",1)
+		EquipMostDamagingMelee()
+		AttackReevaluate(NearestEnemyOf(Myself),15)
+END
+
+//优先打射程内法系
+IF
+	GlobalGT("SY#B_MOD","LOCALS",0)
+	GlobalTimerNotExpired("SY#B_SIN","Locals")
+	ActionListEmpty()
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	WeaponEffectiveVs(LastSeenBy(Myself),MAINHAND)
+	WeaponCanDamage(LastSeenBy(Myself),MAINHAND)
+	OR(2)
+		Range(LastSeenBy(Myself),6)
+		IsWeaponRanged(Myself)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		!Range(NearestEnemyOf(Myself),6)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		!CheckStatGT(LastSeenBy(Myself),0,CLERIC_PHYSICAL_MIRROR)
+THEN
+	RESPONSE #100
+		AttackReevaluate(LastSeenBy(Myself),15)
+END
+
+//次之打射程内攻击自己的人
+IF
+	GlobalGT("SY#B_MOD","LOCALS",0)
+	GlobalTimerNotExpired("SY#B_SIN","Locals")
+	ActionListEmpty()
+	AttackedBy([ENEMY],DEFAULT)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	WeaponEffectiveVs(LastAttackerOf(Myself),MAINHAND)
+	WeaponCanDamage(LastAttackerOf(Myself),MAINHAND)
+	OR(2)
+		Range(LastSeenBy(Myself),6)
+		IsWeaponRanged(Myself)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		!Range(NearestEnemyOf(Myself),6)
+	OR(2)
+		!IsWeaponRanged(Myself)
+		!CheckStatGT(LastSeenBy(Myself),0,CLERIC_PHYSICAL_MIRROR)
+THEN
+	RESPONSE #100
+		AttackReevaluate(LastAttackerOf(Myself),30)
+END
+
+//最后打最近的敌人
+IF
+	GlobalGT("SY#B_MOD","LOCALS",0)
+	GlobalTimerNotExpired("SY#B_SIN","Locals")
+	ActionListEmpty()
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	See(NearestEnemyOf(Myself))
+	WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+	WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
+THEN
+	RESPONSE #100
+		AttackReevaluate(NearestEnemyOf(Myself),15)
+END
+
+IF
+	GlobalGT("SY#B_MOD","LOCALS",0)
+	GlobalTimerNotExpired("SY#B_SIN","Locals")
+	ActionListEmpty()
+	See(SecondNearestEnemyOf(Myself))
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	WeaponEffectiveVs(SecondNearestEnemyOf(Myself),MAINHAND)
+	WeaponCanDamage(SecondNearestEnemyOf(Myself),MAINHAND)
+THEN
+	RESPONSE #100
+		AttackReevaluate(SecondNearestEnemyOf(Myself),15)
+END
+
+IF
+	GlobalGT("SY#B_MOD","LOCALS",0)
+	GlobalTimerNotExpired("SY#B_SIN","Locals")
+	ActionListEmpty()
+	See(ThirdNearestEnemyOf(Myself))
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		!StateCheck(Myself,STATE_INVISIBLE)
+	OR(2)
+		Global("SY#B_INV","LOCALS",1)
+		CheckStatLT(Myself,1,SANCTUARY)
+	WeaponEffectiveVs(ThirdNearestEnemyOf(Myself),MAINHAND)
+	WeaponCanDamage(ThirdNearestEnemyOf(Myself),MAINHAND)
+THEN
+	RESPONSE #100
+		AttackReevaluate(ThirdNearestEnemyOf(Myself),15)
+END

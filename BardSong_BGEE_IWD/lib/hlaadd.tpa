@@ -4,8 +4,8 @@ DEFINE_ACTION_FUNCTION ADD_BARD_HLA
 STR_VAR
 
   2daname = ~LUBA0~
-  hlaenhancedsong = ~AP_BI#B1SS~
-  hlalingeredsong = ~AP_BI#B1ST~
+  hlaenhancedsong = ~AP_SY#B1SS~
+  hlalingeredsong = ~AP_SY#B1ST~
   
 BEGIN
 

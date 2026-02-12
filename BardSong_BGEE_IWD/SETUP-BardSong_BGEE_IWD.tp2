@@ -1,7 +1,7 @@
 BACKUP ~BardSong_BGEE_IWD/backup~
 AUTHOR ~shohy@126.com~
 
-VERSION ~v4.7~
+VERSION ~v4.8~
 AUTO_EVAL_STRINGS
 
 README ~BardSong_BGEE_IWD/README.%LANGUAGE%.txt~
@@ -38,9 +38,9 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	END
 BUT_ONLY
 
-ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~CLABBA01.2da~ ~AP_BI#B10A~)) BEGIN
-	APPEND ~CLABBA01.2da~ ~ABILITYA AP_BI#B10A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE
-	ABILITYB GA_BI#B11A **** **** GA_BI#B12A **** **** **** GA_BI#B13A **** **** **** GA_BI#B14A **** **** **** GA_BI#B15A **** **** **** GA_BI#B16A CDREPLACE~
+ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~CLABBA01.2da~ ~AP_SY#B10A~)) BEGIN
+	APPEND ~CLABBA01.2da~ ~ABILITYA AP_SY#B10A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE
+	ABILITYB GA_SY#B11A **** **** GA_SY#B12A **** **** **** GA_SY#B13A **** **** **** GA_SY#B14A **** **** **** GA_SY#B15A **** **** **** GA_SY#B16A CDREPLACE~
 	COPY_EXISTING ~CLABBA01.2da~ ~override~
 	  COUNT_2DA_COLS cols
 	  FOR (index = 22 ; index < cols ; ++index) BEGIN
@@ -50,9 +50,9 @@ ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~CLABBA01.2da~ ~AP_BI#B10A~)) BEGIN
 	  PRETTY_PRINT_2DA
 END
 
-ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%bladeability%.2da~ ~AP_BI#B20A~)) BEGIN
-	APPEND ~%bladeability%.2da~ ~ABILITYA AP_BI#B20A **** **** **** **** **** **** **** **** AP_SPCL541 **** **** **** **** **** **** **** **** **** AP_SPCL541 CDREPLACE
-	ABILITYB GA_BI#B11A **** **** **** **** GA_BI#B12A **** **** **** **** **** GA_BI#B13A **** **** **** **** **** GA_BI#B14A **** **** CDREPLACE~
+ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%bladeability%.2da~ ~AP_SY#B20A~)) BEGIN
+	APPEND ~%bladeability%.2da~ ~ABILITYA AP_SY#B20A **** **** **** **** **** **** **** **** AP_SPCL541 **** **** **** **** **** **** **** **** **** AP_SPCL541 CDREPLACE
+	ABILITYB GA_SY#B11A **** **** **** **** GA_SY#B12A **** **** **** **** **** GA_SY#B13A **** **** **** **** **** GA_SY#B14A **** **** CDREPLACE~
 	COPY_EXISTING ~%bladeability%.2da~ ~override~
 	  COUNT_2DA_COLS cols
 	  FOR (index = 22 ; index < cols ; ++index) BEGIN
@@ -62,7 +62,7 @@ ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%bladeability%.2da~ ~AP_BI#B20A~)) BEGI
 	  COUNT_2DA_ROWS 15 rows	//行数
 	  FOR (index = 0 ; index < rows ; ++index) BEGIN
 		  READ_2DA_ENTRY index 1 15 bladeab1
-		  PATCH_IF ("%bladeab1%" STRING_COMPARE_CASE "AP_BI#B20A" = 0) BEGIN
+		  PATCH_IF ("%bladeab1%" STRING_COMPARE_CASE "AP_SY#B20A" = 0) BEGIN
 		  	SET "index1" = "index"
 		  	SET "index" = "%rows%" + 1
 		  END
@@ -73,8 +73,8 @@ ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%bladeability%.2da~ ~AP_BI#B20A~)) BEGI
 	  PRETTY_PRINT_2DA
 END
 
-ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%jesterability%.2da~ ~AP_BI#B30A~)) BEGIN
-	APPEND ~%jesterability%.2da~ ~ABILITYA AP_BI#B30A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE~
+ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%jesterability%.2da~ ~AP_SY#B30A~)) BEGIN
+	APPEND ~%jesterability%.2da~ ~ABILITYA AP_SY#B30A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE~
 	COPY_EXISTING ~%jesterability%.2da~ ~override~
 	  COUNT_2DA_COLS cols
 	  FOR (index = 22 ; index < cols ; ++index) BEGIN
@@ -84,8 +84,8 @@ ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%jesterability%.2da~ ~AP_BI#B30A~)) BEG
 	  PRETTY_PRINT_2DA
 END
 
-ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%skaldability%.2da~ ~AP_BI#B40A~)) BEGIN
-	APPEND ~%skaldability%.2da~ ~ABILITYA AP_BI#B40A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE~
+ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~%skaldability%.2da~ ~AP_SY#B40A~)) BEGIN
+	APPEND ~%skaldability%.2da~ ~ABILITYA AP_SY#B40A **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** **** CDREPLACE~
 	COPY_EXISTING ~%skaldability%.2da~ ~override~
 	  COUNT_2DA_COLS cols
 	  FOR (index = 22 ; index < cols ; ++index) BEGIN
@@ -196,10 +196,10 @@ END
 
 INCLUDE ~BardSong_BGEE_IWD/lib/hlaadd.tpa~
 //处理高阶技能列表
-LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%bardabbrev%~ hlaenhancedsong = ~AP_BI#B1SS~ hlalingeredsong = ~AP_BI#B1ST~ END
-LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%bladeabbrev%~ hlaenhancedsong = ~AP_BI#B2SS~ hlalingeredsong = ~AP_BI#B1ST~ END
-LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%jesterabbrev%~ hlaenhancedsong = ~AP_BI#B3SS~ hlalingeredsong = ~AP_BI#B1ST~ END
-LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%skaldabbrev%~ hlaenhancedsong = ~AP_BI#B4SS~ hlalingeredsong = ~AP_BI#B1ST~ END
+LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%bardabbrev%~ hlaenhancedsong = ~AP_SY#B1SS~ hlalingeredsong = ~AP_SY#B1ST~ END
+LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%bladeabbrev%~ hlaenhancedsong = ~AP_SY#B2SS~ hlalingeredsong = ~AP_SY#B1ST~ END
+LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%jesterabbrev%~ hlaenhancedsong = ~AP_SY#B3SS~ hlalingeredsong = ~AP_SY#B1ST~ END
+LAF ADD_BARD_HLA STR_VAR 2daname = ~LU%skaldabbrev%~ hlaenhancedsong = ~AP_SY#B4SS~ hlalingeredsong = ~AP_SY#B1ST~ END
 
 //舞剑士没有小旋风的话，加上
 ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~LU%bladeabbrev%.2da~ ~GA_SPCL900~)) BEGIN
@@ -219,43 +219,43 @@ ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~LU%bladeabbrev%.2da~ ~GA_SPCL900~)) BEG
 	END
 END
 
-ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINPA.pro~	//对50呎内友军
-ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINPL.pro~	//对100呎内友军
-ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/BI#BINNP.pro~	//对50呎内敌军
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/SY#BINPA.pro~	//对50呎内友军
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/SY#BINPL.pro~	//对100呎内友军
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/pro/SY#BINNP.pro~	//对50呎内敌军
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B11A.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B11A.SPL~   ~override~
 	SAY NAME1 @21    SAY UNIDENTIFIED_DESC @41
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B12A.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B12A.SPL~   ~override~
 	SAY NAME1 @22    SAY UNIDENTIFIED_DESC @42
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B13A.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B13A.SPL~   ~override~
 	SAY NAME1 @23    SAY UNIDENTIFIED_DESC @43
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B14A.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B14A.SPL~   ~override~
 	SAY NAME1 @24    SAY UNIDENTIFIED_DESC @44
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B15A.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B15A.SPL~   ~override~
 	SAY NAME1 @25    SAY UNIDENTIFIED_DESC @45
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B16A.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B16A.SPL~   ~override~
 	SAY NAME1 @26    SAY UNIDENTIFIED_DESC @46
 	
 COPY    ~BardSong_BGEE_IWD/SPL/innp~   ~override~	//对敌战歌
-	WRITE_SHORT   0x98 ~%BI#BINNP%~
+	WRITE_SHORT   0x98 ~%SY#BINNP%~
 
 COPY    ~BardSong_BGEE_IWD/SPL/inpa~   ~override~	//对友战歌
-	WRITE_SHORT   0x98 ~%BI#BINPA%~
+	WRITE_SHORT   0x98 ~%SY#BINPA%~
 
 COPY    ~BardSong_BGEE_IWD/SPL/inpl~   ~override~	//对友强力战歌
-	WRITE_SHORT   0x98 ~%BI#BINPL%~
+	WRITE_SHORT   0x98 ~%SY#BINPL%~
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B30B.SPL~   ~override~	//小丑普通战歌效果，不需要余音缭绕
-	WRITE_SHORT   0x98 ~%BI#BINNP%~
-	WRITE_SHORT   0xc0 ~%BI#BINNP%~
-	WRITE_SHORT   0xe8 ~%BI#BINNP%~
-	WRITE_SHORT   0x110 ~%BI#BINNP%~
-	WRITE_SHORT   0x138 ~%BI#BINNP%~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B30B.SPL~   ~override~	//小丑普通战歌效果，不需要余音缭绕
+	WRITE_SHORT   0x98 ~%SY#BINNP%~
+	WRITE_SHORT   0xc0 ~%SY#BINNP%~
+	WRITE_SHORT   0xe8 ~%SY#BINNP%~
+	WRITE_SHORT   0x110 ~%SY#BINNP%~
+	WRITE_SHORT   0x138 ~%SY#BINNP%~
 	SAY 0x2ee @7	//迷惑
 	SAY 0x43e @7
 	SAY 0x58e @7
@@ -266,47 +266,47 @@ COPY    ~BardSong_BGEE_IWD/SPL/BI#B30B.SPL~   ~override~	//小丑普通战歌效
 	SAY 0x94e @8
 	SAY 0x9ae @9	//昏迷不醒
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B40B.SPL~   ~override~	//北地诗人普通战歌效果，不需要余音缭绕
-	WRITE_SHORT   0x98 ~%BI#BINPA%~
-	WRITE_SHORT   0xc0 ~%BI#BINPA%~
-	WRITE_SHORT   0xe8 ~%BI#BINPA%~
-	WRITE_SHORT   0x110 ~%BI#BINPA%~
-	WRITE_SHORT   0x138 ~%BI#BINPA%~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B40B.SPL~   ~override~	//北地诗人普通战歌效果，不需要余音缭绕
+	WRITE_SHORT   0x98 ~%SY#BINPA%~
+	WRITE_SHORT   0xc0 ~%SY#BINPA%~
+	WRITE_SHORT   0xe8 ~%SY#BINPA%~
+	WRITE_SHORT   0x110 ~%SY#BINPA%~
+	WRITE_SHORT   0x138 ~%SY#BINPA%~
 	
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B1SS.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B1SS.SPL~   ~override~
 	SAY NAME1 @29    SAY UNIDENTIFIED_DESC @31
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B1SA.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B1SA.SPL~   ~override~
 	SAY NAME1 @30    SAY UNIDENTIFIED_DESC @31
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B1ST.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B1ST.SPL~   ~override~
 	SAY NAME1 @39    SAY UNIDENTIFIED_DESC @40
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B2SS.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B2SS.SPL~   ~override~
 	SAY NAME1 @29    SAY UNIDENTIFIED_DESC @32
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B2SA.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B2SA.SPL~   ~override~
 	SAY NAME1 @30    SAY UNIDENTIFIED_DESC @32
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B3SS.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B3SS.SPL~   ~override~
 	SAY NAME1 @29    SAY UNIDENTIFIED_DESC @33
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B3SB.SPL~   ~override~
-	WRITE_SHORT   0x98 ~%BI#BINNP%~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B3SB.SPL~   ~override~
+	WRITE_SHORT   0x98 ~%SY#BINNP%~
 	READ_SHORT 0x27e ~AIname~
 	READ_SHORT 0x27e ~AIdesc~
 	SAY 0x27e @7	//迷惑
 	SAY 0x2de @8	//迟缓
 	SAY 0x33e @9	//昏迷不醒
 
-COPY    ~BardSong_BGEE_IWD/SPL/BI#B4SS.SPL~   ~override~
+COPY    ~BardSong_BGEE_IWD/SPL/SY#B4SS.SPL~   ~override~
 	SAY NAME1 @29    SAY UNIDENTIFIED_DESC @34
 
 COPY    ~BardSong_BGEE_IWD/SPL/noname~   ~override~
 COPY    ~BardSong_BGEE_IWD/bam~         ~override~
 
 //专用AI
-COMPILE    ~BardSong_BGEE_IWD/AI/BI#BARD.baf~
-MOVE    ~override/BI#BARD.bcs~ ~scripts/BI#BARD.bs~
+COMPILE    ~BardSong_BGEE_IWD/AI/SY#BARD.baf~
+MOVE    ~override/SY#BARD.bcs~ ~scripts/SY#BARD.bs~
 OUTER_SET AIname = RESOLVE_STR_REF(@3)
 OUTER_SET AIdesc = RESOLVE_STR_REF(@4)
-APPEND ~SCRPDESC.2da~ ~BI#BARD    %AIname%      %AIdesc%~	
+APPEND ~SCRPDESC.2da~ ~SY#BARD    %AIname%      %AIdesc%~	
 
 //修改描述
 OUTER_SET "bard_desc" = 0
@@ -374,10 +374,10 @@ COPY_EXISTING ~splprot.2da~ ~override~
 BUT_ONLY
 //splprot_row为splprot.2da新增BACKSTABDAMAGEMULTIPLIER判断行的编号
 
-ADD_PROJECTILE      ~BardSong_BGEE_IWD/chorus/pro/BI#BBIRD.pro~	//对50呎内非自身的友军
+ADD_PROJECTILE      ~BardSong_BGEE_IWD/chorus/pro/SY#BBIRD.pro~	//对50呎内非自身的友军
 
-COPY_EXISTING ~BI#B10A.spl~ ~override~	~BI#B20A.spl~ ~override~	 ~BI#B30A.spl~ ~override~	 ~BI#B40A.spl~ ~override~
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 timing = 4 parameter2 = 1 duration = 1 STR_VAR resource = BI#B00D END
+COPY_EXISTING ~SY#B10A.spl~ ~override~	~SY#B20A.spl~ ~override~	 ~SY#B30A.spl~ ~override~	 ~SY#B40A.spl~ ~override~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 timing = 4 parameter2 = 1 duration = 1 STR_VAR resource = SY#B00D END
 
 COPY    ~BardSong_BGEE_IWD/chorus/bam~         ~override~
 
@@ -387,16 +387,16 @@ COPY    ~BardSong_BGEE_IWD/chorus/eff~         ~override~
 
 COPY    ~BardSong_BGEE_IWD/chorus/itm~         ~override~
 
-COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00A.spl~   ~override~
+COPY    ~BardSong_BGEE_IWD/chorus/spl/SY#B00A.spl~   ~override~
 	SAY NAME1 @91    SAY UNIDENTIFIED_DESC @94
 
-COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00B.spl~   ~override~
+COPY    ~BardSong_BGEE_IWD/chorus/spl/SY#B00B.spl~   ~override~
 	SAY NAME1 @92    SAY UNIDENTIFIED_DESC @95
 
-COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00C.spl~   ~override~
+COPY    ~BardSong_BGEE_IWD/chorus/spl/SY#B00C.spl~   ~override~
 	SAY NAME1 @93    SAY UNIDENTIFIED_DESC @96
 
-COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00F.spl~   ~override~
+COPY    ~BardSong_BGEE_IWD/chorus/spl/SY#B00F.spl~   ~override~
 	SAY 0xfe  @16	//我可是自带背景音乐的人物！
 	SAY 0x12e @17	//没有人能在我的背景音乐里打败我！
 	SAY 0x15e @18	//为了保护费伦，我们需要成为偶像！
@@ -404,70 +404,70 @@ COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00F.spl~   ~override~
 	SAY 0x1be @20	//来听我唱歌吧！
 	SAY 0x1ee @5	//现在由我来领唱。
 
-COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00B.eff~   ~override~
+COPY    ~BardSong_BGEE_IWD/chorus/spl/SY#B00B.eff~   ~override~
 	SAY 0x1c @6	//只有队伍成员可以进行领唱。
 
-COPY    ~BardSong_BGEE_IWD/chorus/spl/BI#B00X.spl~   ~override~
-	WRITE_SHORT   0x98 ~%BI#BBIRD%~
+COPY    ~BardSong_BGEE_IWD/chorus/spl/SY#B00X.spl~   ~override~
+	WRITE_SHORT   0x98 ~%SY#BBIRD%~
 
 COPY    ~BardSong_BGEE_IWD/chorus/spl/inpa~   ~override~
-	WRITE_SHORT   0x98 ~%BI#BINPA%~
+	WRITE_SHORT   0x98 ~%SY#BINPA%~
 	
 COPY    ~BardSong_BGEE_IWD/chorus/spl/inpl~   ~override~
-	WRITE_SHORT   0x98 ~%BI#BINPL%~
+	WRITE_SHORT   0x98 ~%SY#BINPL%~
 
 COPY    ~BardSong_BGEE_IWD/chorus/spl/innp~   ~override~
-	WRITE_SHORT   0x98 ~%BI#BINNP%~
+	WRITE_SHORT   0x98 ~%SY#BINNP%~
 
 COPY    ~BardSong_BGEE_IWD/chorus/spl/inpa5~   ~override~
-	WRITE_SHORT   0x98 ~%BI#BINPA%~
-	WRITE_SHORT   0xc0 ~%BI#BINPA%~
-	WRITE_SHORT   0xe8 ~%BI#BINPA%~
-	WRITE_SHORT   0x110 ~%BI#BINPA%~
-	WRITE_SHORT   0x138 ~%BI#BINPA%~
+	WRITE_SHORT   0x98 ~%SY#BINPA%~
+	WRITE_SHORT   0xc0 ~%SY#BINPA%~
+	WRITE_SHORT   0xe8 ~%SY#BINPA%~
+	WRITE_SHORT   0x110 ~%SY#BINPA%~
+	WRITE_SHORT   0x138 ~%SY#BINPA%~
 
 COPY    ~BardSong_BGEE_IWD/chorus/spl/innp5~   ~override~
-	WRITE_SHORT   0x98 ~%BI#BINNP%~
-	WRITE_SHORT   0xc0 ~%BI#BINNP%~
-	WRITE_SHORT   0xe8 ~%BI#BINNP%~
-	WRITE_SHORT   0x110 ~%BI#BINNP%~
-	WRITE_SHORT   0x138 ~%BI#BINNP%~
+	WRITE_SHORT   0x98 ~%SY#BINNP%~
+	WRITE_SHORT   0xc0 ~%SY#BINNP%~
+	WRITE_SHORT   0xe8 ~%SY#BINNP%~
+	WRITE_SHORT   0x110 ~%SY#BINNP%~
+	WRITE_SHORT   0x138 ~%SY#BINNP%~
 
 COPY    ~BardSong_BGEE_IWD/chorus/spl/prot~   ~override~
 	LPF ALTER_SPELL_EFFECT INT_VAR match_opcode = 326 parameter2 = %splprot_row% END
 	
 COPY    ~BardSong_BGEE_IWD/chorus/spl/protinpl~   ~override~
-	WRITE_SHORT   0x98 ~%BI#BINPL%~
+	WRITE_SHORT   0x98 ~%SY#BINPL%~
 	LPF ALTER_SPELL_EFFECT INT_VAR match_opcode = 318 parameter2 = %splprot_row% END
 	
-COPY_EXISTING    ~BI#B11A.SPL~   ~override~
+COPY_EXISTING    ~SY#B11A.SPL~   ~override~
 	SAY UNIDENTIFIED_DESC @51
 
-COPY_EXISTING    ~BI#B12A.SPL~   ~override~
+COPY_EXISTING    ~SY#B12A.SPL~   ~override~
 	SAY UNIDENTIFIED_DESC @52
 
-COPY_EXISTING    ~BI#B13A.SPL~   ~override~
+COPY_EXISTING    ~SY#B13A.SPL~   ~override~
 	SAY UNIDENTIFIED_DESC @53
 
-COPY_EXISTING    ~BI#B14A.SPL~   ~override~
+COPY_EXISTING    ~SY#B14A.SPL~   ~override~
 	SAY UNIDENTIFIED_DESC @54
 
-COPY_EXISTING    ~BI#B15A.SPL~   ~override~
+COPY_EXISTING    ~SY#B15A.SPL~   ~override~
 	SAY UNIDENTIFIED_DESC @55
 
-COPY_EXISTING    ~BI#B16A.SPL~   ~override~
+COPY_EXISTING    ~SY#B16A.SPL~   ~override~
 	SAY UNIDENTIFIED_DESC @56
 	
-COPY_EXISTING    ~BI#B1SA.SPL~   ~override~    ~BI#B1SS.SPL~   ~override~
+COPY_EXISTING    ~SY#B1SA.SPL~   ~override~    ~SY#B1SS.SPL~   ~override~
 	SAY UNIDENTIFIED_DESC @57
 
-COPY_EXISTING    ~BI#B2SA.SPL~   ~override~    ~BI#B2SS.SPL~   ~override~
+COPY_EXISTING    ~SY#B2SA.SPL~   ~override~    ~SY#B2SS.SPL~   ~override~
 	SAY UNIDENTIFIED_DESC @58
 
-COPY_EXISTING    ~BI#B3SS.SPL~   ~override~
+COPY_EXISTING    ~SY#B3SS.SPL~   ~override~
 	SAY UNIDENTIFIED_DESC @59
 
-COPY_EXISTING    ~BI#B4SS.SPL~   ~override~
+COPY_EXISTING    ~SY#B4SS.SPL~   ~override~
 	SAY UNIDENTIFIED_DESC @60
 
 COPY    ~BardSong_BGEE_IWD/chorus/spl/noname~   ~override~

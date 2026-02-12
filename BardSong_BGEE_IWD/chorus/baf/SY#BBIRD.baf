@@ -1,0 +1,2208 @@
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+		SetGlobalTimer("EXISTIME","LOCALS",5)
+		Continue()
+END
+
+//时间到
+IF
+	GlobalTimerExpired("EXISTIME","Locals")
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+
+//判断领唱的歌曲类型并改变别人战歌
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,11,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@61)	//领唱：三英雄之颂
+		SetGlobal("songtype","LOCALS",1)
+		ReallyForceSpellRes("SY#B11X",Myself)	//改变战歌且使全局变量SY#BCHOR+1，只对背刺倍数11-22的诗人有效，不参与的诗人免疫
+END
+
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,12,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@62)	//领唱：库伦勇士传说
+		SetGlobal("songtype","LOCALS",2)
+		ReallyForceSpellRes("SY#B12X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,13,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@63)	//领唱：泰摩拉之曲
+		SetGlobal("songtype","LOCALS",3)
+		ReallyForceSpellRes("SY#B13X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,14,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@64)	//领唱：寇第斯之歌
+		SetGlobal("songtype","LOCALS",4)
+		ReallyForceSpellRes("SY#B14X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,15,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@65)	//领唱：海妖女的诱惑
+		SetGlobal("songtype","LOCALS",5)
+		ReallyForceSpellRes("SY#B15X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,16,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@66)	//领唱：西斯战歌
+		SetGlobal("songtype","LOCALS",6)
+		ReallyForceSpellRes("SY#B16X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,17,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@67)	//领唱：强力战歌
+		SetGlobal("songtype","LOCALS",7)
+		ReallyForceSpellRes("SY#B1SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,18,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@68)	//领唱：舞剑士强力战歌
+		SetGlobal("songtype","LOCALS",8)
+		ReallyForceSpellRes("SY#B2SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,19,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@69)	//领唱：小丑战歌
+		SetGlobal("songtype","LOCALS",9)
+		ReallyForceSpellRes("SY#B30X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,20,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@70)	//领唱：小丑强力战歌
+		SetGlobal("songtype","LOCALS",10)
+		ReallyForceSpellRes("SY#B3SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,21,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@71)	//领唱：北地诗人战歌
+		SetGlobal("songtype","LOCALS",11)
+		ReallyForceSpellRes("SY#B40X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	CheckStat(Player1,22,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player1,@72)	//领唱：北地诗人强力战歌
+		SetGlobal("songtype","LOCALS",12)
+		ReallyForceSpellRes("SY#B4SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,11,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@61)	//领唱：三英雄之颂
+		SetGlobal("songtype","LOCALS",1)
+		ReallyForceSpellRes("SY#B11X",Myself)	//改变战歌且使全局变量SY#BCHOR+1，只对背刺倍数11-22的诗人有效，不参与的诗人免疫
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,12,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@62)	//领唱：库伦勇士传说
+		SetGlobal("songtype","LOCALS",2)
+		ReallyForceSpellRes("SY#B12X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,13,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@63)	//领唱：泰摩拉之曲
+		SetGlobal("songtype","LOCALS",3)
+		ReallyForceSpellRes("SY#B13X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,14,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@64)	//领唱：寇第斯之歌
+		SetGlobal("songtype","LOCALS",4)
+		ReallyForceSpellRes("SY#B14X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,15,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@65)	//领唱：海妖女的诱惑
+		SetGlobal("songtype","LOCALS",5)
+		ReallyForceSpellRes("SY#B15X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,16,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@66)	//领唱：西斯战歌
+		SetGlobal("songtype","LOCALS",6)
+		ReallyForceSpellRes("SY#B16X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,17,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@67)	//领唱：强力战歌
+		SetGlobal("songtype","LOCALS",7)
+		ReallyForceSpellRes("SY#B1SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,18,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@68)	//领唱：舞剑士强力战歌
+		SetGlobal("songtype","LOCALS",8)
+		ReallyForceSpellRes("SY#B2SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,19,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@69)	//领唱：小丑战歌
+		SetGlobal("songtype","LOCALS",9)
+		ReallyForceSpellRes("SY#B30X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,20,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@70)	//领唱：小丑强力战歌
+		SetGlobal("songtype","LOCALS",10)
+		ReallyForceSpellRes("SY#B3SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,21,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@71)	//领唱：北地诗人战歌
+		SetGlobal("songtype","LOCALS",11)
+		ReallyForceSpellRes("SY#B40X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	CheckStat(Player2,22,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player2,@72)	//领唱：北地诗人强力战歌
+		SetGlobal("songtype","LOCALS",12)
+		ReallyForceSpellRes("SY#B4SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,11,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@61)	//领唱：三英雄之颂
+		SetGlobal("songtype","LOCALS",1)
+		ReallyForceSpellRes("SY#B11X",Myself)	//改变战歌且使全局变量SY#BCHOR+1，只对背刺倍数11-22的诗人有效，不参与的诗人免疫
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,12,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@62)	//领唱：库伦勇士传说
+		SetGlobal("songtype","LOCALS",2)
+		ReallyForceSpellRes("SY#B12X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,13,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@63)	//领唱：泰摩拉之曲
+		SetGlobal("songtype","LOCALS",3)
+		ReallyForceSpellRes("SY#B13X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,14,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@64)	//领唱：寇第斯之歌
+		SetGlobal("songtype","LOCALS",4)
+		ReallyForceSpellRes("SY#B14X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,15,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@65)	//领唱：海妖女的诱惑
+		SetGlobal("songtype","LOCALS",5)
+		ReallyForceSpellRes("SY#B15X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,16,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@66)	//领唱：西斯战歌
+		SetGlobal("songtype","LOCALS",6)
+		ReallyForceSpellRes("SY#B16X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,17,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@67)	//领唱：强力战歌
+		SetGlobal("songtype","LOCALS",7)
+		ReallyForceSpellRes("SY#B1SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,18,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@68)	//领唱：舞剑士强力战歌
+		SetGlobal("songtype","LOCALS",8)
+		ReallyForceSpellRes("SY#B2SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,19,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@69)	//领唱：小丑战歌
+		SetGlobal("songtype","LOCALS",9)
+		ReallyForceSpellRes("SY#B30X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,20,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@70)	//领唱：小丑强力战歌
+		SetGlobal("songtype","LOCALS",10)
+		ReallyForceSpellRes("SY#B3SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,21,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@71)	//领唱：北地诗人战歌
+		SetGlobal("songtype","LOCALS",11)
+		ReallyForceSpellRes("SY#B40X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	CheckStat(Player3,22,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player3,@72)	//领唱：北地诗人强力战歌
+		SetGlobal("songtype","LOCALS",12)
+		ReallyForceSpellRes("SY#B4SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,11,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@61)	//领唱：三英雄之颂
+		SetGlobal("songtype","LOCALS",1)
+		ReallyForceSpellRes("SY#B11X",Myself)	//改变战歌且使全局变量SY#BCHOR+1，只对背刺倍数11-22的诗人有效，不参与的诗人免疫
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,12,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@62)	//领唱：库伦勇士传说
+		SetGlobal("songtype","LOCALS",2)
+		ReallyForceSpellRes("SY#B12X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,13,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@63)	//领唱：泰摩拉之曲
+		SetGlobal("songtype","LOCALS",3)
+		ReallyForceSpellRes("SY#B13X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,14,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@64)	//领唱：寇第斯之歌
+		SetGlobal("songtype","LOCALS",4)
+		ReallyForceSpellRes("SY#B14X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,15,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@65)	//领唱：海妖女的诱惑
+		SetGlobal("songtype","LOCALS",5)
+		ReallyForceSpellRes("SY#B15X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,16,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@66)	//领唱：西斯战歌
+		SetGlobal("songtype","LOCALS",6)
+		ReallyForceSpellRes("SY#B16X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,17,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@67)	//领唱：强力战歌
+		SetGlobal("songtype","LOCALS",7)
+		ReallyForceSpellRes("SY#B1SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,18,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@68)	//领唱：舞剑士强力战歌
+		SetGlobal("songtype","LOCALS",8)
+		ReallyForceSpellRes("SY#B2SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,19,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@69)	//领唱：小丑战歌
+		SetGlobal("songtype","LOCALS",9)
+		ReallyForceSpellRes("SY#B30X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,20,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@70)	//领唱：小丑强力战歌
+		SetGlobal("songtype","LOCALS",10)
+		ReallyForceSpellRes("SY#B3SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,21,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@71)	//领唱：北地诗人战歌
+		SetGlobal("songtype","LOCALS",11)
+		ReallyForceSpellRes("SY#B40X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	CheckStat(Player4,22,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player4,@72)	//领唱：北地诗人强力战歌
+		SetGlobal("songtype","LOCALS",12)
+		ReallyForceSpellRes("SY#B4SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,11,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@61)	//领唱：三英雄之颂
+		SetGlobal("songtype","LOCALS",1)
+		ReallyForceSpellRes("SY#B11X",Myself)	//改变战歌且使全局变量SY#BCHOR+1，只对背刺倍数11-22的诗人有效，不参与的诗人免疫
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,12,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@62)	//领唱：库伦勇士传说
+		SetGlobal("songtype","LOCALS",2)
+		ReallyForceSpellRes("SY#B12X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,13,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@63)	//领唱：泰摩拉之曲
+		SetGlobal("songtype","LOCALS",3)
+		ReallyForceSpellRes("SY#B13X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,14,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@64)	//领唱：寇第斯之歌
+		SetGlobal("songtype","LOCALS",4)
+		ReallyForceSpellRes("SY#B14X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,15,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@65)	//领唱：海妖女的诱惑
+		SetGlobal("songtype","LOCALS",5)
+		ReallyForceSpellRes("SY#B15X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,16,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@66)	//领唱：西斯战歌
+		SetGlobal("songtype","LOCALS",6)
+		ReallyForceSpellRes("SY#B16X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,17,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@67)	//领唱：强力战歌
+		SetGlobal("songtype","LOCALS",7)
+		ReallyForceSpellRes("SY#B1SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,18,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@68)	//领唱：舞剑士强力战歌
+		SetGlobal("songtype","LOCALS",8)
+		ReallyForceSpellRes("SY#B2SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,19,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@69)	//领唱：小丑战歌
+		SetGlobal("songtype","LOCALS",9)
+		ReallyForceSpellRes("SY#B30X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,20,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@70)	//领唱：小丑强力战歌
+		SetGlobal("songtype","LOCALS",10)
+		ReallyForceSpellRes("SY#B3SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,21,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@71)	//领唱：北地诗人战歌
+		SetGlobal("songtype","LOCALS",11)
+		ReallyForceSpellRes("SY#B40X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	CheckStat(Player5,22,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player5,@72)	//领唱：北地诗人强力战歌
+		SetGlobal("songtype","LOCALS",12)
+		ReallyForceSpellRes("SY#B4SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,11,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@61)	//领唱：三英雄之颂
+		SetGlobal("songtype","LOCALS",1)
+		ReallyForceSpellRes("SY#B11X",Myself)	//改变战歌且使全局变量SY#BCHOR+1，只对背刺倍数11-22的诗人有效，不参与的诗人免疫
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,12,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@62)	//领唱：库伦勇士传说
+		SetGlobal("songtype","LOCALS",2)
+		ReallyForceSpellRes("SY#B12X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,13,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@63)	//领唱：泰摩拉之曲
+		SetGlobal("songtype","LOCALS",3)
+		ReallyForceSpellRes("SY#B13X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,14,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@64)	//领唱：寇第斯之歌
+		SetGlobal("songtype","LOCALS",4)
+		ReallyForceSpellRes("SY#B14X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,15,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@65)	//领唱：海妖女的诱惑
+		SetGlobal("songtype","LOCALS",5)
+		ReallyForceSpellRes("SY#B15X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,16,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@66)	//领唱：西斯战歌
+		SetGlobal("songtype","LOCALS",6)
+		ReallyForceSpellRes("SY#B16X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,17,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@67)	//领唱：强力战歌
+		SetGlobal("songtype","LOCALS",7)
+		ReallyForceSpellRes("SY#B1SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,18,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@68)	//领唱：舞剑士强力战歌
+		SetGlobal("songtype","LOCALS",8)
+		ReallyForceSpellRes("SY#B2SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,19,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@69)	//领唱：小丑战歌
+		SetGlobal("songtype","LOCALS",9)
+		ReallyForceSpellRes("SY#B30X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,20,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@70)	//领唱：小丑强力战歌
+		SetGlobal("songtype","LOCALS",10)
+		ReallyForceSpellRes("SY#B3SX",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,21,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@71)	//领唱：北地诗人战歌
+		SetGlobal("songtype","LOCALS",11)
+		ReallyForceSpellRes("SY#B40X",Myself)
+END
+
+IF
+	OnCreation()
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	CheckStat(Player6,22,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(Player6,@72)	//领唱：北地诗人强力战歌
+		SetGlobal("songtype","LOCALS",12)
+		ReallyForceSpellRes("SY#B4SX",Myself)
+END
+
+
+//小丑和北地诗人普通战歌，给合唱奖励前需要先进行等级修正
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player1,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player1,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player1,20)
+	LevelGT(Player1,14)	//领唱15-19级，自己扣到16级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player1,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player1,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player1,15)
+	LevelGT(Player1,9)	////领唱10-14级，自己扣到12级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player1,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player1,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player1,10)
+	LevelGT(Player1,4)	//领唱5-9级，自己扣到8级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player1,BARD_ALL)
+	CheckSpellState(Player1,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player1,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player1,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player1,5)	//领唱1-4级，自己扣到4级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player2,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player2,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player2,20)
+	LevelGT(Player2,14)	//领唱15-19级，自己扣到16级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player2,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player2,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player2,15)
+	LevelGT(Player2,9)	////领唱10-14级，自己扣到12级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player2,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player2,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player2,10)
+	LevelGT(Player2,4)	//领唱5-9级，自己扣到8级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player2,BARD_ALL)
+	CheckSpellState(Player2,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player2,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player2,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player2,5)	//领唱1-4级，自己扣到4级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player3,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player3,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player3,20)
+	LevelGT(Player3,14)	//领唱15-19级，自己扣到16级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player3,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player3,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player3,15)
+	LevelGT(Player3,9)	////领唱10-14级，自己扣到12级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player3,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player3,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player3,10)
+	LevelGT(Player3,4)	//领唱5-9级，自己扣到8级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player3,BARD_ALL)
+	CheckSpellState(Player3,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player3,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player3,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player3,5)	//领唱1-4级，自己扣到4级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player4,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player4,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player4,20)
+	LevelGT(Player4,14)	//领唱15-19级，自己扣到16级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player4,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player4,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player4,15)
+	LevelGT(Player4,9)	////领唱10-14级，自己扣到12级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player4,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player4,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player4,10)
+	LevelGT(Player4,4)	//领唱5-9级，自己扣到8级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player4,BARD_ALL)
+	CheckSpellState(Player4,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player4,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player4,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player4,5)	//领唱1-4级，自己扣到4级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player5,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player5,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player5,20)
+	LevelGT(Player5,14)	//领唱15-19级，自己扣到16级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player5,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player5,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player5,15)
+	LevelGT(Player5,9)	////领唱10-14级，自己扣到12级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player5,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player5,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player5,10)
+	LevelGT(Player5,4)	//领唱5-9级，自己扣到8级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player5,BARD_ALL)
+	CheckSpellState(Player5,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player5,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player5,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player5,5)	//领唱1-4级，自己扣到4级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player6,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player6,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player6,20)
+	LevelGT(Player6,14)	//领唱15-19级，自己扣到16级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player6,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player6,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player6,15)
+	LevelGT(Player6,9)	////领唱10-14级，自己扣到12级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player6,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player6,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player6,10)
+	LevelGT(Player6,4)	//领唱5-9级，自己扣到8级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+IF
+	Global("levelfix","LOCALS",0)
+	Class(Player6,BARD_ALL)
+	CheckSpellState(Player6,SHAMANIC_DANCE)
+	OR(2)
+		CheckStat(Player6,19,BACKSTABDAMAGEMULTIPLIER)
+		CheckStat(Player6,21,BACKSTABDAMAGEMULTIPLIER)
+	LevelLT(Player6,5)	//领唱1-4级，自己扣到4级
+THEN
+	RESPONSE #100
+		SetGlobal("levelfix","LOCALS",1)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+		ReallyForceSpellRES("SY#B00Y",Myself)
+END
+
+
+//判断歌曲类型并改变别人战歌
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),11,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@61)	//领唱：三英雄之颂
+		SetGlobal("songtype","LOCALS",1)
+		ReallyForceSpellRes("SY#B11X",Myself)	//改变战歌且使全局变量SY#BCHOR+1，只对背刺倍数11-22的诗人有效，不参与的诗人免疫
+END
+
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),12,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@62)	//领唱：库伦勇士传说
+		SetGlobal("songtype","LOCALS",2)
+		ReallyForceSpellRes("SY#B12X",Myself)
+END
+
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),13,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@63)	//领唱：泰摩拉之曲
+		SetGlobal("songtype","LOCALS",3)
+		ReallyForceSpellRes("SY#B13X",Myself)
+END
+
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),14,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@64)	//领唱：寇第斯之歌
+		SetGlobal("songtype","LOCALS",4)
+		ReallyForceSpellRes("SY#B14X",Myself)
+END
+
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),15,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@65)	//领唱：海妖女的诱惑
+		SetGlobal("songtype","LOCALS",5)
+		ReallyForceSpellRes("SY#B15X",Myself)
+END
+
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),16,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@66)	//领唱：西斯战歌
+		SetGlobal("songtype","LOCALS",6)
+		ReallyForceSpellRes("SY#B16X",Myself)
+END
+
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),17,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@67)	//领唱：强力战歌
+		SetGlobal("songtype","LOCALS",7)
+		ReallyForceSpellRes("SY#B1SX",Myself)
+END
+
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),18,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@68)	//领唱：舞剑士强力战歌
+		SetGlobal("songtype","LOCALS",8)
+		ReallyForceSpellRes("SY#B2SX",Myself)
+END
+
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),19,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@69)	//领唱：小丑战歌
+		SetGlobal("songtype","LOCALS",9)
+		ReallyForceSpellRes("SY#B30X",Myself)
+END
+
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),20,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@70)	//领唱：小丑强力战歌
+		SetGlobal("songtype","LOCALS",10)
+		ReallyForceSpellRes("SY#B3SX",Myself)
+END
+
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),21,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@71)	//领唱：北地诗人战歌
+		SetGlobal("songtype","LOCALS",11)
+		ReallyForceSpellRes("SY#B40X",Myself)
+END
+
+IF
+	Global("songtype","LOCALS",0)
+	CheckStat(LastSeenBy(),22,BACKSTABDAMAGEMULTIPLIER)
+THEN
+	RESPONSE #100
+		DisplayString(LastSeenBy(),@72)	//领唱：北地诗人强力战歌
+		SetGlobal("songtype","LOCALS",12)
+		ReallyForceSpellRes("SY#B4SX",Myself)
+END
+
+
+//根据合唱人数给予战歌特效
+IF
+	Global("SY#BCHOR","GLOBAL",0)
+THEN
+	RESPONSE #100
+		DestroySelf()
+END
+
+//三英雄之颂
+IF
+	Global("songtype","LOCALS",1)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B11L",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",1)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B11K",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",1)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B11J",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",1)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B11I",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",1)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B11H",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",1)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B11G",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+//库伦勇士传说
+IF
+	Global("songtype","LOCALS",2)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B12L",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",2)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B12K",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",2)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B12J",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",2)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B12I",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",2)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B12H",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",2)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B12G",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+//泰摩拉之曲
+IF
+	Global("songtype","LOCALS",3)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B13L",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",3)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B13K",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",3)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B13J",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",3)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B13I",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",3)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B13H",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",3)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B13G",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+//寇第斯之歌
+IF
+	Global("songtype","LOCALS",4)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B14L",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",4)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B14K",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",4)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B14J",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",4)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B14I",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",4)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B14H",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",4)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B14G",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+//海妖女的诱惑
+IF
+	Global("songtype","LOCALS",5)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B15L",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",5)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B15K",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",5)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B15J",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",5)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B15I",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",5)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B15H",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",5)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B15G",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+//西斯战歌
+IF
+	Global("songtype","LOCALS",6)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B16L",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",6)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B16K",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",6)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B16J",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",6)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B16I",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",6)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B16H",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",6)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B16G",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+//强力战歌
+IF
+	Global("songtype","LOCALS",7)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B1SL",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",7)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B1SK",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",7)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B1SJ",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",7)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B1SI",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",7)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B1SH",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",7)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B1SG",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+//舞剑士强力战歌
+IF
+	Global("songtype","LOCALS",8)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B2SL",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",8)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B2SK",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",8)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B2SJ",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",8)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B2SI",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",8)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B2SH",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",8)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B2SG",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+//小丑战歌
+IF
+	Global("songtype","LOCALS",9)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B30L",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",9)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B30K",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",9)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B30J",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",9)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B30I",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",9)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B30H",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",9)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B30G",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+//小丑强力战歌
+IF
+	Global("songtype","LOCALS",10)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B3SL",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",10)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B3SK",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",10)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B3SJ",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",10)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B3SI",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",10)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B3SH",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",10)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B3SG",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+//北地诗人战歌
+IF
+	Global("songtype","LOCALS",11)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B40L",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",11)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B40K",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",11)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B40J",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",11)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B40I",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",11)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B40H",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",11)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B40G",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+//北地诗人强力战歌
+IF
+	Global("songtype","LOCALS",12)
+	GlobalGT("SY#BCHOR","GLOBAL",8)	//十人合唱。领唱不算所以实际合唱人数为SY#BCHOR+1
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B4SL",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",12)
+	GlobalGT("SY#BCHOR","GLOBAL",5)	//七八九人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B4SK",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",12)
+	GlobalGT("SY#BCHOR","GLOBAL",4)	//六人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B4SJ",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",12)
+	GlobalGT("SY#BCHOR","GLOBAL",2)	//四五人合唱
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B4SI",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",12)
+	GlobalGT("SY#BCHOR","GLOBAL",1)	//三人斗地主
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B4SH",Myself)
+		Wait(1)
+		DestroySelf()
+END
+
+IF
+	Global("songtype","LOCALS",12)
+	GlobalGT("SY#BCHOR","GLOBAL",0)	//二人转
+THEN
+	RESPONSE #100 
+		SetGlobal("SY#BCHOR","GLOBAL",0)
+		ReallyForceSpellRES("SY#B4SG",Myself)
+		Wait(1)
+		DestroySelf()
+END
