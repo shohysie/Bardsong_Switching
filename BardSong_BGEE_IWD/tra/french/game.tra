@@ -13,8 +13,7 @@
 	- Pas d'alerte.
 	À ce moment, vous pouvez contrôler manuellement le barde pour lancer un sort, puis le poète reprendra automatiquement son chant sans interrompre les effets. Ces alertes n'existent qu'en combat.
 
-	Appuyez sur 'F' pour forcer un barde invisible à chanter et attaquer. Puisqu'un barde devient visible en chantant, cette IA lui ordonne de rester inactif lorsqu'invisible, sauf si 'F' est pressé.
-	Cette commande s'annule quand l'invisibilité cesse, et 'F' devra être réactivé ultérieurement.
+	Appuyez sur 'F' pour forcer un barde à chanter et attaquer lorsqu'il est invisible, ce qui annulera son invisibilité. Cette commande prend fin lorsque le personnage redevient visible, et il faudra appuyer à nouveau sur 'F' la prochaine fois.
 
 	Appuyez sur 'B' pour lancer des sorts défensifs mémorisés dans cet ordre :
 	Peau de Pierre, Force, Protection contre l'Énergie Magique, Armure Spirituelle/Armure Fantôme/Armure, Bouclier, Protection contre les Projectiles Normaux, Résistance à la Peur, Flou, Protection contre le Mal, Invisibilité Améliorée (penser à presser 'F' pour activer un barde invisible), Image Mirroir, Bouclier Anti-Sort, Immunité aux Sorts : Abjuration, Hâte Améliorée, Protection contre les Éléments, Vision Véritable, Renvoi de Sort (ou Mineur), Déviation de Sort (ou Mineur), Globe d'Invulnérabilité.
